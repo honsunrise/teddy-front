@@ -1,0 +1,49 @@
+:host {
+  margin: 10px;
+  display: block;
+}
+.video-container {
+  max-width: 100rem;
+}
+
+@mixin video-container($width) {
+  .video-container {
+    max-width: $width;
+  }
+
+  .video-container .video-content {
+    max-height: ($width * 0.5625);
+  }
+}
+
+@media (min-width: 48em) {
+  @include video-container(46.88rem);
+}
+
+@media (min-width: 62rem) {
+  @include video-container(60.63rem);
+}
+
+@media (min-width: 75rem) {
+  @include video-container(73.13rem);
+}
+
+.video-info-warp {
+  padding: 5px;
+}
+
+.video-info-warp .video-title {
+  margin-bottom: 2px;
+}
+
+.video-info-warp .video-info {
+
+}
+
+.video-info-warp .video-info .text {
+  color: #999999;
+}
+
+.video-info-warp .video-info .btn {
+  padding-right: 5px;
+}
