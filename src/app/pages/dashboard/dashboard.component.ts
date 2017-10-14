@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Media } from '../widgets/media-card/media-card.media';
+import { Media } from '../../widgets/media-card/media-card.media';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
