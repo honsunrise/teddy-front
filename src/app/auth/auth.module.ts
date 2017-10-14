@@ -1,27 +1,29 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { Http, RequestOptions } from '@angular/http';
 import { AuthGuard } from './auth.guard.service';
 import { AuthService } from './auth.service';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => localStorage.getItem('auth_token'),
+    whitelistedDomains: ['localhost:8081'],
+  };
 }
 
 @NgModule({
   imports: [
-    CommonModule
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+      }
+    })
   ],
   providers: [
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
-    },
     AuthGuard,
     AuthService
   ]
 })
-export class AuthModule {}
+export class AuthModule {
+}
 

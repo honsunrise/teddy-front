@@ -31,6 +31,7 @@ import { SharedModule } from './shared/shared.module';
 import { WidgetsModule } from './widgets/widgets.module';
 import { AuthModule } from './auth/auth.module';
 import { ServiceModule } from './service/service.module';
+import { APP_CONFIG, APP_DI_CONFIG } from './app.config.constants';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -72,7 +73,9 @@ export function createTranslateLoader(http: HttpClient) {
     AuthModule,
     ServiceModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
