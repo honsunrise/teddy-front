@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor() { }
 
-  private redirectUrl: string;
+  private _redirectUrl: string;
 
   login(username: string, password: string): Observable<boolean> {
     return Observable.of(true).delay(1000);
@@ -18,7 +18,11 @@ export class AuthService {
 
   checkLogin(url: string): boolean {
     if (tokenNotExpired()) { return true; }
-    this.redirectUrl = url;
+    this._redirectUrl = url;
     return false;
+  }
+
+  get redirectUrl(): string {
+    return this._redirectUrl;
   }
 }
