@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { AccountService } from '../../../service/account/account.service';
+import { AuthGuard } from '../../../auth/auth.guard.service';
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -14,7 +15,7 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 export class SignupComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private accountService: AccountService, private authGuard: AuthGuard, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group( {
@@ -25,6 +26,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate( ['/main'] );
+    this.accountService.register(this.form.value['email'], this.form.value['password']).subscribe(() => {
+
+      this.authGuard.redirect();
+    });
   }
 }

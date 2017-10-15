@@ -6,21 +6,13 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 export const AppRoutes: Routes = [{
   path: '',
   component: MainLayoutComponent,
-  children: [
-    {
+  children: [{
+    path: '',
+    children: [{
       path: '',
-      children: [{
-        path: '',
-        loadChildren: './pages/main/main.module#MainModule'
-      }, {
-        path: 'cate',
-        loadChildren: './pages/cate/cate.module#CateModule'
-      }, {
-        path: 'watch/:id',
-        loadChildren: './pages/watch/watch.module#WatchModule'
-      }]
-    }
-  ]
+      loadChildren: './pages/content/content.module#ContentModule'
+    }]
+  }]
 }, {
   path: '',
   component: AuthLayoutComponent,

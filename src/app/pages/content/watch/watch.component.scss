@@ -4,15 +4,15 @@
 }
 .video-container {
   max-width: 100rem;
+  width: 100rem;
 }
 
 @mixin video-container($width) {
   .video-container {
     max-width: $width;
-  }
-
-  .video-container .video-content {
+    width: $width;
     max-height: ($width * 0.5625);
+   height: ($width * 0.5625);
   }
 }
 

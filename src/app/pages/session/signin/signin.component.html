@@ -14,12 +14,14 @@
                   <input mdInput placeholder="Username" [formControl]="form.controls['username']">
                 </md-input-container>
                 <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="mat-text-warn">Username is required.</small>
+                <small *ngIf="form.controls['username'].hasError('notCorrect')" class="mat-text-warn">Username not correct.</small>
               </div>
               <div class="pb-1">
                 <md-input-container style="width: 100%">
                   <input mdInput type="password" placeholder="Password" [formControl]="form.controls['password']">
                 </md-input-container>
                 <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Password is required.</small>
+                <small *ngIf="form.controls['password'].hasError('notCorrect')" class="mat-text-warn">Password not correct.</small>
               </div>
               <div class="pb-1">
                 <md-checkbox>Stay logged in</md-checkbox>

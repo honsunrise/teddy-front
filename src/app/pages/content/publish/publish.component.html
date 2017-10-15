@@ -1,0 +1,137 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>Movie publish</md-card-title>
+  </md-card-header>
+
+  <md-card-content>
+    <div ng2FileDrop
+         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+         (fileOver)="fileOverBase($event)"
+         [uploader]="uploader" class="my-drop-zone mb-1">
+      <div>
+        <h4 class="mt-0" fxLayout="row">
+          <span fxFlex>Upload queue</span>
+          <span>Queue length: {{ uploader?.queue?.length }}</span>
+        </h4>
+
+        <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="uploader.queue"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="0"
+          [rowHeight]="'auto'">
+          <ngx-datatable-column name="Name" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.file?.name }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Size" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.file?.size/1024/1024 | number:'.2' }} MB
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Progress" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <md-progress-bar mode="determinate" value="{{row.progress}}"></md-progress-bar>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="status" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <span *ngIf="row.isSuccess"><md-icon>check</md-icon></span>
+              <span *ngIf="row.isCancel"><md-icon>cancel</md-icon></span>
+              <span *ngIf="row.isError"><md-icon>error</md-icon></span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="action" [flexGrow]="3">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button md-raised-button md-button-sm color="primary" type="button"
+                      (click)="row.upload()" [disabled]="row.isReady || row.isUploading || row.isSuccess">Upload
+              </button>
+              <button md-raised-button md-button-sm color="warn" type="button"
+                      (click)="row.cancel()" [disabled]="!row.isUploading">Cancel
+              </button>
+              <button md-raised-button md-button-sm color="accent" type="button"
+                      (click)="row.remove()">Remove
+              </button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+        <div class="mb-1">
+          <p>Queue progress:</p>
+          <md-progress-bar mode="determinate" value="{{uploader.progress}}"></md-progress-bar>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+          <button md-raised-button md-button-sm color="primary" type="button" class="mr-1"
+                  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload all
+          </button>
+          <button md-raised-button md-button-sm color="warn" type="button" class="mr-1"
+                  (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">Cancel all
+          </button>
+          <button md-raised-button md-button-sm color="accent" type="button" class="mr-1"
+                  (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Remove all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <md-card-content>
+        <div class="mb-1">
+          <md-input-container style="width: 100%">
+            <input mdInput placeholder="Title" [formControl]="form.controls['title']">
+          </md-input-container>
+          <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">You must include a title.</small>
+          <small *ngIf="form.controls['title'].hasError('minlength') && form.controls['title'].touched" class="mat-text-warn">Your title must be at least 5 characters long.</small>
+          <small *ngIf="form.controls['title'].hasError('maxlength') && form.controls['title'].touched" class="mat-text-warn">Your title cannot exceed 10 characters.</small>
+        </div>
+
+        <div class="mb-1">
+          <md-input-container style="width: 100%">
+            <input mdInput placeholder="Content" [formControl]="form.controls['content']">
+          </md-input-container>
+          <small *ngIf="form.controls['content'].hasError('required') && form.controls['content'].touched" class="mat-text-warn">You must include an content.</small>
+          <small *ngIf="form.controls['content'].hasError('maxlength') && form.controls['content'].touched" class="mat-text-warn">Your content cannot exceed 10 characters.</small>
+        </div>
+
+        <div class="mb-1" *ngIf="!form.controls['external'].value">
+          <label>Cover Image file</label>
+          <input #_hide_file_upload_ type="file" ng2FileSelect [uploader]="uploader" multiple style="display: none;"/>
+          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files</button>
+        </div>
+
+        <div class="mb-1">
+          <md-slide-toggle name="slideToggle" required [formControl]="form.controls['external']">
+            External
+          </md-slide-toggle>
+        </div>
+
+        <div class="mb-1" *ngIf="form.controls['external'].value">
+          <md-input-container style="width: 100%">
+            <input mdInput placeholder="Movie external address (http://youtube.com)" [formControl]="form.controls['movie']" type="movie">
+          </md-input-container>
+          <small *ngIf="form.controls['movie'].hasError('required') && form.controls['movie'].touched" class="mat-text-warn">You must include a web address.</small>
+          <small *ngIf="form.controls['movie'].errors?.url && form.controls['movie'].touched" class="mat-text-warn">You must include a valid web address.</small>
+        </div>
+
+        <div class="mb-1" *ngIf="!form.controls['external'].value">
+          <label>Movie file</label>
+          <input #_hide_file_upload_ type="file" ng2FileSelect [uploader]="uploader" style="display: none;"/>
+          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files</button>
+        </div>
+
+        <div class="mb-1">
+          <md-slide-toggle name="slideToggle" required [formControl]="form.controls['canReview']">
+            Can review
+          </md-slide-toggle>
+        </div>
+
+      </md-card-content>
+      <hr>
+      <md-card-actions>
+        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+      </md-card-actions>
+    </form>
+  </md-card-content>
+</md-card>

@@ -1,6 +1,6 @@
-<div fxLayoutAlign="center">
+<div fxLayoutAlign="center" *ngIf="!loading">
   <div class="video-container">
-    <vg-player class="video-content" >
+    <vg-player *ngIf="!external">
       <vg-overlay-play></vg-overlay-play>
       <vg-buffering></vg-buffering>
 
@@ -36,10 +36,10 @@
         <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt" srclang="es">
       </video>
     </vg-player>
-
+    <app-framed-content *ngIf="external" [externalUrl]="iframe"></app-framed-content>
     <div class="video-info-warp">
       <h1 class="video-title">
-        Earth
+        {{title}}
       </h1>
       <div class="video-info"fxLayout="row" fxLayoutAlign="space-around center" >
         <span class="text">103,930次观看</span>
@@ -50,7 +50,7 @@
             <md-icon class="md-24">favorite</md-icon>
           </button>
           <span>
-            166
+            {{favorites}}
           </span>
         </a>
       </div>

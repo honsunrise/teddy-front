@@ -16,7 +16,7 @@
     <button appToggleFullscreen md-icon-button>
       <md-icon>fullscreen</md-icon>
     </button>
-    <button (click)="end.toggle()" md-icon-button class="ml-xs overflow-visible">
+    <button (click)="!authService.checkLogin() || end.toggle()" md-icon-button class="ml-xs overflow-visible" *ngIf="authService.checkLogin()">
       <md-icon>notifications</md-icon>
       <span class="notification-label">5</span>
     </button>
@@ -24,19 +24,19 @@
       <md-icon>person</md-icon>
     </button>
     <md-menu #user="mdMenu" x-position="before">
-      <button md-menu-item>
-        <md-icon>settings</md-icon>
-        Settings
-      </button>
-      <button md-menu-item>
+      <button md-menu-item *ngIf="authService.checkLogin()" [routerLink]="['/profile']">
         <md-icon>account_box</md-icon>
         Profile
       </button>
-      <button md-menu-item>
+      <button md-menu-item *ngIf="authService.checkLogin()">
         <md-icon>notifications_off</md-icon>
         Disable notifications
       </button>
-      <button md-menu-item>
+      <button md-menu-item *ngIf="!authService.checkLogin()" [routerLink]="['/session/signin']">
+        <md-icon>exit_to_app</md-icon>
+        Sign In
+      </button>
+      <button md-menu-item *ngIf="authService.checkLogin()" (click)="authService.logout()">
         <md-icon>exit_to_app</md-icon>
         Sign Out
       </button>
@@ -82,12 +82,6 @@
           </md-nav-list>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item>
-          <a (click)="addMenuItem()">
-            <md-icon>add</md-icon>
-            <span>Add</span>
-          </a>
-        </md-list-item>
       </md-nav-list>
     </md-sidenav>
     <md-sidenav #end align="end" class="chat-panel" mode="over" opened="false">
@@ -225,4 +219,9 @@
     </md-sidenav>
     <router-outlet></router-outlet>
   </md-sidenav-container>
+
+  <!-- Demo Purposes Only -->
+  <button md-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()" [routerLink]="['/publish']">
+    <md-icon class="md-24">add</md-icon>
+  </button>
 </div>

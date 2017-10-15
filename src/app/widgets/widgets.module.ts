@@ -5,6 +5,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MediaCardComponent } from './media-card/media-card.component';
+import { FramedContentComponent } from './framed-content/frame-content.component';
+import { SafePipe } from '../pipe/safe.pipe';
 
 @NgModule({
   imports: [
@@ -17,10 +19,13 @@ import { MediaCardComponent } from './media-card/media-card.component';
     FlexLayoutModule,
   ],
   declarations: [
-    MediaCardComponent
+    SafePipe,
+    MediaCardComponent,
+    FramedContentComponent
   ],
   exports: [
-    MediaCardComponent
+    MediaCardComponent,
+    FramedContentComponent
   ]
 })
 export class WidgetsModule {

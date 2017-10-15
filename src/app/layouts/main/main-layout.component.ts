@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { TranslateService } from '@ngx-translate/core';
 import * as Ps from 'perfect-scrollbar';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -14,7 +15,6 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
   today: number = Date.now();
   url: string;
-  showSettings = false;
   dark: boolean;
   boxed: boolean;
   collapseSidebar: boolean;
@@ -24,9 +24,9 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('root') root;
   private _router: Subscription;
 
-  constructor(private router: Router, public menuItems: MenuItems, public translate: TranslateService) {
+  constructor(private router: Router, public authService: AuthService, public menuItems: MenuItems, public translate: TranslateService) {
     const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|cn/) ? browserLang : 'en');
   }
 
   ngOnInit(): void {

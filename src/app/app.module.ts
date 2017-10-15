@@ -28,10 +28,10 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './layouts/main/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule } from './shared/shared.module';
-import { WidgetsModule } from './widgets/widgets.module';
 import { AuthModule } from './auth/auth.module';
 import { ServiceModule } from './service/service.module';
 import { APP_CONFIG, APP_DI_CONFIG } from './app.config.constants';
+import { HttpModule } from '@angular/http';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,7 +69,6 @@ export function createTranslateLoader(http: HttpClient) {
     MdSlideToggleModule,
     MdSelectModule,
     FlexLayoutModule,
-    WidgetsModule,
     AuthModule,
     ServiceModule
   ],

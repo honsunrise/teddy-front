@@ -6,7 +6,7 @@ import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 export function jwtOptionsFactory() {
   return {
     tokenGetter: () => localStorage.getItem('auth_token'),
-    whitelistedDomains: ['localhost:8081'],
+    whitelistedDomains: ['127.0.0.1:8080', '127.0.0.1:8081', '127.0.0.1:8085'],
   };
 }
 
