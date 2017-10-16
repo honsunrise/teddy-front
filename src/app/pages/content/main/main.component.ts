@@ -12,15 +12,19 @@ export class MainComponent {
   medias: Media[] = [];
 
   constructor(private contentService: ContentService, private router: Router) {
-    contentService.getInfoList(0, 20).subscribe(infos => {
-      for (const info of infos) {
+    contentService.getInfoList(0, 20).subscribe(infoList => {
+      for (const info of infoList) {
         const media: Media = {
           title: info.title,
           content: info.content,
           coverUrl: 'assets/images/unsplash/' + 1 + '.jpg',
-          likes: info.praise,
+          favorites: info.favorites,
+          isFavorite: info.isFavorite,
           param: info.id,
           onClickFavorite: param => {
+            contentService.favoriteInfo(param).subscribe(data => {
+
+            });
           },
           onClickWatch: param => {
             this.goToWatchPage(param);
@@ -29,20 +33,9 @@ export class MainComponent {
         this.medias.push(media);
       }
     });
-    // for (let i = 1; i < 23; i++) {
-    //   const media: Media = {
-    //     title: 'Hello' + i,
-    //     content: 'Text' + i,
-    //     coverUrl: 'assets/images/unsplash/' + i + '.jpg',
-    //     likes: i,
-    //     param: i,
-    //     onClickFavorite: param => {},
-    //     onClickWatch: param => {
-    //       this.goToWatchPage(param);
-    //     },
-    //   };
-    //   this.medias.push(media);
-    // }
+    contentService.getUserFavoriteList().subscribe(favoriteList => {
+      console.log(favoriteList);
+    });
   }
 
   goToWatchPage(id) {

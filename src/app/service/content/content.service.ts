@@ -4,6 +4,7 @@ import { IAppConfig } from '../../app.config.interface';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Info } from '../domain/info';
 import { Observable } from 'rxjs/Observable';
+import { UserFavorite } from '../domain/UserFavorite';
 
 
 export interface PublishInfo {
@@ -62,5 +63,25 @@ export class ContentService {
         console.log(data);
         return true;
       });
+  }
+
+  favoriteInfo(infoId: string): Observable<boolean> {
+    return this.http.put(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {},
+      {withCredentials: true})
+      .do(data => console.log(data), (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('An error occurred:', err.error.message);
+        } else {
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      }, () => console.log('Complete'))
+      .map(data => {
+        console.log(data);
+        return true;
+      });
+  }
+
+  getUserFavoriteList(): Observable<Array<UserFavorite>> {
+    return this.http.get<Array<UserFavorite>>(this.config.contentEndpoint + '/info/test', {withCredentials: true});
   }
 }

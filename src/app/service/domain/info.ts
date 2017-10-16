@@ -7,7 +7,7 @@ export interface Info {
   content: string;
   userProfile: UserProfile;
   imageList: Array<string>;
-  movie: string;
+  movieUrl: string;
   external: boolean;
   publishTime: Date;
   lastReviewTime: Date;

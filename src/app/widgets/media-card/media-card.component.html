@@ -3,7 +3,7 @@
     <md-card-title fxLayout="row">
       <span>{{media.title}}</span>
       <span fxFlex></span>
-      <span class="mat-text-primary">{{media.likes + " likes" | uppercase}}</span>
+      <span class="mat-text-primary">{{media.favorites + " Favorites" | uppercase}}</span>
     </md-card-title>
     <img md-card-image src="{{media.coverUrl}}">
     <md-card-content>
@@ -12,7 +12,7 @@
     <md-card-actions>
       <div fxLayout="row">
         <button md-icon-button (click)="media.onClickFavorite(media.param)">
-          <md-icon>favorite</md-icon>
+          <md-icon [color]="media.isFavorite ? 'primary' : 'block'">favorite</md-icon>
         </button>
         <span fxFlex></span>
         <button md-raised-button color="warn" (click)="media.onClickWatch(media.param)">Watch</button>

@@ -121,12 +121,12 @@
         <div class="mb-1" *ngIf="form.controls['external'].value">
           <md-input-container style="width: 100%">
             <input mdInput placeholder="Movie external address (http://youtube.com)"
-                   [formControl]="form.controls['movie']" type="movie">
+                   [formControl]="form.controls['movieUrl']" type="movie">
           </md-input-container>
-          <small *ngIf="form.controls['movie'].hasError('required') && form.controls['movie'].touched"
+          <small *ngIf="form.controls['movieUrl'].hasError('required') && form.controls['movieUrl'].touched"
                  class="mat-text-warn">You must include a web address.
           </small>
-          <small *ngIf="form.controls['movie'].errors?.url && form.controls['movie'].touched" class="mat-text-warn">You
+          <small *ngIf="form.controls['movieUrl'].errors?.url && form.controls['movieUrl'].touched" class="mat-text-warn">You
             must include a valid web address.
           </small>
         </div>

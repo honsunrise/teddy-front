@@ -50,7 +50,7 @@ export class PublishComponent implements OnInit {
 
   onSubmit() {
     this.contentService.publishInfo(this.form.value['title'], this.form.value['content'],
-      [], this.form.value['movie'],
+      [], this.form.value['movieUrl'],
       this.form.value['external'], this.form.value['canReview']).subscribe(data => {
       console.log('Publish info success!');
     });

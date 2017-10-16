@@ -27,7 +27,7 @@ export class WatchComponent implements OnInit, OnDestroy {
         this.title = info.title;
         this.favorites = info.favorites;
         this.external = info.external;
-        this.iframe = this.embedService.embed(info.movie);
+        this.iframe = this.embedService.embed(info.movieUrl);
         this.loading = false;
       });
     });
