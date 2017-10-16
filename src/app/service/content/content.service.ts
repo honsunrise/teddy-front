@@ -52,12 +52,12 @@ export class ContentService {
         lon: 0
       }
     }, {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('An error occurred:', err.error.message);
-        } else {
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-      }, () => console.log('Complete'))
+      if (err.error instanceof Error) {
+        console.log('An error occurred:', err.error.message);
+      } else {
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+      }
+    }, () => console.log('Complete'))
       .map(data => {
         console.log(data);
         return true;

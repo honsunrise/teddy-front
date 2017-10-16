@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { CateComponent } from './cate/cate.component';
 import { WatchComponent } from './watch/watch.component';
 import { PublishComponent } from './publish/publish.component';
+
 export const ContentRoutes: Routes = [
   {
     path: '',

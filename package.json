@@ -49,7 +49,7 @@
     "perfect-scrollbar": "0.7.1",
     "rxjs": "^5.4.2",
     "screenfull": "3.3.1",
-    "videogular2": "^5.6.0",
+    "videogular2": "^5.6.1",
     "zone.js": "0.8.14"
   },
   "devDependencies": {

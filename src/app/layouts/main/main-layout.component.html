@@ -16,7 +16,8 @@
     <button appToggleFullscreen md-icon-button>
       <md-icon>fullscreen</md-icon>
     </button>
-    <button (click)="!authService.checkLogin() || end.toggle()" md-icon-button class="ml-xs overflow-visible" *ngIf="authService.checkLogin()">
+    <button (click)="!authService.checkLogin() || end.toggle()" md-icon-button class="ml-xs overflow-visible"
+            *ngIf="authService.checkLogin()">
       <md-icon>notifications</md-icon>
       <span class="notification-label">5</span>
     </button>

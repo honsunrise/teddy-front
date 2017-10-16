@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
-  MdIconModule,
-  MdCardModule,
-  MdInputModule,
   MdButtonModule,
-  MdToolbarModule,
-  MdTabsModule,
+  MdCardModule,
+  MdIconModule,
+  MdInputModule,
   MdListModule,
+  MdProgressBarModule,
+  MdSelectModule,
   MdSlideToggleModule,
-  MdSelectModule, MdProgressBarModule
+  MdTabsModule,
+  MdToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -31,14 +32,15 @@ import { CateComponent } from './cate/cate.component';
 import { PublishComponent } from './publish/publish.component';
 import { QuillModule } from 'ngx-quill/src/quill.module';
 import { FileUploadModule } from 'ng2-file-upload';
-import TreeModule from 'angular-tree-component';
 import { HttpClientModule } from '@angular/common/http';
+import { TreeModule } from 'angular-tree-component';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     RouterModule.forChild(ContentRoutes),
+    FormsModule,
+    ReactiveFormsModule,
     MdIconModule,
     MdCardModule,
     MdInputModule,
@@ -48,18 +50,16 @@ import { HttpClientModule } from '@angular/common/http';
     MdListModule,
     MdSlideToggleModule,
     MdSelectModule,
-    FlexLayoutModule,
-    FormsModule,
     NgxDatatableModule,
-    WidgetsModule,
+    FlexLayoutModule,
+    MdProgressBarModule,
     MasonryModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MdProgressBarModule,
     QuillModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     FileUploadModule,
     TreeModule,
     WidgetsModule
@@ -73,4 +73,5 @@ import { HttpClientModule } from '@angular/common/http';
   ]
 })
 
-export class ContentModule {}
+export class ContentModule {
+}

@@ -8,10 +8,7 @@ export const AppRoutes: Routes = [{
   component: MainLayoutComponent,
   children: [{
     path: '',
-    children: [{
-      path: '',
-      loadChildren: './pages/content/content.module#ContentModule'
-    }]
+    loadChildren: './pages/content/content.module#ContentModule'
   }]
 }, {
   path: '',

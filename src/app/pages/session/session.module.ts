@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MdIconModule, MdCardModule, MdInputModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -38,4 +38,5 @@ import { HttpClientModule } from '@angular/common/http';
   ]
 })
 
-export class SessionModule {}
+export class SessionModule {
+}

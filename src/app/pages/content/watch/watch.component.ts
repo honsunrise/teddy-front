@@ -9,15 +9,16 @@ import { EmbedVideoService } from '../../../service/embed-video/embed-video.serv
   styleUrls: ['./watch.component.scss']
 })
 export class WatchComponent implements OnInit, OnDestroy {
-  private sub: any;
   id: string;
   iframe: string;
   external: boolean;
   loading = true;
   favorites: number;
   title: string;
+  private sub: any;
 
-  constructor(private contentService: ContentService, private embedService: EmbedVideoService, private route: ActivatedRoute) { }
+  constructor(private contentService: ContentService, private embedService: EmbedVideoService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

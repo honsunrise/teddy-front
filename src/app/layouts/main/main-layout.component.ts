@@ -68,7 +68,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   isOver(): boolean {
-    if (this.url.search('/watch') >= 0) {
+    if (this.url.search('/watch') >= 0 || this.url.search('/publish') >= 0) {
       return true;
     } else {
       return window.matchMedia(`(max-width: 960px)`).matches;

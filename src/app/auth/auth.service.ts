@@ -19,9 +19,9 @@ export class AuthService {
       username: username,
       password: password
     }).do(data => {
-        this.isLogin = true;
-        localStorage.setItem('auth_token', data['access_token']);
-      })
+      this.isLogin = true;
+      localStorage.setItem('auth_token', data['access_token']);
+    })
       .map(() => {
         return true;
       });

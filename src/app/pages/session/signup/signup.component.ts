@@ -15,14 +15,16 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 export class SignupComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private accountService: AccountService, private authGuard: AuthGuard, private fb: FormBuilder) {}
+
+  constructor(private accountService: AccountService, private authGuard: AuthGuard, private fb: FormBuilder) {
+  }
 
   ngOnInit() {
-    this.form = this.fb.group( {
+    this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required, CustomValidators.email])],
       password: password,
       confirmPassword: confirmPassword
-    } );
+    });
   }
 
   onSubmit() {

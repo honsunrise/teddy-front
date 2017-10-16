@@ -31,7 +31,6 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ServiceModule } from './service/service.module';
 import { APP_CONFIG, APP_DI_CONFIG } from './app.config.constants';
-import { HttpModule } from '@angular/http';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,8 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule,
     RouterModule.forRoot(AppRoutes),
+    SharedModule,
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -73,7 +72,7 @@ export function createTranslateLoader(http: HttpClient) {
     ServiceModule
   ],
   providers: [
-    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
+    {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
   ],
   bootstrap: [AppComponent]
 })

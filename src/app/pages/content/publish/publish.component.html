@@ -82,23 +82,34 @@
           <md-input-container style="width: 100%">
             <input mdInput placeholder="Title" [formControl]="form.controls['title']">
           </md-input-container>
-          <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">You must include a title.</small>
-          <small *ngIf="form.controls['title'].hasError('minlength') && form.controls['title'].touched" class="mat-text-warn">Your title must be at least 5 characters long.</small>
-          <small *ngIf="form.controls['title'].hasError('maxlength') && form.controls['title'].touched" class="mat-text-warn">Your title cannot exceed 10 characters.</small>
+          <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched"
+                 class="mat-text-warn">You must include a title.
+          </small>
+          <small *ngIf="form.controls['title'].hasError('minlength') && form.controls['title'].touched"
+                 class="mat-text-warn">Your title must be at least 5 characters long.
+          </small>
+          <small *ngIf="form.controls['title'].hasError('maxlength') && form.controls['title'].touched"
+                 class="mat-text-warn">Your title cannot exceed 10 characters.
+          </small>
         </div>
 
         <div class="mb-1">
           <md-input-container style="width: 100%">
             <input mdInput placeholder="Content" [formControl]="form.controls['content']">
           </md-input-container>
-          <small *ngIf="form.controls['content'].hasError('required') && form.controls['content'].touched" class="mat-text-warn">You must include an content.</small>
-          <small *ngIf="form.controls['content'].hasError('maxlength') && form.controls['content'].touched" class="mat-text-warn">Your content cannot exceed 10 characters.</small>
+          <small *ngIf="form.controls['content'].hasError('required') && form.controls['content'].touched"
+                 class="mat-text-warn">You must include an content.
+          </small>
+          <small *ngIf="form.controls['content'].hasError('maxlength') && form.controls['content'].touched"
+                 class="mat-text-warn">Your content cannot exceed 10 characters.
+          </small>
         </div>
 
         <div class="mb-1" *ngIf="!form.controls['external'].value">
           <label>Cover Image file</label>
           <input #_hide_file_upload_ type="file" ng2FileSelect [uploader]="uploader" multiple style="display: none;"/>
-          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files</button>
+          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files
+          </button>
         </div>
 
         <div class="mb-1">
@@ -109,16 +120,22 @@
 
         <div class="mb-1" *ngIf="form.controls['external'].value">
           <md-input-container style="width: 100%">
-            <input mdInput placeholder="Movie external address (http://youtube.com)" [formControl]="form.controls['movie']" type="movie">
+            <input mdInput placeholder="Movie external address (http://youtube.com)"
+                   [formControl]="form.controls['movie']" type="movie">
           </md-input-container>
-          <small *ngIf="form.controls['movie'].hasError('required') && form.controls['movie'].touched" class="mat-text-warn">You must include a web address.</small>
-          <small *ngIf="form.controls['movie'].errors?.url && form.controls['movie'].touched" class="mat-text-warn">You must include a valid web address.</small>
+          <small *ngIf="form.controls['movie'].hasError('required') && form.controls['movie'].touched"
+                 class="mat-text-warn">You must include a web address.
+          </small>
+          <small *ngIf="form.controls['movie'].errors?.url && form.controls['movie'].touched" class="mat-text-warn">You
+            must include a valid web address.
+          </small>
         </div>
 
         <div class="mb-1" *ngIf="!form.controls['external'].value">
           <label>Movie file</label>
           <input #_hide_file_upload_ type="file" ng2FileSelect [uploader]="uploader" style="display: none;"/>
-          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files</button>
+          <button md-raised-button md-button-sm color="accent" (click)="_hide_file_upload_.click()">Choose Files
+          </button>
         </div>
 
         <div class="mb-1">

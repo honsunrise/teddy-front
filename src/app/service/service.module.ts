@@ -15,4 +15,5 @@ import { EmbedVideoService } from './embed-video/embed-video.service';
   ],
   declarations: []
 })
-export class ServiceModule { }
+export class ServiceModule {
+}

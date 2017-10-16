@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Media } from '../../../widgets/media-card/media-card.media';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ContentService } from '../../../service/content/content.service';
 
 @Component({
@@ -20,7 +20,8 @@ export class MainComponent {
           coverUrl: 'assets/images/unsplash/' + 1 + '.jpg',
           likes: info.praise,
           param: info.id,
-          onClickFavorite: param => {},
+          onClickFavorite: param => {
+          },
           onClickWatch: param => {
             this.goToWatchPage(param);
           },

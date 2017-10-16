@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 
 @Component({
@@ -11,16 +11,18 @@ import { CustomValidators } from 'ng2-validation';
 export class ForgotComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+
+  constructor(private fb: FormBuilder, private router: Router) {
+  }
 
   ngOnInit() {
-    this.form = this.fb.group ( {
-      email: [ null, Validators.compose( [ Validators.required, CustomValidators.email ] ) ]
-    } );
+    this.form = this.fb.group({
+      email: [null, Validators.compose([Validators.required, CustomValidators.email])]
+    });
   }
 
   onSubmit() {
-    this.router.navigate ( ['/session/signin'] );
+    this.router.navigate(['/session/signin']);
   }
 
 }

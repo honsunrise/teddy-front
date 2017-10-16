@@ -13,9 +13,13 @@
                 <md-input-container style="width: 100%">
                   <input mdInput placeholder="Username" [formControl]="form.controls['username']">
                 </md-input-container>
-                <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="mat-text-warn">Username is required.</small>
+                <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched"
+                       class="mat-text-warn">Username is required.
+                </small>
               </div>
-              <div> <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Unlock</button></div>
+              <div>
+                <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Unlock</button>
+              </div>
             </div>
           </form>
         </md-card-content>

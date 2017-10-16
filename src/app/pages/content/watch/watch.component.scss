@@ -2,6 +2,7 @@
   margin: 10px;
   display: block;
 }
+
 .video-container {
   max-width: 100rem;
   width: 100rem;
@@ -12,7 +13,7 @@
     max-width: $width;
     width: $width;
     max-height: ($width * 0.5625);
-   height: ($width * 0.5625);
+    height: ($width * 0.5625);
   }
 }
 
