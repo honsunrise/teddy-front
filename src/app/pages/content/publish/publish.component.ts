@@ -32,11 +32,11 @@ export class PublishComponent implements OnInit {
       title: [null, Validators.compose([
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(10)
+        Validators.maxLength(100)
       ])],
       content: [null, Validators.compose([
         Validators.required,
-        Validators.maxLength(50)
+        Validators.maxLength(500)
       ])],
       canReview: [null, Validators.compose([Validators.required])],
       external: [null, Validators.compose([Validators.required])],

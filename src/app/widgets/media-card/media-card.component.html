@@ -1,9 +1,8 @@
 <div>
   <md-card (click)="media.onClickWatch()">
     <md-card-title fxLayout="row">
-      <span>{{media.title}}</span>
-      <span fxFlex></span>
-      <span class="mat-text-primary">{{media.watchCount + " watch" | uppercase}}</span>
+      <span class="text-ellipsis" fxFlex="grow">{{media.title}}</span>
+      <span class="mat-text-primary" fxFlex="none">{{media.watchCount + " watch" | uppercase}}</span>
     </md-card-title>
     <img md-card-image src="{{media.coverUrl}}">
     <md-card-content>

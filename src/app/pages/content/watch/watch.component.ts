@@ -59,12 +59,18 @@ export class WatchComponent implements OnInit, OnDestroy {
   }
 
   onThumbUp() {
+    if (this.isThumbDown) {
+      this.onThumbDown();
+    }
     this.thumbUps += this.isThumbUp ? -1 : 1;
     this.isThumbUp = !this.isThumbUp;
     this.contentService.thumbUpInfo(this.id, !this.isThumbUp).subscribe();
   }
 
   onThumbDown() {
+    if (this.isThumbUp) {
+      this.onThumbUp();
+    }
     this.thumbDowns += this.isThumbDown ? -1 : 1;
     this.isThumbDown = !this.isThumbDown;
     this.contentService.thumbDownInfo(this.id, !this.isThumbDown).subscribe();
