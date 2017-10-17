@@ -1,5 +1,4 @@
 import { UserProfile } from './userprofile';
-import { Review } from './review';
 
 export interface Info {
   id: string;
@@ -11,14 +10,15 @@ export interface Info {
   external: boolean;
   publishTime: Date;
   lastReviewTime: Date;
-  favorites: number;
-  praise: number;
-  praiseList: Array<UserProfile>;
-  belittle: number;
-  belittleList: Array<UserProfile>;
   lastModifyTime: Date;
-  reviews: Array<Review>;
-  isPraise: boolean;
-  isBelittle: boolean;
+  watchCount: number;
+  isThumbUp: boolean;
+  thumbUps: number;
+  thumbUpList: Array<UserProfile>;
+  isThumbDown: boolean;
+  thumbDowns: number;
+  thumbDownList: Array<UserProfile>;
   isFavorite: boolean;
+  favorites: number;
+  favoriteList: Array<UserProfile>;
 }

@@ -19,21 +19,19 @@ export class MainComponent {
           content: info.content,
           coverUrl: 'assets/images/unsplash/' + 1 + '.jpg',
           favorites: info.favorites,
+          watchCount: info.watchCount,
           isFavorite: info.isFavorite,
-          param: info.id,
-          onClickFavorite: param => {
-            contentService.favoriteInfo(param).subscribe(data => {
-
-            });
+          onClickFavorite: (isFavorite) => {
+            contentService.favoriteInfo(info.id, !isFavorite).subscribe();
           },
-          onClickWatch: param => {
-            this.goToWatchPage(param);
+          onClickWatch: () => {
+            this.goToWatchPage(info.id);
           },
         };
         this.medias.push(media);
       }
     });
-    contentService.getUserFavoriteList().subscribe(favoriteList => {
+    contentService.getUserFavoriteList(1, 1).subscribe(favoriteList => {
       console.log(favoriteList);
     });
   }

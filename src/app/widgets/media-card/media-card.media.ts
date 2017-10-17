@@ -3,8 +3,8 @@ export class Media {
   content: string;
   coverUrl: string;
   favorites: number;
+  watchCount: number;
   isFavorite: boolean;
-  param?: any;
-  onClickFavorite: (param: any) => void;
-  onClickWatch: (param: any) => void;
+  onClickFavorite: (isFavorite: boolean) => void;
+  onClickWatch: () => void;
 }

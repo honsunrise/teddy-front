@@ -7,6 +7,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MediaCardComponent } from './media-card/media-card.component';
 import { FramedContentComponent } from './framed-content/frame-content.component';
 import { SafePipe } from '../pipe/safe.pipe';
+import { StopPropagationDirective } from '../directive/stop-propagation.directive';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SafePipe } from '../pipe/safe.pipe';
   ],
   declarations: [
     SafePipe,
+    StopPropagationDirective,
     MediaCardComponent,
     FramedContentComponent
   ],

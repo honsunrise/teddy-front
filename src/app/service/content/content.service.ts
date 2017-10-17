@@ -4,7 +4,7 @@ import { IAppConfig } from '../../app.config.interface';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Info } from '../domain/info';
 import { Observable } from 'rxjs/Observable';
-import { UserFavorite } from '../domain/UserFavorite';
+import { InfoWithTime } from '../domain/InfoWithTime';
 
 
 export interface PublishInfo {
@@ -22,10 +22,10 @@ export class ContentService {
   constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: HttpClient) {
   }
 
-  getInfoList(page: number, offset: number, uid?: string): Observable<Array<Info>> {
+  getInfoList(page: number, size: number, uid?: string): Observable<Array<Info>> {
     const params = new HttpParams()
       .set('page', page.toString(10))
-      .set('size', page.toString(10));
+      .set('size', size.toString(10));
     if (uid != null) {
       params.set('uid', uid);
     }
@@ -65,9 +65,16 @@ export class ContentService {
       });
   }
 
-  favoriteInfo(infoId: string): Observable<boolean> {
-    return this.http.put(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {},
-      {withCredentials: true})
+  favoriteInfo(infoId: string, cancel: boolean): Observable<boolean> {
+    let ret;
+    if (cancel) {
+      ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/favorite',
+        {withCredentials: true});
+    } else {
+      ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {},
+        {withCredentials: true});
+    }
+    return ret
       .do(data => console.log(data), (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           console.log('An error occurred:', err.error.message);
@@ -81,7 +88,76 @@ export class ContentService {
       });
   }
 
-  getUserFavoriteList(): Observable<Array<UserFavorite>> {
-    return this.http.get<Array<UserFavorite>>(this.config.contentEndpoint + '/info/test', {withCredentials: true});
+  thumbUpInfo(infoId: string, cancel: boolean): Observable<boolean> {
+    let ret;
+    if (cancel) {
+      ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/thumbUp',
+        {withCredentials: true});
+    } else {
+      ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/thumbUp', null,
+        {withCredentials: true});
+    }
+
+    return ret
+      .do(data => console.log(data), (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('An error occurred:', err.error.message);
+        } else {
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      }, () => console.log('Complete'))
+      .map(data => {
+        console.log(data);
+        return true;
+      });
+  }
+
+  thumbDownInfo(infoId: string, cancel: boolean): Observable<boolean> {
+    let ret;
+    if (cancel) {
+      ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/thumbDown',
+        {withCredentials: true});
+    } else {
+      ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/thumbDown', null,
+        {withCredentials: true});
+    }
+
+    return ret
+      .do(data => console.log(data), (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('An error occurred:', err.error.message);
+        } else {
+          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        }
+      }, () => console.log('Complete'))
+      .map(data => {
+        console.log(data);
+        return true;
+      });
+  }
+
+  getUserFavoriteList(page: number, size: number): Observable<Array<InfoWithTime>> {
+    const params = new HttpParams()
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/test', {
+      params: params,
+      withCredentials: true
+    });
+  }
+
+  watchInfo(infoId: string): Observable<boolean> {
+    return this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/watch', {},
+      {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('An error occurred:', err.error.message);
+      } else {
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+      }
+    }, () => console.log('Complete'))
+      .map(data => {
+        console.log(data);
+        return true;
+      });
   }
 }

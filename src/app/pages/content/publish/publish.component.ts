@@ -40,7 +40,7 @@ export class PublishComponent implements OnInit {
       ])],
       canReview: [null, Validators.compose([Validators.required])],
       external: [null, Validators.compose([Validators.required])],
-      movie: [null, Validators.compose([Validators.required, CustomValidators.url])],
+      movieUrl: [null, Validators.compose([Validators.required, CustomValidators.url])],
     });
   }
 
