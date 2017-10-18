@@ -7,14 +7,14 @@ import { AccordionLinkDirective } from './accordionlink.directive';
 })
 export class AccordionAnchorDirective {
 
-  protected navlink: AccordionLinkDirective;
+  protected navLink: AccordionLinkDirective;
 
-  constructor(@Inject(AccordionLinkDirective) navlink: AccordionLinkDirective) {
-    this.navlink = navlink;
+  constructor(@Inject(AccordionLinkDirective) navLink: AccordionLinkDirective) {
+    this.navLink = navLink;
   }
 
   @HostListener('click', ['$event'])
   onClick(e: any) {
-    this.navlink.toggle();
+    this.navLink.toggle();
   }
 }

@@ -49,13 +49,15 @@
                 [opened]="!isOver()" (mouseover)="menuMouseOver()" (mouseout)="menuMouseOut()">
       <md-nav-list appAccordion class="navigation" (click)="updatePS()">
         <md-list-item appAccordionLink *ngFor="let menuitem of menuItems.getAll()" group="{{menuitem.state}}">
-          <a appAccordionToggle class="relative" [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
+          <a appAccordionToggle class="relative" [routerLink]="[menuitem.state]"
+             *ngIf="menuitem.type === 'link'">
             <md-icon>{{ menuitem.icon }}</md-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
-          <a appAccordionToggle class="relative" href="{{menuitem.state}}" *ngIf="menuitem.type === 'extLink'">
+          <a appAccordionToggle class="relative" href="{{menuitem.state}}"
+             *ngIf="menuitem.type === 'extLink'">
             <md-icon>{{ menuitem.icon }}</md-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
@@ -68,7 +70,8 @@
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
-          <a appAccordionToggle class="relative" href="javascript:;" *ngIf="menuitem.type === 'sub'">
+          <a appAccordionToggle class="relative" href="javascript:;"
+             *ngIf="menuitem.type === 'sub'">
             <md-icon>{{ menuitem.icon }}</md-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
@@ -77,8 +80,9 @@
           </a>
           <md-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
             <md-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
-              <a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">{{ childitem.name | translate
-                }}</a>
+              <a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">
+                {{ childitem.name | translate}}
+              </a>
             </md-list-item>
           </md-nav-list>
         </md-list-item>

@@ -8,14 +8,14 @@ import { AccordionLinkDirective } from './accordionlink.directive';
 })
 export class AccordionDirective implements AfterContentChecked {
 
-  protected navlinks: Array<AccordionLinkDirective> = [];
+  protected navLinks: Array<AccordionLinkDirective> = [];
 
   constructor(private router: Router) {
     setTimeout(() => this.checkOpenLinks());
   }
 
   closeOtherLinks(openLink: AccordionLinkDirective): void {
-    this.navlinks.forEach((link: AccordionLinkDirective) => {
+    this.navLinks.forEach((link: AccordionLinkDirective) => {
       if (link !== openLink) {
         link.open = false;
       }
@@ -23,25 +23,23 @@ export class AccordionDirective implements AfterContentChecked {
   }
 
   addLink(link: AccordionLinkDirective): void {
-    this.navlinks.push(link);
+    this.navLinks.push(link);
   }
 
   removeGroup(link: AccordionLinkDirective): void {
-    const index = this.navlinks.indexOf(link);
+    const index = this.navLinks.indexOf(link);
     if (index !== -1) {
-      this.navlinks.splice(index, 1);
+      this.navLinks.splice(index, 1);
     }
   }
 
   checkOpenLinks() {
-    this.navlinks.forEach((link: AccordionLinkDirective) => {
-      if (link.group) {
-        const routeUrl = this.router.url;
-        const currentUrl = routeUrl.split('/');
-        if (currentUrl.indexOf(link.group) > 0) {
-          link.open = true;
-          this.closeOtherLinks(link);
-        }
+    this.navLinks.forEach((link: AccordionLinkDirective) => {
+      const routeUrl = this.router.url;
+      const currentUrl = routeUrl.split('/');
+      if (currentUrl.indexOf(link.group) >= 0) {
+        link.open = true;
+        this.closeOtherLinks(link);
       }
     });
   }

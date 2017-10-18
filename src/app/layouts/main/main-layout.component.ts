@@ -40,7 +40,8 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.url = this.router.url;
 
-    this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
+    this._router = this.router.events.filter(event => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
       document.querySelector('.app-inner .mat-sidenav-content').scrollTop = 0;
       this.url = event.url;
       this.runOnRouteChange();
@@ -102,18 +103,5 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         Ps.update(elemSidebar);
       }, 350);
     }
-  }
-
-  addMenuItem(): void {
-    this.menuItems.add({
-      state: 'menu',
-      name: 'MENU',
-      type: 'sub',
-      icon: 'trending_flat',
-      children: [
-        {state: 'menu', name: 'MENU'},
-        {state: 'timeline', name: 'MENU'}
-      ]
-    });
   }
 }
