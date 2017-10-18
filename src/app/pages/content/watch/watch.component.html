@@ -40,24 +40,24 @@
         <div fxFlex></div>
 
         <a class="btn" (click)="onThumbUp()">
-          <button md-icon-button>
-            <md-icon class="md-24" [color]="isThumbUp ? 'primary' : 'block'">thumb_up</md-icon>
+          <button mat-icon-button>
+            <mat-icon class="mat-24" [color]="isThumbUp ? 'primary' : 'block'">thumb_up</mat-icon>
           </button>
           <span>
             {{thumbUps}}
           </span>
         </a>
         <a class="btn" (click)="onThumbDown()">
-          <button md-icon-button>
-            <md-icon class="md-24" [color]="isThumbDown ? 'primary' : 'block'">thumb_down</md-icon>
+          <button mat-icon-button>
+            <mat-icon class="mat-24" [color]="isThumbDown ? 'primary' : 'block'">thumb_down</mat-icon>
           </button>
           <span>
             {{thumbDowns}}
           </span>
         </a>
         <a class="btn" (click)="onLike()">
-          <button md-icon-button>
-            <md-icon class="md-24" [color]="isFavorite ? 'primary' : 'block'">favorite</md-icon>
+          <button mat-icon-button>
+            <mat-icon class="mat-24" [color]="isFavorite ? 'primary' : 'block'">favorite</mat-icon>
           </button>
           <span>
             {{favorites}}

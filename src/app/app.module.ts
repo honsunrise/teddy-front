@@ -9,18 +9,19 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import {
-  MdButtonModule,
-  MdCardModule,
-  MdCheckboxModule,
-  MdIconModule,
-  MdListModule,
-  MdMenuModule,
-  MdSelectModule,
-  MdSidenavModule,
-  MdSlideToggleModule,
-  MdTabsModule,
-  MdToolbarModule
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutes } from './app.routing';
@@ -56,17 +57,17 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    MdSidenavModule,
-    MdCardModule,
-    MdMenuModule,
-    MdCheckboxModule,
-    MdIconModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdTabsModule,
-    MdListModule,
-    MdSlideToggleModule,
-    MdSelectModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
     FlexLayoutModule,
     AuthModule,
     ServiceModule

@@ -1,6 +1,6 @@
 /* $header
  ------------------------------------------*/
-md-toolbar {
+mat-toolbar {
   .toolbar-avatar {
     width: 40px;
     height: 40px;
@@ -85,7 +85,7 @@ md-toolbar {
 
 // Specific height for mobile devices in portrait mode.
 @media ($mat-xsmall) and (orientation: portrait) {
-  md-toolbar {
+  mat-toolbar {
     &.main-header {
       .branding {
         padding: 0 16px 0 16px;

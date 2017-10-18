@@ -1,0 +1,25 @@
+.profile-head {
+  width: 360px;
+  border-bottom: 1px solid #f4f5f8;
+  padding-top: 2.2rem;
+  padding-bottom: 2.2rem;
+  .pic_warp {
+    border: 2px solid #f4f5f8;
+    padding: 8px;
+    border-radius: 100%;
+    margin-bottom: 1.2rem;
+    .pic {
+      width: 80px !important;
+      max-width: 80px;
+      height: 80px !important;
+      max-height: 80px;
+      border-radius: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .name {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}

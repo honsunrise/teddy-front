@@ -9,7 +9,7 @@
     height: 24px;
     border-radius: 12px;
   }
-  md-expansion-panel:not(.mat-expanded) {
+  mat-expansion-panel:not(.mat-expanded) {
     .show-on-open {
       display: none;
     }
@@ -25,7 +25,7 @@
     min-height: 65px !important;
   }
   .messages-nav {
-    md-icon {
+    mat-icon {
       margin-right: 16px;
     }
   }
@@ -33,7 +33,7 @@
 
 [dir="rtl"] :host /deep/ {
   .messages-nav {
-    md-icon {
+    mat-icon {
       margin-right: 0;
       margin-left: 16px;
     }

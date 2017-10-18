@@ -34,11 +34,18 @@ export class AccordionDirective implements AfterContentChecked {
   }
 
   checkOpenLinks() {
+    this.closeOtherLinks(null);
     this.navLinks.forEach((link: AccordionLinkDirective) => {
-      const routeUrl = this.router.url;
-      if (routeUrl.indexOf(link.group) >= 0) {
-        link.open = true;
-        this.closeOtherLinks(link);
+      if (link.group) {
+        const routeUrl = this.router.url;
+        if (routeUrl === link.group) {
+          link.open = true;
+        } else {
+          const currentUrl = routeUrl.split('/');
+          if (currentUrl.indexOf(link.group) > 0) {
+            link.open = true;
+          }
+        }
       }
     });
   }

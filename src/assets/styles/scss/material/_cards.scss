@@ -19,12 +19,12 @@ body {
     }
     /* Temporary fix */
     /* https://github.com/angular/material2/issues/3131 */
-    [md-card-avatar] {
+    [mat-card-avatar] {
       height: $mat-card-header-size;
       width: $mat-card-header-size;
       border-radius: 50%;
     }
-    [md-card-avatar] {
+    [mat-card-avatar] {
       font-size: 40px;
       line-height: 40px;
       margin: $gutter 0 0 $gutter;
@@ -63,7 +63,7 @@ body {
       margin-bottom: 0;
       position: relative;
     }
-    [md-fab-card-float] {
+    [mat-fab-card-float] {
       top: -36px;
       position: absolute;
       right: 8px;
@@ -76,7 +76,7 @@ body {
     &.mat-card {
       padding: 0;
     }
-    [md-card-float-icon] {
+    [mat-card-float-icon] {
       position: absolute;
       right: 15px;
       top: 50%;
@@ -89,7 +89,7 @@ body {
         transform: rotate(-5deg);
       }
     }
-    [md-card-widget] {
+    [mat-card-widget] {
       height: auto;
       display: flex;
       flex-direction: row;
@@ -101,7 +101,7 @@ body {
       align-content: center;
       max-width: 100%;
       padding: $gutter;
-      [md-card-widget-title], p {
+      [mat-card-widget-title], p {
         margin: 0;
         padding: 0;
         line-height: $headings-line-height !important;
@@ -132,14 +132,14 @@ body {
 
 body [dir="rtl"] {
   .mat-card {
-    [md-card-avatar] {
+    [mat-card-avatar] {
       margin: $gutter $gutter 0 0;
     }
-    [md-fab-card-float] {
+    [mat-fab-card-float] {
       right: auto;
       left: 8px;
     }
-    [md-card-float-icon] {
+    [mat-card-float-icon] {
       right: auto;
       left: 15px;
     }

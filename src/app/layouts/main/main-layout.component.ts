@@ -12,8 +12,6 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './main-layout.component.html'
 })
 export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
-
-  today: number = Date.now();
   url: string;
   dark: boolean;
   boxed: boolean;

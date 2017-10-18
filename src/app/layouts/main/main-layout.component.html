@@ -1,156 +1,157 @@
 <div class="app mat-typography" #root="$implicit" dir="ltr"
      [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar}">
-  <md-toolbar class="main-header" color="primary">
-    <button (click)="sidemenu.toggle()" md-icon-button>
-      <md-icon>menu</md-icon>
+  <mat-toolbar class="main-header" color="primary">
+    <button (click)="sidemenu.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
     </button>
     <div class="branding">
       <div class="logo"></div>
     </div>
     <div class="search-bar" fxFlex>
       <form class="search-form" fxShow="false" fxShow.gt-xs>
-        <md-icon>search</md-icon>
+        <mat-icon>search</mat-icon>
         <input type="text" placeholder="Search" autofocus="true"/>
       </form>
     </div>
-    <button appToggleFullscreen md-icon-button>
-      <md-icon>fullscreen</md-icon>
+    <button appToggleFullscreen mat-icon-button>
+      <mat-icon>fullscreen</mat-icon>
     </button>
-    <button (click)="!authService.checkLogin() || end.toggle()" md-icon-button class="ml-xs overflow-visible"
+    <button (click)="!authService.checkLogin() || end.toggle()" mat-icon-button class="ml-xs overflow-visible"
             *ngIf="authService.checkLogin()">
-      <md-icon>notifications</md-icon>
+      <mat-icon>notifications</mat-icon>
       <span class="notification-label">5</span>
     </button>
-    <button [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
-      <md-icon>person</md-icon>
+    <button [mat-menu-trigger-for]="user" mat-icon-button class="ml-xs">
+      <mat-icon>person</mat-icon>
     </button>
-    <md-menu #user="mdMenu" x-position="before">
-      <button md-menu-item *ngIf="authService.checkLogin()" [routerLink]="['/profile']">
-        <md-icon>account_box</md-icon>
+    <mat-menu #user="mdMenu" x-position="before">
+      <button mat-menu-item *ngIf="authService.checkLogin()" [routerLink]="['/profile']">
+        <mat-icon>account_box</mat-icon>
         Profile
       </button>
-      <button md-menu-item *ngIf="authService.checkLogin()">
-        <md-icon>notifications_off</md-icon>
+      <button mat-menu-item *ngIf="authService.checkLogin()">
+        <mat-icon>notifications_off</mat-icon>
         Disable notifications
       </button>
-      <button md-menu-item *ngIf="!authService.checkLogin()" [routerLink]="['/session/signin']">
-        <md-icon>exit_to_app</md-icon>
+      <button mat-menu-item *ngIf="!authService.checkLogin()" [routerLink]="['/session/signin']">
+        <mat-icon>exit_to_app</mat-icon>
         Sign In
       </button>
-      <button md-menu-item *ngIf="authService.checkLogin()" (click)="authService.logout()">
-        <md-icon>exit_to_app</md-icon>
+      <button mat-menu-item *ngIf="authService.checkLogin()" (click)="authService.logout()">
+        <mat-icon>exit_to_app</mat-icon>
         Sign Out
       </button>
-    </md-menu>
-  </md-toolbar>
+    </mat-menu>
+  </mat-toolbar>
 
-  <md-sidenav-container class="app-inner">
-    <md-sidenav #sidemenu class="sidebar-panel" id="sidebar-panel" [mode]="isOver() ? 'over' : 'side'"
+  <mat-sidenav-container class="app-inner">
+    <mat-sidenav #sidemenu class="sidebar-panel" id="sidebar-panel" [mode]="isOver() ? 'over' : 'side'"
                 [opened]="!isOver()" (mouseover)="menuMouseOver()" (mouseout)="menuMouseOut()">
-      <md-nav-list appAccordion class="navigation" (click)="updatePS()">
-        <md-list-item appAccordionLink *ngFor="let menuitem of menuItems.getAll()" group="{{menuitem.state}}">
+      <mat-nav-list appAccordion class="navigation" (click)="updatePS()">
+        <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getAll()" group="{{menuitem.state}}">
           <a appAccordionToggle class="relative" [routerLink]="['/', menuitem.state]"
              *ngIf="menuitem.type === 'link'">
-            <md-icon>{{ menuitem.icon }}</md-icon>
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
           <a appAccordionToggle class="relative" href="{{menuitem.state}}"
              *ngIf="menuitem.type === 'extLink'">
-            <md-icon>{{ menuitem.icon }}</md-icon>
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
           <a appAccordionToggle class="relative" href="{{menuitem.state}}" target="_blank"
              *ngIf="menuitem.type === 'extTabLink'">
-            <md-icon>{{ menuitem.icon }}</md-icon>
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
           <a appAccordionToggle class="relative" href="javascript:;"
              *ngIf="menuitem.type === 'sub'">
-            <md-icon>{{ menuitem.icon }}</md-icon>
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
             <span>{{ menuitem.name | translate }}</span>
             <span fxFlex></span>
             <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
-            <md-icon class="menu-caret">arrow_drop_down</md-icon>
+            <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
           </a>
-          <md-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
-            <md-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
+          <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+            <mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
               <a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">
                 {{ childitem.name | translate}}
               </a>
-            </md-list-item>
-          </md-nav-list>
-        </md-list-item>
-        <md-divider></md-divider>
-      </md-nav-list>
-    </md-sidenav>
-    <md-sidenav #end align="end" class="chat-panel" mode="over" opened="false">
-      <md-tab-group [selectedIndex]="1" md-stretch-tabs>
-        <md-tab>
-          <ng-template md-tab-label>Notifications</ng-template>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav #end align="end" class="chat-panel" mode="over" opened="false">
+      <mat-tab-group [selectedIndex]="1" mat-stretch-tabs>
+        <mat-tab>
+          <ng-template mat-tab-label>Notifications</ng-template>
           <div class="scroll">
-            <md-nav-list>
-              <md-list-item>
-                <md-icon md-list-avatar class="mat-text-primary">people</md-icon>
-                <h4 md-line>Social</h4>
-                <p md-line>Ligula Purus Adipiscing</p>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar class="mat-text-warn">local_offer</md-icon>
-                <h4 md-line>Promotions</h4>
-                <p md-line>Etiam Ligula Dapibus</p>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar class="mat-text-accent">info</md-icon>
-                <h4 md-line>Updates</h4>
-                <p md-line>Sollicitudin Euismod Fringilla</p>
-              </md-list-item>
+            <mat-nav-list>
+              <mat-list-item>
+                <mat-icon mat-list-avatar class="mat-text-primary">people</mat-icon>
+                <h4 mat-line>Social</h4>
+                <p mat-line>Ligula Purus Adipiscing</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar class="mat-text-warn">local_offer</mat-icon>
+                <h4 mat-line>Promotions</h4>
+                <p mat-line>Etiam Ligula Dapibus</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar class="mat-text-accent">info</mat-icon>
+                <h4 mat-line>Updates</h4>
+                <p mat-line>Sollicitudin Euismod Fringilla</p>
+              </mat-list-item>
 
-              <md-list-item>
-                <md-icon md-list-avatar class="mat-indigo">delete_sweep</md-icon>
-                <h4 md-line>Removed 6 items from task list</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1427207139000 | date: 'fullDate' }}</span>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar>check_circle</md-icon>
-                <h4 md-line>Completed 2 projects</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1427412725000 | date: 'fullDate' }}</span>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar>notifications_paused</md-icon>
-                <h4 md-line>Muted notifications</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1427546580000 | date: 'fullDate' }}</span>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar>person_add</md-icon>
-                <h4 md-line>Added Joel to contact list</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1428275520000 | date: 'fullDate' }}</span>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar>phone_missed</md-icon>
-                <h4 md-line>Missed live call from Ellie</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1428830580000 | date: 'fullDate' }}</span>
-              </md-list-item>
-              <md-list-item>
-                <md-icon md-list-avatar>group_add</md-icon>
-                <h4 md-line>You've been added to HR group</h4>
-                <span class="text-md mat-text-muted" md-line>{{ 1429363920000 | date: 'fullDate' }}</span>
-              </md-list-item>
-            </md-nav-list>
+              <mat-list-item>
+                <mat-icon mat-list-avatar class="mat-indigo">delete_sweep</mat-icon>
+                <h4 mat-line>Removed 6 items from task list</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1427207139000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>check_circle</mat-icon>
+                <h4 mat-line>Completed 2 projects</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1427412725000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>notifications_paused</mat-icon>
+                <h4 mat-line>Muted notifications</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1427546580000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>person_add</mat-icon>
+                <h4 mat-line>Added Joel to contact list</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1428275520000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>phone_missed</mat-icon>
+                <h4 mat-line>Missed live call from Ellie</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1428830580000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>group_add</mat-icon>
+                <h4 mat-line>You've been added to HR group</h4>
+                <span class="text-mat mat-text-muted" mat-line>{{ 1429363920000 | date: 'fullDate' }}</span>
+              </mat-list-item>
+            </mat-nav-list>
           </div>
-        </md-tab>
-      </md-tab-group>
-    </md-sidenav>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-sidenav>
     <router-outlet></router-outlet>
-  </md-sidenav-container>
+  </mat-sidenav-container>
 
   <!-- Demo Purposes Only -->
-  <button md-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()" [routerLink]="['/publish']">
-    <md-icon class="md-24">add</md-icon>
+  <button mat-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()"
+          [routerLink]="['/publish']">
+    <mat-icon class="mat-24">add</mat-icon>
   </button>
 </div>

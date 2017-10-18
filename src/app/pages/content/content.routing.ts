@@ -6,6 +6,7 @@ import { CateComponent } from './cate/cate.component';
 import { WatchComponent } from './watch/watch.component';
 import { PublishComponent } from './publish/publish.component';
 import { PlayListComponent } from './playlist/playlist.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const ContentRoutes: Routes = [
   {
@@ -25,6 +26,9 @@ export const ContentRoutes: Routes = [
     }, {
       path: 'playlist/:type',
       component: PlayListComponent
+    }, {
+      path: 'profile',
+      component: ProfileComponent
     }, {
       path: 'blank',
       component: BlankComponent

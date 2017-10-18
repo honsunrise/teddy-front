@@ -1,25 +1,25 @@
 <div>
-  <md-card (click)="media.onClickWatch()">
-    <md-card-title fxLayout="row">
+  <mat-card (click)="media.onClickWatch()">
+    <mat-card-title fxLayout="row">
       <span class="text-ellipsis" fxFlex="grow">{{media.title}}</span>
       <span class="mat-text-primary" fxFlex="none">{{media.watchCount + " watch" | uppercase}}</span>
-    </md-card-title>
-    <img md-card-image src="{{media.coverUrl}}">
-    <md-card-content>
+    </mat-card-title>
+    <img mat-card-image src="{{media.coverUrl}}">
+    <mat-card-content>
       <p>{{media.content | slice:0:100}}</p>
-    </md-card-content>
-    <md-card-actions>
+    </mat-card-content>
+    <mat-card-actions>
       <div fxLayout="row">
         <span fxFlex></span>
         <a (click.stop)="onClickFavorite()">
-          <button md-icon-button>
-            <md-icon class="md-24" [color]="isFavorite ? 'primary' : 'block'">favorite</md-icon>
+          <button mat-icon-button>
+            <mat-icon class="mat-24" [color]="isFavorite ? 'primary' : 'block'">favorite</mat-icon>
           </button>
           <span>
             {{favorites}}
           </span>
         </a>
       </div>
-    </md-card-actions>
-  </md-card>
+    </mat-card-actions>
+  </mat-card>
 </div>

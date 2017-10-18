@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
-  MdButtonModule,
-  MdCardModule,
-  MdIconModule,
-  MdInputModule,
-  MdListModule,
-  MdProgressBarModule,
-  MdSelectModule,
-  MdSlideToggleModule,
-  MdTabsModule,
-  MdToolbarModule
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -35,6 +35,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeModule } from 'angular-tree-component';
 import { PlayListComponent } from './playlist/playlist.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -42,18 +43,18 @@ import { PlayListComponent } from './playlist/playlist.component';
     RouterModule.forChild(ContentRoutes),
     FormsModule,
     ReactiveFormsModule,
-    MdIconModule,
-    MdCardModule,
-    MdInputModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdTabsModule,
-    MdListModule,
-    MdSlideToggleModule,
-    MdSelectModule,
+    MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
     NgxDatatableModule,
+    MatProgressBarModule,
     FlexLayoutModule,
-    MdProgressBarModule,
     MasonryModule,
     VgCoreModule,
     VgControlsModule,
@@ -71,7 +72,8 @@ import { PlayListComponent } from './playlist/playlist.component';
     CateComponent,
     WatchComponent,
     PublishComponent,
-    PlayListComponent
+    PlayListComponent,
+    ProfileComponent
   ]
 })
 
