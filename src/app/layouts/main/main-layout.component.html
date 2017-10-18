@@ -1,4 +1,4 @@
-<div class="app mat-typography" #root="$implicit" dir="ltr"
+<div class="app mat-typography" #root dir="ltr"
      [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar}">
   <mat-toolbar class="main-header" color="primary">
     <button (click)="sidemenu.toggle()" mat-icon-button>
@@ -24,7 +24,7 @@
     <button [mat-menu-trigger-for]="user" mat-icon-button class="ml-xs">
       <mat-icon>person</mat-icon>
     </button>
-    <mat-menu #user="mdMenu" x-position="before">
+    <mat-menu #user x-position="before">
       <button mat-menu-item *ngIf="authService.checkLogin()" [routerLink]="['/profile']">
         <mat-icon>account_box</mat-icon>
         Profile

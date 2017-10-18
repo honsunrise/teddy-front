@@ -28,16 +28,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    const elemSidebar = <HTMLElement>document.querySelector('.app-inner > .sidebar-panel');
-    const elemContent = <HTMLElement>document.querySelector('.app-inner > .mat-sidenav-content');
-
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac() && !this.compactSidebar) {
-      Ps.initialize(elemSidebar, {wheelSpeed: 2, suppressScrollX: true});
-      Ps.initialize(elemContent, {wheelSpeed: 2, suppressScrollX: true});
-    }
-
     this.url = this.router.url;
-
     this._router = this.router.events.filter(event => event instanceof NavigationEnd)
       .subscribe((event: NavigationEnd) => {
       document.querySelector('.app-inner .mat-sidenav-content').scrollTop = 0;
@@ -47,6 +38,14 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const elemSidebar = <HTMLElement>document.querySelector('.app-inner > .sidebar-panel');
+    const elemContent = <HTMLElement>document.querySelector('.app-inner > .mat-sidenav-content');
+
+    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac() && !this.compactSidebar) {
+      Ps.initialize(elemSidebar, {wheelSpeed: 2, suppressScrollX: true});
+      Ps.initialize(elemContent, {wheelSpeed: 2, suppressScrollX: true});
+    }
+
     this.root.dir = 'ltr';
     this.runOnRouteChange();
   }
