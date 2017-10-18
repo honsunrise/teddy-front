@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -18,11 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterModule.forChild(SessionRoutes),
-    MdIconModule,
-    MdCardModule,
-    MdInputModule,
-    MdCheckboxModule,
-    MdButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
