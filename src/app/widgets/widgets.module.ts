@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdButtonModule, MdCardModule, MdIconModule, MdListModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -12,10 +12,10 @@ import { StopPropagationDirective } from '../directive/stop-propagation.directiv
 @NgModule({
   imports: [
     CommonModule,
-    MdIconModule,
-    MdCardModule,
-    MdButtonModule,
-    MdListModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatListModule,
     ChartsModule,
     FlexLayoutModule,
   ],
