@@ -34,6 +34,7 @@ import { QuillModule } from 'ngx-quill/src/quill.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeModule } from 'angular-tree-component';
+import { PlayListComponent } from './playlist/playlist.component';
 
 @NgModule({
   imports: [
@@ -69,7 +70,8 @@ import { TreeModule } from 'angular-tree-component';
     MainComponent,
     CateComponent,
     WatchComponent,
-    PublishComponent
+    PublishComponent,
+    PlayListComponent
   ]
 })
 

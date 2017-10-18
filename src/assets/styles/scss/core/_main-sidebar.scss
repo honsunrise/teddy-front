@@ -30,6 +30,9 @@ md-sidenav.sidebar-panel {
     max-height: 2000px;
     background: mat-color($background, 'hover');
   }
+  .mat-list-item.open .mat-icon {
+    color: mat-color($primary);
+  }
   .mat-nav-list a {
     display: flex;
     flex-direction: row;

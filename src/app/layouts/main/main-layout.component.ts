@@ -24,7 +24,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('root') root;
   private _router: Subscription;
 
-  constructor(private router: Router, public authService: AuthService, public menuItems: MenuItems, public translate: TranslateService) {
+  constructor(public authService: AuthService, private router: Router, public menuItems: MenuItems, public translate: TranslateService) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|cn/) ? browserLang : 'en');
   }

@@ -6,16 +6,6 @@ import { Info } from '../domain/info';
 import { Observable } from 'rxjs/Observable';
 import { InfoWithTime } from '../domain/InfoWithTime';
 
-
-export interface PublishInfo {
-  title: String;
-  content: String;
-  images: Array<String>;
-  movie: String;
-  external: boolean;
-  canReview: boolean;
-}
-
 @Injectable()
 export class ContentService {
 

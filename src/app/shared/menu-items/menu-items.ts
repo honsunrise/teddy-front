@@ -32,6 +32,16 @@ const MENUITEMS = [
     name: 'CATE',
     type: 'link',
     icon: 'local_library'
+  },
+  {
+    state: 'playlist',
+    name: 'MEDIA_LIBRARY',
+    type: 'sub',
+    icon: 'pages',
+    children: [
+      {state: 'later', name: 'WATCH_LATER'},
+      {state: 'thumbUp', name: 'THUMB_UP'},
+    ]
   }
 ];
 
