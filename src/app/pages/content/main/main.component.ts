@@ -31,9 +31,6 @@ export class MainComponent {
         this.medias.push(media);
       }
     });
-    contentService.getUserFavoriteList(1, 1).subscribe(favoriteList => {
-      console.log(favoriteList);
-    });
   }
 
   goToWatchPage(id) {

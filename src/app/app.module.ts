@@ -8,20 +8,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatListModule,
-  MatMenuModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSlideToggleModule,
-  MatTabsModule,
-  MatToolbarModule
-} from '@angular/material';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutes } from './app.routing';
@@ -32,9 +18,18 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ServiceModule } from './service/service.module';
 import { APP_CONFIG, APP_DI_CONFIG } from './app.config.constants';
+import { MaterialModule } from './shared/material.module';
+import { NavigationModule } from './widgets/navigation/navigation.module';
+import { NavigationLoader } from './widgets/navigation/navigation.loader';
+import { AuthService } from './auth/auth.service';
+import { AuthNavigationLoader } from './app.auth.navigation.loader';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function createNavigationLoader(authService: AuthService) {
+  return new AuthNavigationLoader(authService);
 }
 
 @NgModule({
@@ -50,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     FormsModule,
     HttpClientModule,
+    AuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,19 +53,15 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    MatSidenavModule,
-    MatCardModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatSelectModule,
+    MaterialModule,
+    NavigationModule.forRoot({
+      loader: {
+        provide: NavigationLoader,
+        useFactory: (createNavigationLoader),
+        deps: [AuthService]
+      }
+    }),
     FlexLayoutModule,
-    AuthModule,
     ServiceModule
   ],
   providers: [

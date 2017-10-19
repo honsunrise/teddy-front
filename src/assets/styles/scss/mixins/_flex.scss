@@ -249,9 +249,9 @@
 //
 // The 'flex' property specifies the components of a flexible length: the
 // flex grow factor and flex shrink factor, and the flex basis. When an
-// element is a flex item, 'flex' is consulted instead of the main size
+// element is a flex model, 'flex' is consulted instead of the main size
 // property to determine the main size of the element. If an element is
-// not a flex item, 'flex' has no effect.
+// not a flex model, 'flex' has no effect.
 //
 // Values: none | <flex-grow> <flex-shrink> || <flex-basis>
 // Default: See individual properties (1 1 0).
@@ -264,7 +264,7 @@
   $fg-boxflex: $fg;
 
   // Box-Flex only supports a flex-grow value so let's grab the
-  // first item in the list and just return that.
+  // first model in the list and just return that.
   @if type-of($fg) == 'list' {
     $fg-boxflex: nth($fg, 1);
   }

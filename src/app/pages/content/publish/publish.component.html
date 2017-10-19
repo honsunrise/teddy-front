@@ -80,7 +80,7 @@
       <mat-card-content>
         <div class="mb-1">
           <mat-input-container style="width: 100%">
-            <input mdInput placeholder="Title" [formControl]="form.controls['title']">
+            <input matInput placeholder="Title" [formControl]="form.controls['title']">
           </mat-input-container>
           <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched"
                  class="mat-text-warn">You must include a title.
@@ -95,7 +95,7 @@
 
         <div class="mb-1">
           <mat-input-container style="width: 100%">
-            <input mdInput placeholder="Content" [formControl]="form.controls['content']">
+            <input matInput placeholder="Content" [formControl]="form.controls['content']">
           </mat-input-container>
           <small *ngIf="form.controls['content'].hasError('required') && form.controls['content'].touched"
                  class="mat-text-warn">You must include an content.
@@ -120,7 +120,7 @@
 
         <div class="mb-1" *ngIf="form.controls['external'].value">
           <mat-input-container style="width: 100%">
-            <input mdInput placeholder="Movie external address (http://youtube.com)"
+            <input matInput placeholder="Movie external address (http://youtube.com)"
                    [formControl]="form.controls['movieUrl']" type="movie">
           </mat-input-container>
           <small *ngIf="form.controls['movieUrl'].hasError('required') && form.controls['movieUrl'].touched"

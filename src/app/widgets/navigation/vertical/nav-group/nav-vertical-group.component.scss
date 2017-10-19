@@ -1,0 +1,17 @@
+:host {
+  @import "../../navigation";
+  display: block;
+
+  > .group-title {
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    font-weight: 500;
+    padding-left: 24px;
+    margin-top: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}

@@ -12,7 +12,7 @@ export const ContentRoutes: Routes = [
   {
     path: '',
     children: [{
-      path: '',
+      path: 'home',
       component: MainComponent
     }, {
       path: 'cate',
@@ -32,6 +32,10 @@ export const ContentRoutes: Routes = [
     }, {
       path: 'blank',
       component: BlankComponent
+    }, {
+      path: '',
+      redirectTo: 'home',
+      pathMatch: 'full'
     }]
   }
 ];

@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutGap="20px">
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutWrap>
   <mat-card fxFlex="none">
     <mat-card-header fxLayout="column" fxLayoutWrap fxLayoutAlign="start center" class="profile-head">
       <div class="pic_warp">
@@ -6,14 +6,26 @@
       </div>
       <span class="name">Andersen</span>
     </mat-card-header>
-    <mat-card-content>
-      aa
+    <mat-card-content fxLayout="row" fxLayoutGap="20px" fxLayoutWrap fxLayoutAlign="start center">
+      <div fxFlex="noshrink" class="profile-num">
+        <div class="num">{{favorites}}</div>
+        <div class="text-uppercase">Favorite</div>
+      </div>
+      <div fxFlex="noshrink" class="profile-num">
+        <div class="num">{{thumbUp}}</div>
+        <div class="text-uppercase">Thumb Up</div>
+      </div>
+      <div fxFlex="noshrink" class="profile-num">
+        <div class="num">{{thumbDown}}</div>
+        <div class="text-uppercase">Thumb Down</div>
+      </div>
     </mat-card-content>
   </mat-card>
-  <mat-card fxFlex="grow">
+  <mat-card fxFlex="auto">
     <mat-tab-group>
-      <mat-tab label="Tab 1">Content 1</mat-tab>
-      <mat-tab label="Tab 2">Content 2</mat-tab>
+      <mat-tab label="{{'FAVORITE_VIDEO' | translate}}">C1</mat-tab>
+      <mat-tab label="{{'THUMB_UP_VIDEO' | translate}}">C2</mat-tab>
+      <mat-tab label="{{'THUMB_DOWN_VIDEO' | translate}}">C3</mat-tab>
     </mat-tab-group>
   </mat-card>
 </div>

@@ -1,0 +1,67 @@
+@import "src/assets/styles/scss/material.variables";
+
+.nav-link {
+  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  color: currentColor;
+
+  > .nav-link-title {
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  > .nav-link-badge {
+    min-width: 20px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 7px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: opacity 0.2s ease-in-out 0.1s;
+    text-align: center;
+  }
+
+  &:hover {
+    background-color: map-get($background, hover);
+  }
+
+  .mat-ripple-element {
+    background-color: map-get($background, hover);
+  }
+
+  &.active {
+    background-color: mat-color($accent);
+    color: mat-color($accent, default-contrast);
+
+    > .nav-link-icon {
+      color: mat-color($accent, default-contrast);
+    }
+
+    > .nav-link-badge {
+      background: #FFFFFF !important;
+      color: rgba(0, 0, 0, 0.87) !important;
+    }
+
+    .mat-ripple-element {
+      background-color: mat-color($accent, default-contrast, 0.1);
+    }
+  }
+
+  .nav-link-icon {
+    margin-right: 16px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    line-height: 16px;
+  }
+}

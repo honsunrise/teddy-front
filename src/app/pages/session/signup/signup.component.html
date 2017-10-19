@@ -11,7 +11,7 @@
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
+                  <input matInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
                 </mat-input-container>
                 <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
                        class="mat-text-warn">You must include an email address.
@@ -22,7 +22,7 @@
               </div>
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput type="password" placeholder="Password" [formControl]="form.controls['password']">
+                  <input matInput type="password" placeholder="Password" [formControl]="form.controls['password']">
                 </mat-input-container>
                 <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
                        class="mat-text-warn">You must include password.
@@ -30,7 +30,7 @@
               </div>
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput placeholder="Confirm Password" [formControl]="form.controls['confirmPassword']"
+                  <input matInput placeholder="Confirm Password" [formControl]="form.controls['confirmPassword']"
                          type="password">
                 </mat-input-container>
                 <small

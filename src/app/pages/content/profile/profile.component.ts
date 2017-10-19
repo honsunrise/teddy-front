@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  favorites = 0;
+  thumbUp = 0;
+  thumbDown = 0;
 
   constructor() {
   }

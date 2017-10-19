@@ -12,7 +12,7 @@
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
+                  <input matInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
                 </mat-input-container>
                 <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
                        class="mat-text-warn">You must include an email address.

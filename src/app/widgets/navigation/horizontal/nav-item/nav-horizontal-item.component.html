@@ -1,0 +1,17 @@
+<a class="nav-link" *ngIf="model.url" [routerLink]="[model.url]" routerLinkActive="active" matRipple>
+  <mat-icon class="nav-link-icon" *ngIf="model.icon">{{model.icon}}</mat-icon>
+  <span class="nav-link-title">{{model.title}}</span>
+  <span class="nav-link-badge" *ngIf="model.badge"
+        [ngStyle]="{'background-color': model.badge.bg,'color': model.badge.fg}">
+        {{model.badge.num}}
+    </span>
+</a>
+
+<span class="nav-link" *ngIf="model.click" (click)="model.click()" matRipple>
+    <mat-icon class="nav-link-icon" *ngIf="model.icon">{{model.icon}}</mat-icon>
+    <span class="nav-link-title">{{model.title}}</span>
+    <span class="nav-link-badge" *ngIf="model.badge"
+          [ngStyle]="{'background-color': model.badge.bg,'color': model.badge.fg}">
+        {{model.badge.num}}
+    </span>
+</span>

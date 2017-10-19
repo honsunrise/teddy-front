@@ -1,0 +1,12 @@
+<a class="nav-link" matRipple (click)="toggleOpen($event)" [style.padding-left]="level * 24 + 'px'">
+  <mat-icon class="nav-link-icon" *ngIf="model.icon">{{model.icon}}</mat-icon>
+  <span class="nav-link-title">{{model.title}}</span>
+  <mat-icon class="collapse-arrow">keyboard_arrow_right</mat-icon>
+</a>
+<div class="children" [@slideInOut]="isOpen">
+  <ng-container *ngFor="let item of model.children">
+    <nav-vertical-item *ngIf="item.type=='item'" [model]="item" [level]="level + 1"></nav-vertical-item>
+    <nav-vertical-collapse *ngIf="item.type=='collapse'" [model]="item" [level]="level + 1"></nav-vertical-collapse>
+    <nav-vertical-group *ngIf="item.type=='group'" [model]="item" [level]="level + 1"></nav-vertical-group>
+  </ng-container>
+</div>

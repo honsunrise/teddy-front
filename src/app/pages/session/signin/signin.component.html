@@ -11,7 +11,7 @@
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput placeholder="Username" [formControl]="form.controls['username']">
+                  <input matInput placeholder="Username" [formControl]="form.controls['username']">
                 </mat-input-container>
                 <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched"
                        class="mat-text-warn">Username is required.
@@ -22,7 +22,7 @@
               </div>
               <div class="pb-1">
                 <mat-input-container style="width: 100%">
-                  <input mdInput type="password" placeholder="Password" [formControl]="form.controls['password']">
+                  <input matInput type="password" placeholder="Password" [formControl]="form.controls['password']">
                 </mat-input-container>
                 <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
                        class="mat-text-warn">Password is required.

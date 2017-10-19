@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TreeModule } from 'angular-tree-component';
 import { PlayListComponent } from './playlist/playlist.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule.forChild(ContentRoutes),
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule.forChild(),
     MatIconModule,
     MatCardModule,
     MatInputModule,

@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MenuItems } from '../../shared/menu-items/menu-items';
 import { Subscription } from 'rxjs/Subscription';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +21,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('root') root;
   private _router: Subscription;
 
-  constructor(public authService: AuthService, private router: Router, public menuItems: MenuItems, public translate: TranslateService) {
+  constructor(public authService: AuthService, private router: Router, public translate: TranslateService) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|cn/) ? browserLang : 'en');
   }

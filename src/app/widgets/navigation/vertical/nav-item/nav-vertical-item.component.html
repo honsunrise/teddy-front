@@ -1,0 +1,19 @@
+<a class="nav-link" *ngIf="model.url != undefined" [routerLink]="[model.url]" routerLinkActive="active" matRipple
+   [style.padding-left]="level * 24 + 'px'">
+  <mat-icon class="nav-link-icon" *ngIf="model.icon">{{model.icon}}</mat-icon>
+  <span class="nav-link-title">{{model.title}}</span>
+  <span class="nav-link-badge" *ngIf="model.badge"
+        [ngStyle]="{'background-color': model.badge.bg,'color': model.badge.fg}">
+      {{model.badge.num}}
+  </span>
+</a>
+
+<span class="nav-link" *ngIf="model.click != undefined" (click)="model.click()" matRipple
+      [style.padding-left]="level * 24 + 'px'">
+  <mat-icon class="nav-link-icon" *ngIf="model.icon">{{model.icon}}</mat-icon>
+  <span class="nav-link-title">{{model.title}}</span>
+  <span class="nav-link-badge" *ngIf="model.badge"
+        [ngStyle]="{'background-color': model.badge.bg,'color': model.badge.fg}">
+      {{model.badge.num}}
+  </span>
+</span>

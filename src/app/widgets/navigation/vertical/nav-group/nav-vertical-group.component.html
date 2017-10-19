@@ -1,0 +1,12 @@
+<span class="group-title" [style.padding-left]="level * 24 + 'px'">{{ model.title }}</span>
+<div class="group-items">
+  <ng-container *ngFor="let item of model.children">
+    <nav-vertical-group *ngIf="item.type === 'group'" [model]="item"
+                        [level]="level"></nav-vertical-group>
+    <nav-vertical-collapse *ngIf="item.type === 'collapse'" [model]="item"
+                           [level]="level"></nav-vertical-collapse>
+    <nav-vertical-item *ngIf="item.type === 'item'" [model]="item"
+                       [level]="level"></nav-vertical-item>
+  </ng-container>
+</div>
+

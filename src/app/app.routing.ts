@@ -11,10 +11,10 @@ export const AppRoutes: Routes = [{
     loadChildren: './pages/content/content.module#ContentModule'
   }]
 }, {
-  path: '',
+  path: 'session',
   component: AuthLayoutComponent,
   children: [{
-    path: 'session',
+    path: '',
     loadChildren: './pages/session/session.module#SessionModule'
   }]
 }, {

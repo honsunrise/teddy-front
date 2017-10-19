@@ -4,6 +4,8 @@ import { ContentService } from './content/content.service';
 import { AccountService } from './account/account.service';
 import { EmbedVideoService } from './embed-video/embed-video.service';
 import { MessageService } from './message/message.service';
+import { CopierService } from './copier/copier.service';
+import { SplashScreenService } from './splash/splash-screen.service';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { MessageService } from './message/message.service';
     ContentService,
     AccountService,
     EmbedVideoService,
-    MessageService
+    MessageService,
+    CopierService,
+    SplashScreenService
   ],
   declarations: []
 })

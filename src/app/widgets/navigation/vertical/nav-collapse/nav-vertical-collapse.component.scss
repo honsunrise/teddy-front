@@ -1,0 +1,36 @@
+:host {
+  @import "../../navigation";
+  display: block;
+  background: transparent;
+  transition: background 200ms ease-in-out;
+
+  .children {
+    overflow: hidden;
+  }
+
+  .collapse-arrow {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    line-height: 16px;
+  }
+
+  .nav-link {
+    .collapse-arrow {
+      transition: transform .3s ease-in-out, opacity .25s ease-in-out .1s;
+      transform: rotate(0);
+    }
+  }
+
+  &.open {
+    background: rgba(0, 0, 0, 0.12);
+
+    > .nav-link {
+      .collapse-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
