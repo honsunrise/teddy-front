@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Info } from '../domain/info';
 import { Observable } from 'rxjs/Observable';
 import { InfoWithTime } from '../domain/InfoWithTime';
+import { UserProfile } from '../domain/userprofile';
 
 @Injectable()
 export class ContentService {
@@ -55,6 +56,21 @@ export class ContentService {
       });
   }
 
+  watchInfo(infoId: string): Observable<boolean> {
+    return this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/watch', {},
+      {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('An error occurred:', err.error.message);
+      } else {
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+      }
+    }, () => console.log('Complete'))
+      .map(data => {
+        console.log(data);
+        return true;
+      });
+  }
+
   favoriteInfo(infoId: string, cancel: boolean): Observable<boolean> {
     let ret;
     if (cancel) {
@@ -76,6 +92,28 @@ export class ContentService {
         console.log(data);
         return true;
       });
+  }
+
+  getInfoFavoriteUserList(infoId: string, page: number, size: number): Observable<Array<UserProfile>> {
+    const params = new HttpParams()
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<UserProfile>>(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {
+      params: params,
+      withCredentials: true
+    });
+  }
+
+  getUserFavoriteList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+    const params = new HttpParams()
+      .set('type', 'favorite')
+      .set('uid', uid)
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
+      params: params,
+      withCredentials: true
+    });
   }
 
   thumbUpInfo(infoId: string, cancel: boolean): Observable<boolean> {
@@ -102,6 +140,28 @@ export class ContentService {
       });
   }
 
+  getInfoThumbUpUserList(infoId: string, page: number, size: number): Observable<Array<UserProfile>> {
+    const params = new HttpParams()
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<UserProfile>>(this.config.contentEndpoint + '/info/' + infoId + '/thumbUp', {
+      params: params,
+      withCredentials: true
+    });
+  }
+
+  getUserThumbUpList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+    const params = new HttpParams()
+      .set('type', 'thumbUp')
+      .set('uid', uid)
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
+      params: params,
+      withCredentials: true
+    });
+  }
+
   thumbDownInfo(infoId: string, cancel: boolean): Observable<boolean> {
     let ret;
     if (cancel) {
@@ -126,28 +186,25 @@ export class ContentService {
       });
   }
 
-  getUserFavoriteList(page: number, size: number): Observable<Array<InfoWithTime>> {
+  getInfoThumbDownUserList(infoId: string, page: number, size: number): Observable<Array<UserProfile>> {
     const params = new HttpParams()
       .set('page', page.toString(10))
       .set('size', size.toString(10));
-    return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/test', {
+    return this.http.get<Array<UserProfile>>(this.config.contentEndpoint + '/info/' + infoId + '/thumbDown', {
       params: params,
       withCredentials: true
     });
   }
 
-  watchInfo(infoId: string): Observable<boolean> {
-    return this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/watch', {},
-      {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
-      if (err.error instanceof Error) {
-        console.log('An error occurred:', err.error.message);
-      } else {
-        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-      }
-    }, () => console.log('Complete'))
-      .map(data => {
-        console.log(data);
-        return true;
-      });
+  getUserThumbDownList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+    const params = new HttpParams()
+      .set('type', 'thumbDown')
+      .set('uid', uid)
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
+      params: params,
+      withCredentials: true
+    });
   }
 }
