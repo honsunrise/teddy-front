@@ -3,7 +3,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { TranslateService } from '@ngx-translate/core';
-import * as Ps from 'perfect-scrollbar';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   dark: boolean;
   boxed: boolean;
   collapseSidebar: boolean;
-  compactSidebar: boolean;
   currentLang = 'en';
   @ViewChild('sidemenu') sidemenu;
   @ViewChild('root') root;
@@ -37,14 +35,6 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const elemSidebar = <HTMLElement>document.querySelector('.app-inner > .sidebar-panel');
-    const elemContent = <HTMLElement>document.querySelector('.app-inner > .mat-sidenav-content');
-
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac() && !this.compactSidebar) {
-      Ps.initialize(elemSidebar, {wheelSpeed: 2, suppressScrollX: true});
-      Ps.initialize(elemContent, {wheelSpeed: 2, suppressScrollX: true});
-    }
-
     this.root.dir = 'ltr';
     this.runOnRouteChange();
   }
@@ -56,11 +46,6 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   runOnRouteChange(): void {
     if (this.isOver()) {
       this.sidemenu.close();
-    }
-
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac() && !this.compactSidebar) {
-      const elemContent = <HTMLElement>document.querySelector('.app-inner > .mat-sidenav-content');
-      Ps.update(elemContent);
     }
   }
 
@@ -89,15 +74,6 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   menuMouseOut(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && this.collapseSidebar) {
       this.sidemenu.mode = 'side';
-    }
-  }
-
-  updatePS(): void {
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac() && !this.compactSidebar) {
-      const elemSidebar = <HTMLElement>document.querySelector('.app-inner > .sidebar-panel');
-      setTimeout(() => {
-        Ps.update(elemSidebar);
-      }, 350);
     }
   }
 }

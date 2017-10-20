@@ -1,5 +1,5 @@
 <div class="app mat-typography" #root dir="ltr"
-     [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar}">
+     [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar}">
   <mat-toolbar class="main-header" color="primary">
     <button (click)="sidemenu.toggle()" mat-icon-button>
       <mat-icon>menu</mat-icon>
@@ -45,56 +45,15 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="app-inner">
-    <mat-sidenav #sidemenu class="sidebar-panel" id="sidebar-panel" [mode]="isOver() ? 'over' : 'side'"
-                [opened]="!isOver()" (mouseover)="menuMouseOver()" (mouseout)="menuMouseOut()">
-      <!--<mat-nav-list appAccordion class="navigation" (click)="updatePS()">-->
-      <!--<mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getAll()" group="{{menuitem.state}}">-->
-      <!--<a appAccordionToggle class="relative" [routerLink]="['/', menuitem.state]"-->
-      <!--*ngIf="menuitem.type === 'link'">-->
-      <!--<mat-icon>{{ menuitem.icon }}</mat-icon>-->
-      <!--<span>{{ menuitem.name | translate }}</span>-->
-      <!--<span fxFlex></span>-->
-      <!--<span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>-->
-      <!--</a>-->
-      <!--<a appAccordionToggle class="relative" href="{{menuitem.state}}"-->
-      <!--*ngIf="menuitem.type === 'extLink'">-->
-      <!--<mat-icon>{{ menuitem.icon }}</mat-icon>-->
-      <!--<span>{{ menuitem.name | translate }}</span>-->
-      <!--<span fxFlex></span>-->
-      <!--<span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>-->
-      <!--</a>-->
-      <!--<a appAccordionToggle class="relative" href="{{menuitem.state}}" target="_blank"-->
-      <!--*ngIf="menuitem.type === 'extTabLink'">-->
-      <!--<mat-icon>{{ menuitem.icon }}</mat-icon>-->
-      <!--<span>{{ menuitem.name | translate }}</span>-->
-      <!--<span fxFlex></span>-->
-      <!--<span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>-->
-      <!--</a>-->
-      <!--<a appAccordionToggle class="relative" href="javascript:;"-->
-      <!--*ngIf="menuitem.type === 'sub'">-->
-      <!--<mat-icon>{{ menuitem.icon }}</mat-icon>-->
-      <!--<span>{{ menuitem.name | translate }}</span>-->
-      <!--<span fxFlex></span>-->
-      <!--<span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>-->
-      <!--<mat-icon class="menu-caret">arrow_drop_down</mat-icon>-->
-      <!--</a>-->
-      <!--<mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">-->
-      <!--<mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">-->
-      <!--<a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">-->
-      <!--{{ childitem.name | translate}}-->
-      <!--</a>-->
-      <!--</mat-list-item>-->
-      <!--</mat-nav-list>-->
-      <!--</mat-list-item>-->
-      <!--<mat-divider></mat-divider>-->
-      <!--</mat-nav-list>-->
+    <mat-sidenav #sidemenu class="sidebar-panel" id="sidebar-panel" [mode]="isOver() ? 'over' : 'side'" perfectScrollbar
+                 [opened]="!isOver()" (mouseover)="menuMouseOver()" (mouseout)="menuMouseOut()">
       <app-navigation layout="vertical"></app-navigation>
     </mat-sidenav>
     <mat-sidenav #end align="end" class="chat-panel" mode="over" opened="false">
       <mat-tab-group [selectedIndex]="1" mat-stretch-tabs>
         <mat-tab>
           <ng-template mat-tab-label>Notifications</ng-template>
-          <div class="scroll">
+          <div class="scroll" perfectScrollbar>
             <mat-nav-list>
               <mat-list-item>
                 <mat-icon mat-list-avatar class="mat-text-primary">people</mat-icon>
@@ -147,7 +106,9 @@
         </mat-tab>
       </mat-tab-group>
     </mat-sidenav>
-    <router-outlet></router-outlet>
+    <mat-sidenav-content perfectScrollbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
   </mat-sidenav-container>
 
   <!-- Demo Purposes Only -->

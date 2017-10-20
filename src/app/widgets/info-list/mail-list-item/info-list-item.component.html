@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <div class="info" fxFlex FlexLayout="column">
+    <div class="row-1" fxLayout="row" fxLayoutAlign="start center">
+      <div class="name" fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <img class="avatar" *ngIf="model.info.userProfile?.avatarUrl"
+             alt="{{model.info.userProfile?.firstName}}"
+             src="{{model.info.userProfile?.avatarUrl}}"/>
+        <div class="avatar" *ngIf="!model.info.userProfile?.avatarUrl">
+          {{model.info.userProfile?.firstName ? model.info.userProfile?.firstName.length > 0 ?
+          model.info.userProfile?.firstName[0] : 'A' : 'A'}}
+        </div>
+        <span class="text-truncate"
+              *ngIf="model.info.userProfile?.firstName">{{model.info.userProfile?.firstName}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <div class="time">{{model.time | date}}</div>
+
+        <!--<div class="actions" fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.gt-sm>
+
+            <button mat-button class="mat-icon-button" (click)="toggleStar($event)" aria-label="Toggle star">
+                <mat-icon *ngIf="model.starred">star</mat-icon>
+                <mat-icon *ngIf="!model.starred">star_outline</mat-icon>
+            </button>
+
+            <button mat-button class="mat-icon-button" (click)="toggleImportant($event)"
+                    aria-label="Toggle important">
+                <mat-icon *ngIf="model.important">label</mat-icon>
+                <mat-icon *ngIf="!model.important">label_outline</mat-icon>
+            </button>
+
+        </div>-->
+
+      </div>
+
+    </div>
+
+    <div class="row-2" fxLayout="row" fxLayoutAlign="start center">
+
+      <div fxLayout="column" fxLayoutAlign="start start">
+
+        <div class="subject text-truncate">
+          {{model.info.title}}
+        </div>
+
+        <div class="message text-truncate">
+          {{model.info.content | htmlToPlaintext | slice:0:180}}{{model.info.content?.length > 180 ? '...' : ''}}
+        </div>
+
+        <!--<div class="labels" fxLayout="row" fxLayoutWrap fxHide fxShow.gt-sm>-->
+        <!--<div class="label" *ngFor="let labelId of model.labels"-->
+        <!--fxLayout="row" fxLayoutAlign="start center">-->
+        <!--<div class="label-color" [ngStyle]="{'background-color': labels | getById:labelId:'color'}"></div>-->
+        <!--<div class="label-title">{{labels | getById:labelId:'title'}}</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

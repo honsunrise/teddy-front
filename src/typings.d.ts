@@ -6,5 +6,4 @@ interface NodeModule {
 }
 
 declare module 'leaflet';
-declare module 'perfect-scrollbar';
 declare module 'screenfull';

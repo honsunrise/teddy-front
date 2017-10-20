@@ -104,12 +104,14 @@ export class ContentService {
     });
   }
 
-  getUserFavoriteList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+  getUserFavoriteList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
     const params = new HttpParams()
       .set('type', 'favorite')
-      .set('uid', uid)
       .set('page', page.toString(10))
       .set('size', size.toString(10));
+    if (uid) {
+      params.set('uid', uid);
+    }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
       withCredentials: true
@@ -150,12 +152,14 @@ export class ContentService {
     });
   }
 
-  getUserThumbUpList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+  getUserThumbUpList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
     const params = new HttpParams()
       .set('type', 'thumbUp')
-      .set('uid', uid)
       .set('page', page.toString(10))
       .set('size', size.toString(10));
+    if (uid) {
+      params.set('uid', uid);
+    }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
       withCredentials: true
@@ -196,12 +200,14 @@ export class ContentService {
     });
   }
 
-  getUserThumbDownList(uid: string, page: number, size: number): Observable<Array<InfoWithTime>> {
+  getUserThumbDownList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
     const params = new HttpParams()
       .set('type', 'thumbDown')
-      .set('uid', uid)
       .set('page', page.toString(10))
       .set('size', size.toString(10));
+    if (uid) {
+      params.set('uid', uid);
+    }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
       withCredentials: true

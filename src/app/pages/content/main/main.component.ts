@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ContentService } from '../../../service/content/content.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

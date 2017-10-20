@@ -1,0 +1,9 @@
+<div *ngIf="infos.length === 0" fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+  <span class="no-messages-text hint-text">There are no messages!</span>
+</div>
+
+<div class="mail-list" *delayShow="300" [@animateStagger]="{value:'50'}" perfectScrollbar>
+  <info-list-item matRipple *ngFor="let info of infos" [model]="info" (click)="click(info)"
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+  </info-list-item>
+</div>

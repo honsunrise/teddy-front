@@ -10,6 +10,7 @@ import { MaterialModule } from '../../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { NavigationFakeLoader, NavigationLoader } from './navigation.loader';
 import { NavigationService } from './navigation.service';
+import { SharedModule } from '../../shared/shared.module';
 
 export interface NavigationModuleConfig {
   loader?: Provider;
@@ -20,6 +21,7 @@ export interface NavigationModuleConfig {
     CommonModule,
     RouterModule,
     MaterialModule,
+    SharedModule
   ],
   exports: [
     NavigationComponent

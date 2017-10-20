@@ -1,3 +1,5 @@
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
 // Colors
 $ps-border-radius: 6px !default;
 
@@ -175,5 +177,12 @@ $ps-theme-default: (
 
 // Default theme
 .ps {
-  @include ps-container($ps-theme-default);
+  > .ps__rail-x {
+    z-index: 99999;
+  }
+
+  > .ps__rail-y {
+    z-index: 99999;
+    left: auto !important;
+  }
 }

@@ -1,4 +1,10 @@
 :host {
+  display: block;
+  height: 100%;
+  .profile {
+    height: 100%;
+  }
+
   .profile-head {
     width: 360px;
     border-bottom: 1px solid #f4f5f8;
@@ -30,6 +36,21 @@
     .num {
       font-size: 1.5rem;
       font-weight: 600;
+    }
+  }
+
+  .video-item {
+    border-bottom: 1px solid var(--yt-border-color);
+    height: 100px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    .image-warp {
+      width: 120px;
+      height: 68px;
+    }
+
+    .info {
+      height: 68px;
     }
   }
 }

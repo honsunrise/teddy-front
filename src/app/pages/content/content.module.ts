@@ -1,18 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatSlideToggleModule,
-  MatTabsModule,
-  MatToolbarModule
-} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -37,25 +25,19 @@ import { TreeModule } from 'angular-tree-component';
 import { PlayListComponent } from './playlist/playlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from '../../shared/material.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(ContentRoutes),
     FormsModule,
+    MaterialModule,
+    SharedModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
-    MatIconModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatSelectModule,
     NgxDatatableModule,
-    MatProgressBarModule,
     FlexLayoutModule,
     MasonryModule,
     VgCoreModule,

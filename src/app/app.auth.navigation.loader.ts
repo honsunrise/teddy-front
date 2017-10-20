@@ -11,10 +11,38 @@ export class AuthNavigationLoader implements NavigationLoader {
     if (this.authService.checkLogin()) {
       return Observable.of([
         {
-          'id': 'applications',
-          'title': 'Applications',
+          'id': 'home',
+          'title': 'Home',
+          'type': 'item',
+          'icon': 'home',
+          'url': '/home'
+        },
+        {
+          'id': 'cate',
+          'title': 'Cate',
+          'type': 'item',
+          'icon': 'code',
+          'url': '/cate'
+        },
+        {
+          'id': 'media_library',
+          'title': 'Media Library',
           'type': 'group',
           'children': [
+            {
+              'id': 'later',
+              'title': 'Watch Later',
+              'type': 'item',
+              'icon': 'history',
+              'url': '/playlist/later'
+            },
+            {
+              'id': 'thumb',
+              'title': 'Thumb Up',
+              'type': 'item',
+              'icon': 'thumb_up',
+              'url': '/playlist/thumbUp'
+            },
             {
               'id': 'collapse',
               'title': 'Collapse',
@@ -26,7 +54,7 @@ export class AuthNavigationLoader implements NavigationLoader {
                   'title': 'Test',
                   'type': 'item',
                   'icon': 'email',
-                  'url': '/home',
+                  'url': '/blank',
                   'badge': {
                     'num': 25,
                     'bg': '#F44336',
@@ -54,18 +82,6 @@ export class AuthNavigationLoader implements NavigationLoader {
                   }
                 }
               ]
-            },
-            {
-              'id': 'sample',
-              'title': 'Sample',
-              'type': 'item',
-              'icon': 'email',
-              'url': '/cate',
-              'badge': {
-                'num': 25,
-                'bg': '#F44336',
-                'fg': '#FFFFFF'
-              }
             },
           ]
         }
