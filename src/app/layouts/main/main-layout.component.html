@@ -112,7 +112,7 @@
   </mat-sidenav-container>
 
   <!-- Demo Purposes Only -->
-  <button mat-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()"
+  <button mat-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()" style="z-index: 10"
           [routerLink]="['/publish']">
     <mat-icon class="mat-24">add</mat-icon>
   </button>

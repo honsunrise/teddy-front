@@ -7,14 +7,17 @@ import { CustomValidators } from 'ng2-validation';
 import { ContentService } from '../../../service/content/content.service';
 
 @Component({
-  selector: 'app-blank',
+  selector: 'app-publish',
   templateUrl: './publish.component.html',
   styleUrls: ['./publish.component.scss']
 })
 export class PublishComponent implements OnInit {
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
+
   form: FormGroup;
 
   constructor(@Inject(APP_CONFIG) private config: IAppConfig,
@@ -28,7 +31,11 @@ export class PublishComponent implements OnInit {
       isHTML5: true
     });
 
-    this.form = this.fb.group({
+    this.firstFormGroup = this.fb.group({
+      external: [false, Validators.compose([Validators.required])],
+      movieUrl: ['', Validators.compose([Validators.required, CustomValidators.url])],
+    });
+    this.secondFormGroup = this.fb.group({
       title: [null, Validators.compose([
         Validators.required,
         Validators.minLength(5),
@@ -39,13 +46,15 @@ export class PublishComponent implements OnInit {
         Validators.maxLength(500)
       ])],
       canReview: [null, Validators.compose([Validators.required])],
-      external: [null, Validators.compose([Validators.required])],
-      movieUrl: [null, Validators.compose([Validators.required, CustomValidators.url])],
     });
   }
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
+  }
+
+  fileDropped(e: any, type: string) {
+    console.log(e);
   }
 
   onSubmit() {

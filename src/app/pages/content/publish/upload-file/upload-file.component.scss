@@ -1,0 +1,107 @@
+@import "src/assets/styles/scss/material.variables";
+@import "src/assets/styles/scss/mixins/bi-app/bi-app-ltr";
+@import "src/assets/styles/scss/app.variables";
+@import "src/assets/styles/scss/mixins";
+
+:host {
+  display: block;
+  width: 100%;
+  .upload-file {
+    .upload-file-drop-container {
+      min-height: 45px;
+      padding: ($gutter/2);
+      border: dashed 1px mat-color($foreground, divider);
+      background-color: mat-color($background, card);
+      @include rounded($border-radius-base);
+      .text {
+        color: #999999;
+        font-size: 15px;
+        font-weight: 100;
+      }
+      &:hover {
+        border: dashed 2px mat-color($foreground, divider);
+      }
+      &.file-is-over {
+        border: dashed 4px mat-color($foreground, divider);
+      }
+    }
+    .upload-file-files {
+      border: dashed 1px mat-color($foreground, divider);
+      margin-top: 8px;
+      padding: 5px;
+      .upload-file-file {
+        position: relative;
+        margin: 2px;
+        padding: 1px;
+        border: dashed 1px mat-color($foreground, divider);
+        height: 134px;
+        width: 134px;
+        overflow: hidden;
+        .pic {
+          width: 100%;
+          height: 100%;
+          background-color: #999999;
+          .icon {
+            display: block;
+            color: #F7F7F7;
+            font-size: 64px;
+            height: 64px;
+            width: 64px;
+          }
+        }
+
+        .upload-file-file-name {
+          z-index: 4;
+          position: absolute;
+          background: rgba(255, 255, 255, 0.3);
+          min-height: 20px;
+          top: 0;
+          left: 0;
+          right: 0;
+          padding: 4px;
+          .text {
+            line-height: 18px;
+            font-size: 12px;
+            text-align: center;
+            word-wrap: break-word;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+            &:hover {
+              overflow: auto;
+              white-space: pre-wrap;
+              text-overflow: initial;
+            }
+          }
+        }
+
+        .upload-file-remove {
+          overflow: hidden;
+          position: absolute;
+          z-index: 3;
+          font-size: 14px;
+          line-height: 20px;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0;
+          padding: 0;
+          .icon {
+            display: block;
+            color: #ff0052;
+            font-size: 64px;
+            height: 64px;
+            width: 64px;
+          }
+          &:hover {
+            opacity: 1;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.75);
+          }
+        }
+      }
+    }
+  }
+}

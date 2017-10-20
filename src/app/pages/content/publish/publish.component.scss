@@ -1,0 +1,65 @@
+@import "src/assets/styles/scss/material.variables";
+@import "src/assets/styles/scss/mixins/bi-app/bi-app-ltr";
+@import "src/assets/styles/scss/app.variables";
+@import "src/assets/styles/scss/mixins";
+
+:host {
+  display: block;
+  padding-top: 50px;
+  .upload {
+    width: 800px;
+    margin: auto auto 50px;
+    .field {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+  .publish {
+    width: 800px;
+    margin: auto auto 50px;
+    .form {
+      padding: 15px;
+      .field {
+        border-top: 0.84375em solid transparent;
+        .label {
+          font-weight: 100;
+          font-size: 15px;
+        }
+        .item {
+
+        }
+        border-bottom: 0.84375em solid transparent;
+      }
+    }
+    .ctrl-bar {
+      margin-top: 50px;
+    }
+  }
+
+  .drop-zone {
+    min-height: 45px;
+    padding: ($gutter/2);
+    border: dashed 1px mat-color($foreground, divider);
+    background-color: mat-color($background, card);
+    @include rounded($border-radius-base);
+    .text {
+      color: #999999;
+      font-size: 15px;
+      font-weight: 100;
+    }
+    &:hover {
+      border: dashed 2px mat-color($foreground, divider);
+    }
+  }
+
+  .file-over-class {
+    border: dashed 4px mat-color($foreground, divider);
+  }
+}
+
+.app-dark :host /deep/ {
+  .my-drop-zone {
+    color: #ffffff;
+    background: mat-color($dark-background, card);
+  }
+}

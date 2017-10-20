@@ -27,6 +27,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '../../shared/material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { UploadFileComponent } from './publish/upload-file/upload-file.component';
+import { FileDropDirective } from 'angular2-file-drop/build/file-drop';
 
 @NgModule({
   imports: [
@@ -57,8 +59,10 @@ import { SharedModule } from '../../shared/shared.module';
     WatchComponent,
     PublishComponent,
     PlayListComponent,
-    ProfileComponent
-  ]
+    ProfileComponent,
+    UploadFileComponent,
+    FileDropDirective
+  ],
 })
 
 export class ContentModule {
