@@ -138,10 +138,12 @@ export class UploadFileComponent implements OnInit, OnDestroy, ControlValueAcces
           const url = (evt.target as FileReader).result;
           this.cacheDataUrl.set(file, url);
           observer.next(url);
+          observer.complete();
         });
         fileReader.readAsDataURL(file);
       } else {
         observer.next(result);
+        observer.complete();
       }
     });
   }
