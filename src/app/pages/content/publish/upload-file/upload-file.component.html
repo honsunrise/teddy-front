@@ -1,11 +1,11 @@
 <div class="upload-file" (blur)="onBlur()">
-  <div class="upload-file-invalid text-danger" [hidden]="!invalidFile" [innerHTML]="invalidFileText"></div>
+  <div class="upload-file-invalid text-danger" [hidden]="!invalidFile">{{invalidFileText}}</div>
   <div fileDrop class="upload-file-drop-container" [ngClass]="{'file-is-over': fileIsOver}"
        fxLayout="row" fxLayoutWrap fxLayoutAlign="center center"
        (click)="ng2FileInputSelect.click()"
        (fileOver)="fileOver($event)"
        (onFileDrop)="onFileDrop($event)">
-    <span [innerHTML]="dropText" class="text"></span>
+    <span class="text">{{dropText}}</span>
   </div>
   <div class="upload-file-files" *ngIf="showPreviews && currentFiles.length"
        fxLayout="row" fxLayoutWrap fxLayoutAlign="start start">
@@ -14,14 +14,14 @@
            fxLayout="row"
            fxLayoutWrap
            fxLayoutAlign="center center">
-        <span [innerHTML]="file.name" class="text"></span>
+        <span class="text">{{file.name}}</span>
       </div>
       <div class="upload-file-remove" (click)="removeFile(file)" *ngIf="removable"
            fxLayout="row"
            fxLayoutAlign="center center">
         <mat-icon class="icon">close</mat-icon>
       </div>
-      <img class="pic" [src]="getObjectUrl(file)" *ngIf="file.type.indexOf('image') !== -1">
+      <img class="pic" src="{{getObjectUrl(file) | async}}" *ngIf="file.type.indexOf('image') !== -1">
       <div class="pic" *ngIf="file.type.indexOf('image') === -1"
            fxLayout="row"
            fxLayoutAlign="center center">

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Ng2FileInputAction } from './upload-file.interface';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs/util/noop';
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 function isSameFile(file1: File, file2: File): boolean {
   return file1.name === file2.name && file1.size === file2.size && file1.type === file2.type;
@@ -44,8 +45,9 @@ export class UploadFileComponent implements OnInit, OnDestroy, ControlValueAcces
   private alreadyEmitted = false;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+  private cacheDataUrl: Map<File, string> = new Map();
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -127,8 +129,21 @@ export class UploadFileComponent implements OnInit, OnDestroy, ControlValueAcces
     }
   }
 
-  getObjectUrl(file: File): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+  getObjectUrl(file: File): Observable<string> {
+    return Observable.create((observer: Subscriber<string>) => {
+      const result = this.cacheDataUrl.get(file);
+      if (typeof result === 'undefined' || result == null) {
+        const fileReader = new FileReader();
+        fileReader.addEventListener('load', evt => {
+          const url = (evt.target as FileReader).result;
+          this.cacheDataUrl.set(file, url);
+          observer.next(url);
+        });
+        fileReader.readAsDataURL(file);
+      } else {
+        observer.next(result);
+      }
+    });
   }
 
   private handleFile(file: File): void {
