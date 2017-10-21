@@ -31,19 +31,25 @@ export class ContentService {
 
   publishInfo(title: string, content: string, images: Array<string>, movie: string,
               external: boolean, canReview: boolean): Observable<boolean> {
-    return this.http.post(this.config.contentEndpoint + '/info/publish', {
-      title: title,
-      content: content,
-      images: images,
-      movie: movie,
-      external: external,
-      canReview: canReview,
-      location: {
-        alt: 0,
-        lat: 0,
-        lon: 0
-      }
-    }, {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
+    const response: Observable<string> = this.http.post(this.config.contentEndpoint + '/info/publish',
+      {
+        title: title,
+        content: content,
+        images: images,
+        movie: movie,
+        external: external,
+        canReview: canReview,
+        location: {
+          alt: 0,
+          lat: 0,
+          lon: 0
+        }
+      }, {
+        observe: 'body',
+        responseType: 'text',
+        withCredentials: true
+      });
+    return response.do(data => console.log(data), (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('An error occurred:', err.error.message);
       } else {
@@ -51,14 +57,18 @@ export class ContentService {
       }
     }, () => console.log('Complete'))
       .map(data => {
-        console.log(data);
         return true;
       });
   }
 
   watchInfo(infoId: string): Observable<boolean> {
-    return this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/watch', {},
-      {withCredentials: true}).do(data => console.log(data), (err: HttpErrorResponse) => {
+    const response: Observable<string> = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/watch',
+      {}, {
+        observe: 'body',
+        responseType: 'text',
+        withCredentials: true
+      });
+    return response.do(data => console.log(data), (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('An error occurred:', err.error.message);
       } else {
@@ -66,21 +76,28 @@ export class ContentService {
       }
     }, () => console.log('Complete'))
       .map(data => {
-        console.log(data);
         return true;
       });
   }
 
   favoriteInfo(infoId: string, cancel: boolean): Observable<boolean> {
-    let ret;
+    let response: Observable<string>;
     if (cancel) {
-      ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/favorite',
-        {withCredentials: true});
+      response = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/favorite',
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     } else {
-      ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {},
-        {withCredentials: true});
+      response = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/favorite', {},
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     }
-    return ret
+    return response
       .do(data => console.log(data), (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           console.log('An error occurred:', err.error.message);
@@ -89,7 +106,6 @@ export class ContentService {
         }
       }, () => console.log('Complete'))
       .map(data => {
-        console.log(data);
         return true;
       });
   }
@@ -119,13 +135,21 @@ export class ContentService {
   }
 
   thumbUpInfo(infoId: string, cancel: boolean): Observable<boolean> {
-    let ret;
+    let ret: Observable<string>;
     if (cancel) {
       ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/thumbUp',
-        {withCredentials: true});
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     } else {
       ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/thumbUp', null,
-        {withCredentials: true});
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     }
 
     return ret
@@ -137,7 +161,6 @@ export class ContentService {
         }
       }, () => console.log('Complete'))
       .map(data => {
-        console.log(data);
         return true;
       });
   }
@@ -167,13 +190,21 @@ export class ContentService {
   }
 
   thumbDownInfo(infoId: string, cancel: boolean): Observable<boolean> {
-    let ret;
+    let ret: Observable<string>;
     if (cancel) {
       ret = this.http.delete(this.config.contentEndpoint + '/info/' + infoId + '/thumbDown',
-        {withCredentials: true});
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     } else {
       ret = this.http.post(this.config.contentEndpoint + '/info/' + infoId + '/thumbDown', null,
-        {withCredentials: true});
+        {
+          observe: 'body',
+          responseType: 'text',
+          withCredentials: true
+        });
     }
 
     return ret
@@ -185,7 +216,6 @@ export class ContentService {
         }
       }, () => console.log('Complete'))
       .map(data => {
-        console.log(data);
         return true;
       });
   }

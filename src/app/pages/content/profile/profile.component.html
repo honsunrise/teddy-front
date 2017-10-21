@@ -22,7 +22,7 @@
     </mat-card-content>
   </mat-card>
   <mat-card fxFlex="auto">
-    <mat-tab-group>
+    <mat-tab-group class="h-100">
       <mat-tab label="{{'FAVORITE_VIDEO' | translate}}">
         <info-list [infos]="favoriteList" (infoClick)="goToWatchInfo($event.info.id)"></info-list>
       </mat-tab>

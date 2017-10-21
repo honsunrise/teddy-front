@@ -1,20 +1,31 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Ng2FileInputAction } from './upload-file.interface';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { noop } from 'rxjs/util/noop';
 
 function isSameFile(file1: File, file2: File): boolean {
   return file1.name === file2.name && file1.size === file2.size && file1.type === file2.type;
 }
 
+export const UPLOAD_FILE_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => UploadFileComponent),
+  multi: true
+};
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.scss']
+  styleUrls: ['./upload-file.component.scss'],
+  providers: [UPLOAD_FILE_CONTROL_VALUE_ACCESSOR]
 })
-export class UploadFileComponent implements OnInit, OnDestroy {
+export class UploadFileComponent implements OnInit, OnDestroy, ControlValueAccessor {
   fileIsOver = false;
   invalidFile = false;
   currentFiles: File[] = [];
+  isDisable = false;
+
   @Input() id: string;
   @Input('drop-text') dropText = 'Drop file here';
   @Input('browse-text') browseText = 'Browse';
@@ -31,6 +42,8 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   @Output('onInvalidDenied') outputInvalidDenied = new EventEmitter();
   @Output('onNotAllowRemove') outputNotAllowRemove = new EventEmitter();
   private alreadyEmitted = false;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -44,8 +57,30 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
+  writeValue(obj: any): void {
+    if (obj !== this.currentFiles) {
+      this.currentFiles = obj;
+    }
+  }
+
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisable = isDisabled;
+  }
+
   fileOver(fileIsOver: boolean): void {
     this.fileIsOver = fileIsOver;
+  }
+
+  onBlur() {
+    this.onTouchedCallback();
   }
 
   onFileDrop(file: File): void {
@@ -111,10 +146,11 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   }
 
   private emitOutput(file: File, action: Ng2FileInputAction): void {
+    this.onChangeCallback(this.currentFiles);
     this.outputAction.emit({
       id: this.id,
-      currentFiles: this.currentFiles,
       action: action,
+      currentFiles: this.currentFiles,
       file: file
     });
     switch (action) {

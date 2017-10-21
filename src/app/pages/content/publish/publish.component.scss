@@ -34,32 +34,15 @@
     .ctrl-bar {
       margin-top: 50px;
     }
-  }
 
-  .drop-zone {
-    min-height: 45px;
-    padding: ($gutter/2);
-    border: dashed 1px mat-color($foreground, divider);
-    background-color: mat-color($background, card);
-    @include rounded($border-radius-base);
-    .text {
-      color: #999999;
-      font-size: 15px;
-      font-weight: 100;
+    .cover {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 3;
     }
-    &:hover {
-      border: dashed 2px mat-color($foreground, divider);
-    }
-  }
-
-  .file-over-class {
-    border: dashed 4px mat-color($foreground, divider);
-  }
-}
-
-.app-dark :host /deep/ {
-  .my-drop-zone {
-    color: #ffffff;
-    background: mat-color($dark-background, card);
   }
 }

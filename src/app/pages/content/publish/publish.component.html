@@ -1,69 +1,62 @@
-<mat-card class="upload">
+<mat-card class="upload" *ngIf="uploading">
   <mat-card-header>
     <mat-card-title>Upload queue</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div ng2FileDrop
-         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-         (fileOver)="fileOverBase($event)"
-         [uploader]="uploader" class="my-drop-zone">
-      <div>
-        <ngx-datatable
-          class="material ml-0 mr-0"
-          [rows]="uploader.queue"
-          [columnMode]="'flex'"
-          [headerHeight]="50"
-          [footerHeight]="0"
-          [rowHeight]="'auto'">
-          <ngx-datatable-column name="Name" [flexGrow]="3">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.file?.name }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Size" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.file?.size/1024/1024 | number:'.2' }} MB
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Progress" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <mat-progress-bar mode="determinate" value="{{row.progress}}"></mat-progress-bar>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="status" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <span *ngIf="row.isSuccess"><mat-icon>check</mat-icon></span>
-              <span *ngIf="row.isCancel"><mat-icon>cancel</mat-icon></span>
-              <span *ngIf="row.isError"><mat-icon>error</mat-icon></span>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="action" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <button mat-button color="warn" type="button" (click)="row.cancel()"
-                      [disabled]="!row.isUploading">
-                Cancel
-              </button>
-            </ng-template>
-          </ngx-datatable-column>
-        </ngx-datatable>
-
-        <div class="field">
-          <p>Queue progress:</p>
-          <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
-        </div>
-
-        <div fxLayout="row" fxLayoutWrap fxLayoutAlign="end center">
-          <!--<button mat-raised-button mat-button-sm color="primary" type="button" class="mr-1"-->
-          <!--(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload all-->
-          <!--</button>-->
-          <button mat-raised-button mat-button-sm color="warn" type="button"
-                  (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">Cancel all
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="uploader.queue"
+      [columnMode]="'flex'"
+      [headerHeight]="50"
+      [footerHeight]="0"
+      [rowHeight]="'auto'">
+      <ngx-datatable-column name="Name" [flexGrow]="3">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.file?.name }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Size" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.file?.size/1024/1024 | number:'.2' }} MB
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Progress" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <mat-progress-bar mode="determinate" value="{{row.progress}}"></mat-progress-bar>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="status" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span *ngIf="row.isSuccess"><mat-icon>check</mat-icon></span>
+          <span *ngIf="row.isCancel"><mat-icon>cancel</mat-icon></span>
+          <span *ngIf="row.isError"><mat-icon>error</mat-icon></span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="action" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button mat-button color="warn" type="button" (click)="row.cancel()"
+                  [disabled]="!row.isUploading">
+            Cancel
           </button>
-          <!--<button mat-raised-button mat-button-sm color="accent" type="button" class="mr-1"-->
-          <!--(click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Remove all-->
-          <!--</button>-->
-        </div>
-      </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+
+    <div class="field">
+      <p>Queue progress:</p>
+      <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="end center">
+      <!--<button mat-raised-button mat-button-sm color="primary" type="button" class="mr-1"-->
+      <!--(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload all-->
+      <!--</button>-->
+      <button mat-raised-button mat-button-sm color="warn" type="button"
+              (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">Cancel all
+      </button>
+      <!--<button mat-raised-button mat-button-sm color="accent" type="button" class="mr-1"-->
+      <!--(click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Remove all-->
+      <!--</button>-->
     </div>
   </mat-card-content>
 </mat-card>
@@ -74,6 +67,7 @@
   </mat-card-header>
 
   <mat-card-content class="pa-0">
+    <div class="cover" *ngIf="uploading"></div>
     <mat-horizontal-stepper [linear]="true">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" class="form">
@@ -83,27 +77,32 @@
             <mat-checkbox [formControl]="firstFormGroup.controls['external']">External Link</mat-checkbox>
           </div>
 
-          <mat-form-field style="width: 100%" *ngIf="firstFormGroup.controls['external'].value">
-            <input matInput placeholder="Movie external address (http://youtube.com)"
-                   [formControl]="firstFormGroup.controls['movieUrl']">
-            <mat-error
-              *ngIf="firstFormGroup.controls['movieUrl'].hasError('required') && firstFormGroup.controls['movieUrl'].touched"
-              class="mat-text-warn">You must include a web address.
-            </mat-error>
-            <mat-error
-              *ngIf="firstFormGroup.controls['movieUrl'].errors?.url && firstFormGroup.controls['movieUrl'].touched"
-              class="mat-text-warn">You
-              must include a valid web address.
-            </mat-error>
-          </mat-form-field>
+          <div [formGroup]="link" *ngIf="firstFormGroup.controls['external'].value">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Movie external address (http://youtube.com)"
+                     [formControl]="link.controls['movieUrl']">
+              <mat-error
+                *ngIf="link.controls['movieUrl'].hasError('required') && link.controls['movieUrl'].touched"
+                class="mat-text-warn">You must include a web address.
+              </mat-error>
+              <mat-error
+                *ngIf="link.controls['movieUrl'].hasError('url') && link.controls['movieUrl'].touched"
+                class="mat-text-warn">You
+                must include a valid web address.
+              </mat-error>
+            </mat-form-field>
 
-          <div class="field" *ngIf="firstFormGroup.controls['external'].value">
-            <app-upload [multiple]="true"></app-upload>
+            <div class="field">
+              <app-upload [multiple]="true" [formControl]="link.controls['cover']"></app-upload>
+            </div>
           </div>
 
-          <div class="field" *ngIf="!firstFormGroup.controls['external'].value">
-            <app-upload></app-upload>
+          <div [formGroup]="upload" *ngIf="!firstFormGroup.controls['external'].value">
+            <div class="field">
+              <app-upload [formControl]="upload.controls['movie']"></app-upload>
+            </div>
           </div>
+
 
           <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center">
             <button mat-raised-button matStepperNext>Next</button>
@@ -111,7 +110,7 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup" class="form">
+        <form [formGroup]="secondFormGroup" class="form" (submit)="onSubmit()">
           <ng-template matStepLabel>Fill movie info</ng-template>
           <mat-form-field>
             <input matInput placeholder="Title" [formControl]="secondFormGroup.controls['title']">

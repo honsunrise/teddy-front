@@ -1,4 +1,4 @@
-<div class="upload-file">
+<div class="upload-file" (blur)="onBlur()">
   <div class="upload-file-invalid text-danger" [hidden]="!invalidFile" [innerHTML]="invalidFileText"></div>
   <div fileDrop class="upload-file-drop-container" [ngClass]="{'file-is-over': fileIsOver}"
        fxLayout="row" fxLayoutWrap fxLayoutAlign="center center"

@@ -14,11 +14,11 @@ import { ContentService } from '../../../service/content/content.service';
 export class PublishComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  link: FormGroup;
+  upload: FormGroup;
 
+  uploading = false;
   uploader: FileUploader;
-  hasBaseDropZoneOver = false;
-
-  form: FormGroup;
 
   constructor(@Inject(APP_CONFIG) private config: IAppConfig,
               private contentService: ContentService,
@@ -31,10 +31,37 @@ export class PublishComponent implements OnInit {
       isHTML5: true
     });
 
+    this.upload = this.fb.group({
+      movie: [[], Validators.compose([Validators.required, Validators.max(1)])],
+    });
+
+    this.link = this.fb.group({
+      movieUrl: ['', Validators.compose([Validators.required, CustomValidators.url])],
+      cover: [[], Validators.compose([Validators.required, Validators.max(9)])]
+    });
+
     this.firstFormGroup = this.fb.group({
       external: [false, Validators.compose([Validators.required])],
-      movieUrl: ['', Validators.compose([Validators.required, CustomValidators.url])],
+      upload: this.upload
     });
+
+    let modify = false;
+    this.firstFormGroup.valueChanges.subscribe(value => {
+      if (modify) {
+        return;
+      } else {
+        modify = true;
+        if (value.external) {
+          this.firstFormGroup.removeControl('upload');
+          this.firstFormGroup.addControl('link', this.link);
+        } else {
+          this.firstFormGroup.removeControl('link');
+          this.firstFormGroup.addControl('upload', this.upload);
+        }
+      }
+      modify = false;
+    });
+
     this.secondFormGroup = this.fb.group({
       title: [null, Validators.compose([
         Validators.required,
@@ -45,23 +72,35 @@ export class PublishComponent implements OnInit {
         Validators.required,
         Validators.maxLength(500)
       ])],
-      canReview: [null, Validators.compose([Validators.required])],
+      canReview: [true, Validators.compose([Validators.required])],
     });
   }
 
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  fileDropped(e: any, type: string) {
-    console.log(e);
-  }
-
   onSubmit() {
-    this.contentService.publishInfo(this.form.value['title'], this.form.value['content'],
-      [], this.form.value['movieUrl'],
-      this.form.value['external'], this.form.value['canReview']).subscribe(data => {
-      console.log('Publish model success!');
+    this.uploading = true;
+    this.uploader.clearQueue();
+    const externalLink = this.firstFormGroup.value['external'];
+    let movieUrl: string;
+    let cover: File[];
+    let movie: File[];
+    if (externalLink) {
+      movieUrl = this.link.value['movieUrl'];
+      cover = this.link.value['cover'];
+      this.uploader.addToQueue(cover);
+    } else {
+      movie = this.upload.value['movie'];
+      this.uploader.addToQueue(movie);
+    }
+    const title = this.secondFormGroup.value['title'];
+    const content = this.secondFormGroup.value['content'];
+    const canReview = this.secondFormGroup.value['canReview'];
+
+    this.contentService.publishInfo(title, content,
+      [], movieUrl,
+      externalLink, canReview).subscribe(data => {
+      this.uploader.uploadAll();
+    }, error => {
+      console.log(error);
     });
   }
 }
