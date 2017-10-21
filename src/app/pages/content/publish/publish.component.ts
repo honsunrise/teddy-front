@@ -28,7 +28,7 @@ export class PublishComponent implements OnInit {
   ngOnInit() {
     this.uploader = new FileUploader({
       url: this.config.uploadEndpoint,
-      isHTML5: true
+      isHTML5: true,
     });
 
     this.upload = this.fb.group({

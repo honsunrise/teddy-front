@@ -38,6 +38,10 @@
                   [disabled]="!row.isUploading">
             Cancel
           </button>
+          <button mat-button color="warn" type="button" (click)="row.upload()"
+                  [disabled]="row.isUploading">
+            Upload
+          </button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
