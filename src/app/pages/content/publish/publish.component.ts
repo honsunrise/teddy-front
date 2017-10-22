@@ -5,6 +5,7 @@ import { IAppConfig } from '../../../app.config.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { ContentService } from '../../../service/content/content.service';
+import { UploadService } from '../../../service/upload/upload.service';
 
 @Component({
   selector: 'app-publish',
@@ -22,6 +23,7 @@ export class PublishComponent implements OnInit {
 
   constructor(@Inject(APP_CONFIG) private config: IAppConfig,
               private contentService: ContentService,
+              private uploadService: UploadService,
               private fb: FormBuilder) {
   }
 
@@ -98,9 +100,18 @@ export class PublishComponent implements OnInit {
     this.contentService.publishInfo(title, content,
       [], movieUrl,
       externalLink, canReview).subscribe(data => {
-      this.uploader.uploadAll();
+      this.uploadService.uploadFileAll(cover[0], 5).subscribe((value) => {
+        console.log('Upload complete' + value);
+      });
     }, error => {
       console.log(error);
+    });
+  }
+
+  uploadTest() {
+    const cover = this.link.value['cover'];
+    this.uploadService.uploadFileAll(cover[0], 5).subscribe((value) => {
+      console.log('Upload complete' + value);
     });
   }
 }
