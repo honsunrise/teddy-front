@@ -1,3 +1,8 @@
+@import "src/assets/styles/scss/material.variables";
+@import "src/assets/styles/scss/mixins/bi-app/bi-app-ltr";
+@import "src/assets/styles/scss/app.variables";
+@import "src/assets/styles/scss/mixins";
+
 :host {
   flex-shrink: 0;
   position: relative;
@@ -5,17 +10,13 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   cursor: pointer;
 
-  &.unread {
+  &:hover {
     background: #FFFFFF;
-
     .info {
-
       .name {
         font-weight: 700;
       }
-
       .row-2 {
-
         .subject {
           font-weight: 700;
         }
@@ -29,27 +30,10 @@
 
   &.selected {
     background: #FFF8E1;
-
     .info {
-
       .row-2 {
-
         .labels {
           background: #FFF8E1;
-        }
-      }
-    }
-  }
-
-  &.current-mail {
-    background: #E3F2FD;
-
-    .info {
-
-      .row-2 {
-
-        .labels {
-          background: #E3F2FD;
         }
       }
     }
@@ -60,26 +44,26 @@
     width: 0;
     margin-left: 16px;
     position: relative;
-
     .row-1 {
       margin-bottom: 8px;
-
       .name {
         font-size: 15px;
         font-weight: 500;
-
         .avatar {
           min-width: 32px;
           width: 32px;
           height: 32px;
           line-height: 32px;
-          background-color: #E3F2FD;
+          background-color: mat-color($primary);
+          color: white;
+          border-radius: 50%;
+          text-align: center;
+          font-size: 20px;
         }
       }
 
       .actions {
         margin-left: 4px;
-
         .mat-icon-button {
           width: 32px;
           height: 32px;
@@ -89,17 +73,14 @@
     }
 
     .row-2 {
-
       .subject,
       .message {
         width: 100%;
       }
-
       .message {
         position: relative;
         color: rgba(0, 0, 0, 0.54);
       }
-
       .labels {
         position: absolute;
         background: #FFFFFF;
@@ -113,7 +94,6 @@
           margin: 0 4px 0 0;
           padding: 3px 8px;
           background-color: rgba(0, 0, 0, 0.08);
-
           .label-color {
             width: 8px;
             height: 8px;
@@ -122,6 +102,17 @@
           }
         }
       }
+    }
+  }
+
+  .pic {
+    overflow: hidden;
+    position: relative;
+    height: 80px;
+    width: 160px;
+    img {
+      height: 100%;
+      margin: auto;
     }
   }
 }

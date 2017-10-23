@@ -24,7 +24,11 @@
   <mat-card fxFlex="auto">
     <mat-tab-group class="h-100">
       <mat-tab label="{{'FAVORITE_VIDEO' | translate}}">
-        <info-list [infos]="favoriteList" (infoClick)="goToWatchInfo($event.info.id)"></info-list>
+        <info-list [infos]="favoriteList" (infoClick)="goToWatchInfo($event.info.id)">
+          <button mat-button class="mat-icon-button" aria-label="Toggle star">
+            <mat-icon>star</mat-icon>
+          </button>
+        </info-list>
       </mat-tab>
       <mat-tab label="{{'THUMB_UP_VIDEO' | translate}}">
         <info-list [infos]="thumbUpList" (infoClick)="goToWatchInfo($event.info.id)"></info-list>

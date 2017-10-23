@@ -100,18 +100,9 @@ export class PublishComponent implements OnInit {
     this.contentService.publishInfo(title, content,
       [], movieUrl,
       externalLink, canReview).subscribe(data => {
-      this.uploadService.uploadFileAll(cover[0], 5).subscribe((value) => {
-        console.log('Upload complete' + value);
-      });
+      this.uploader.uploadAll();
     }, error => {
       console.log(error);
-    });
-  }
-
-  uploadTest() {
-    const cover = this.link.value['cover'];
-    this.uploadService.uploadFileAll(cover[0], 5).subscribe((value) => {
-      console.log('Upload complete' + value);
     });
   }
 }

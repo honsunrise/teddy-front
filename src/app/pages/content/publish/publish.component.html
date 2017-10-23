@@ -71,9 +71,8 @@
   </mat-card-header>
 
   <mat-card-content class="pa-0">
-    <div class="cover" *ngIf="uploading"></div>
     <mat-horizontal-stepper [linear]="true">
-      <mat-step [stepControl]="firstFormGroup">
+      <mat-step [stepControl]="firstFormGroup" [editable]="false">
         <form [formGroup]="firstFormGroup" class="form">
           <ng-template matStepLabel>Upload or input external link</ng-template>
 
@@ -150,7 +149,6 @@
             </mat-checkbox>
           </div>
           <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center" fxLayoutGap="10px">
-            <button mat-raised-button matStepperPrevious>Back</button>
             <button mat-raised-button matStepperNext>Upload</button>
           </div>
         </form>
@@ -158,9 +156,9 @@
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         You are now done.
+
+        <button mat-raised-button matStepperPrevious="">Edit</button>
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>
 </mat-card>
-
-<button mat-raised-button (click)="uploadTest()">Test Upload</button>
