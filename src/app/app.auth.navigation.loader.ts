@@ -43,46 +43,6 @@ export class AuthNavigationLoader implements NavigationLoader {
               'icon': 'thumb_up',
               'url': '/playlist/thumbUp'
             },
-            {
-              'id': 'collapse',
-              'title': 'Collapse',
-              'type': 'collapse',
-              'icon': 'email',
-              'children': [
-                {
-                  'id': 'test',
-                  'title': 'Test',
-                  'type': 'item',
-                  'icon': 'email',
-                  'url': '/blank',
-                  'badge': {
-                    'num': 25,
-                    'bg': '#F44336',
-                    'fg': '#FFFFFF'
-                  }
-                }
-              ]
-            },
-            {
-              'id': 'collapse',
-              'title': 'Collapse',
-              'type': 'collapse',
-              'icon': 'email',
-              'children': [
-                {
-                  'id': 'test',
-                  'title': 'Test',
-                  'type': 'item',
-                  'icon': 'email',
-                  'url': '/profile',
-                  'badge': {
-                    'num': 25,
-                    'bg': '#F44336',
-                    'fg': '#FFFFFF'
-                  }
-                }
-              ]
-            },
           ]
         }
       ]);
