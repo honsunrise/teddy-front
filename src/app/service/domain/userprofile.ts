@@ -4,10 +4,10 @@ export enum GenderType {
 
 export interface UserProfile {
   uid: string;
-  firstName: string;
-  lastName: string;
-  avatarUrl: Map<string, string>;
-  description: string;
+  firstname: string;
+  lastname: string;
+  avatarUrl: string;
+  bio: string;
   birthday: Date;
   gender: GenderType;
   updateDate: Date;

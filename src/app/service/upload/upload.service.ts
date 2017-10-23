@@ -14,7 +14,7 @@ export class UploadService {
   }
 
   public requestUploadToken(name: string, filesize: number): Observable<UploadToken> {
-    return this.http.get<UploadToken>(this.config.uploadEndpoint, {
+    return this.http.get<UploadToken>(this.config.uploadEndpoint + '/base/upload', {
       params: new HttpParams().set('name', name).set('filesize', filesize + ''),
     })
       .do(data => console.log(data), (err: HttpErrorResponse) => {
@@ -30,7 +30,7 @@ export class UploadService {
     const form = new FormData();
     form.append('token', token);
     form.append('file', data, name);
-    return this.http.post(this.config.uploadEndpoint, form,
+    return this.http.post(this.config.uploadEndpoint + '/base/upload', form,
       {
         withCredentials: true
       })
@@ -43,12 +43,12 @@ export class UploadService {
       }, () => console.log('Complete'));
   }
 
-  public uploadFileAll(file: File, retry: number): Observable<boolean> {
+  public uploadFileAll(file: File, retry: number): Observable<string> {
     let leftRetry = retry;
-    return Observable.create((subscriber: Subscriber<boolean>) => {
+    return Observable.create((subscriber: Subscriber<string>) => {
       const uploadNextChunk = (token: string, start: number, end: number, left: number) => {
         if (left === 0) {
-          subscriber.next(true);
+          subscriber.next(token);
           subscriber.complete();
           return;
         }

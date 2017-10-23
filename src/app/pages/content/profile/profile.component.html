@@ -23,6 +23,90 @@
   </mat-card>
   <mat-card fxFlex="auto">
     <mat-tab-group class="h-100">
+      <mat-tab label="{{'PROFILE_SETTING' | translate}}">
+        <form [formGroup]="form" class="form" (submit)="onSubmit()">
+          <div class="field">
+            <app-upload-file [formControl]="form.controls['avatar']"></app-upload-file>
+          </div>
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="First name" [formControl]="form.controls['firstname']">
+                  <mat-error
+                    *ngIf="form.controls['firstname'].hasError('required')"
+                    class="mat-text-warn">You must include first name.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="form.controls['firstname'].hasError('maxlength')"
+                    class="mat-text-warn">Your first name cannot exceed 20 characters.
+                  </mat-error>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Last name" [formControl]="form.controls['lastname']">
+                  <mat-error
+                    *ngIf="form.controls['lastname'].hasError('required')"
+                    class="mat-text-warn">You must include last name.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="form.controls['lastname'].hasError('maxlength')"
+                    class="mat-text-warn">Your last name cannot exceed 20 characters.
+                  </mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose your birthday"
+                   [formControl]="form.controls['birthday']">
+            <mat-error
+              *ngIf="form.controls['birthday'].hasError('required')"
+              class="mat-text-warn">You must chose a birthday.
+            </mat-error>
+            <mat-error
+              *ngIf="form.controls['birthday'].hasError('date') ||
+              form.controls['birthday'].hasError('minDate') ||
+              form.controls['birthday'].hasError('maxDate')"
+              class="mat-text-warn">You must chose a correct date between 1900-1-1 to now.
+            </mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="w-100">
+            <textarea matInput placeholder="Tell us a little bit about yourself" [formControl]="form.controls['bio']">
+            </textarea>
+            <mat-error
+              *ngIf="form.controls['bio'].hasError('maxlength')"
+              class="mat-text-warn">Your content cannot exceed 500 characters.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="field">
+            <mat-radio-group class="radio-group-row" [formControl]="form.controls['gender']">
+              <mat-radio-button value="MAN" class="radio-button">
+                Man
+              </mat-radio-button>
+              <mat-radio-button value="WOMAN" class="radio-button">
+                Woman
+              </mat-radio-button>
+              <mat-radio-button value="UNKNOWN" class="radio-button">
+                Unknown
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="field">
+            <mat-checkbox [formControl]="form.controls['findMeByEmail']">
+              Find me by email
+            </mat-checkbox>
+          </div>
+          <button mat-raised-button type="submit" [disabled]="!form.valid">Save</button>
+        </form>
+      </mat-tab>
       <mat-tab label="{{'FAVORITE_VIDEO' | translate}}">
         <info-list [infos]="favoriteList" (infoClick)="goToWatchInfo($event.info.id)">
           <button mat-button class="mat-icon-button" aria-label="Toggle star">

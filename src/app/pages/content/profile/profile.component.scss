@@ -3,6 +3,25 @@
   height: 100%;
   .profile {
     height: 100%;
+    .form {
+      padding: 15px;
+      max-width: 500px;
+      .field {
+        border-top: 0.84375em solid transparent;
+        .label {
+          font-weight: 100;
+          font-size: 15px;
+        }
+        .radio-group-row {
+          display: inline-flex;
+          flex-direction: row;
+          .radio-button {
+            margin: 5px;
+          }
+        }
+        border-bottom: 0.84375em solid transparent;
+      }
+    }
   }
 
   .profile-head {

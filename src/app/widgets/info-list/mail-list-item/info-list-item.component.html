@@ -5,16 +5,17 @@
   </div>
   <div class="info" fxFlex="noshrink" fxLayout="column">
     <div class="row-1" fxLayout="row" fxLayoutAlign="start center">
-      <div class="name" fxLayout="row" fxLayoutAlign="start center" fxFlex>
+      <div class="pes" fxLayout="row" fxLayoutAlign="start center" fxFlex>
         <img class="avatar" *ngIf="model.info.userProfile?.avatarUrl"
-             alt="{{model.info.userProfile?.firstName}}"
+             alt="{{model.info.userProfile?.firstname ? model.info.userProfile?.firstname.length > 0 ?
+          model.info.userProfile?.firstname[0] : 'A' : 'A'}}"
              src="{{model.info.userProfile?.avatarUrl}}"/>
         <div class="avatar" *ngIf="!model.info.userProfile?.avatarUrl">
-          {{model.info.userProfile?.firstName ? model.info.userProfile?.firstName.length > 0 ?
-          model.info.userProfile?.firstName[0] : 'A' : 'A'}}
+          {{model.info.userProfile?.firstname ? model.info.userProfile?.firstname.length > 0 ?
+          model.info.userProfile?.firstname[0] : 'A' : 'A'}}
         </div>
-        <span class="text-truncate"
-              *ngIf="model.info.userProfile?.firstName">{{model.info.userProfile?.firstName}}</span>
+        <span class="username"
+              *ngIf="model.info.userProfile?.firstname">{{model.info.userProfile?.firstname}}</span>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center">
@@ -33,18 +34,7 @@
         <div class="message text-truncate">
           {{model.info.content | htmlToPlaintext | slice:0:180}}{{model.info.content?.length > 180 ? '...' : ''}}
         </div>
-
-        <!--<div class="labels" fxLayout="row" fxLayoutWrap fxHide fxShow.gt-sm>-->
-        <!--<div class="label" *ngFor="let labelId of model.labels"-->
-        <!--fxLayout="row" fxLayoutAlign="start center">-->
-        <!--<div class="label-color" [ngStyle]="{'background-color': labels | getById:labelId:'color'}"></div>-->
-        <!--<div class="label-title">{{labels | getById:labelId:'title'}}</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
       </div>
-
     </div>
-
   </div>
 </div>

@@ -16,7 +16,7 @@ export const UPLOAD_FILE_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'app-upload',
+  selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.scss'],
   providers: [UPLOAD_FILE_CONTROL_VALUE_ACCESSOR]

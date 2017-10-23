@@ -7,6 +7,7 @@ import { MessageService } from './message/message.service';
 import { CopierService } from './copier/copier.service';
 import { SplashScreenService } from './splash/splash-screen.service';
 import { UploadService } from './upload/upload.service';
+import { UserService } from './user/user.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { UploadService } from './upload/upload.service';
     CopierService,
     SplashScreenService,
     UploadService,
+    UserService
   ],
   declarations: []
 })

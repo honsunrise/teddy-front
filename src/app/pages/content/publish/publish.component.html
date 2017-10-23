@@ -96,13 +96,13 @@
             </mat-form-field>
 
             <div class="field">
-              <app-upload [multiple]="true" [formControl]="link.controls['cover']"></app-upload>
+              <app-upload-file [multiple]="true" [formControl]="link.controls['cover']"></app-upload-file>
             </div>
           </div>
 
           <div [formGroup]="upload" *ngIf="!firstFormGroup.controls['external'].value">
             <div class="field">
-              <app-upload [formControl]="upload.controls['movie']"></app-upload>
+              <app-upload-file [formControl]="upload.controls['movie']"></app-upload-file>
             </div>
           </div>
 
@@ -132,7 +132,7 @@
           </mat-form-field>
 
           <mat-form-field style="width: 100%">
-            <textarea matInput placeholder="Content" [formControl]="secondFormGroup.controls['content']"></textarea>>
+            <textarea matInput placeholder="Content" [formControl]="secondFormGroup.controls['content']"></textarea>
             <mat-error
               *ngIf="secondFormGroup.controls['content'].hasError('required') && secondFormGroup.controls['content'].touched"
               class="mat-text-warn">You must include an content.
