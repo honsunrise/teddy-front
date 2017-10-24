@@ -102,7 +102,7 @@ export class FileUploader {
     return new Observable((observer: Observer<any>) => {
       const index = this.getIndexOfItem(value);
       const item = this.queue[index];
-      item._prepareToUploading();
+      this._onBeforeUploadItem(item);
       if (this.isUploading) {
         return;
       }
@@ -121,19 +121,21 @@ export class FileUploader {
           }
         }, (err: HttpErrorResponse) => {
           this._onErrorItem(item, err);
-          this._onCompleteItem(item);
+          this.isUploading = false;
         }, () => {
+          this._onSuccessItem(item);
+          this.isUploading = false;
           observer.next(data);
           observer.complete();
-          this._onSuccessItem(item);
-          this._onCompleteItem(item);
         }).add(() => {
-          this._onCancelItem(item);
-          this._onCompleteItem(item);
+          if (!item.isSuccess && !item.isCancel && !item.isError) {
+            this._onCancelItem(item);
+          }
         });
       }).add(() => {
-        this._onCancelItem(item);
-        this._onCompleteItem(item);
+        if (!item.isSuccess && !item.isCancel && !item.isError) {
+          this._onCancelItem(item);
+        }
       });
     });
   }
@@ -157,7 +159,6 @@ export class FileUploader {
         this.uploadItem(item).subscribe((data) => {
           retArray.push(data);
           const nextItem = this.getNotUploadedItems()[0];
-          this.isUploading = false;
           if (nextItem) {
             uploadNext(nextItem);
             return;
@@ -182,7 +183,7 @@ export class FileUploader {
   }
 
   public getNotUploadedItems(): any[] {
-    return this.queue.filter((item: FileItem) => !item.isUploaded);
+    return this.queue.filter((item: FileItem) => !item.isSuccess && !item.isError && !item.isCancel);
   }
 
   public onAfterAddingAll(success: FileItem[], failed: File[]): any {
@@ -193,7 +194,7 @@ export class FileUploader {
     return {fileItem};
   }
 
-  public onWhenAddingFileFailed(item: File, filter: any, options: any): any {
+  public onAddingFileFailed(item: File, filter: any, options: any): any {
     return {item, filter, options};
   }
 
@@ -284,7 +285,7 @@ export class FileUploader {
   }
 
   private _onWhenAddingFileFailed(item: File, filter: any, options: any): void {
-    this.onWhenAddingFileFailed(item, filter, options);
+    this.onAddingFileFailed(item, filter, options);
   }
 
   private _onProgressItem(item: FileItem, progress: any): void {
@@ -298,20 +299,18 @@ export class FileUploader {
   private _onSuccessItem(item: FileItem): void {
     item._onSuccess();
     this.onSuccessItem(item);
+    this.onCompleteItem(item);
   }
 
   private _onErrorItem(item: FileItem, response: HttpErrorResponse): void {
     item._onError();
     this.onErrorItem(item, response);
+    this.onCompleteItem(item);
   }
 
   private _onCancelItem(item: FileItem): void {
     item._onCancel();
     this.onCancelItem(item);
-  }
-
-  private _onCompleteItem(item: FileItem): void {
-    item._onComplete();
     this.onCompleteItem(item);
   }
 }
