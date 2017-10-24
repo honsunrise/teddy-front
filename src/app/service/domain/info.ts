@@ -5,7 +5,7 @@ export interface Info {
   title: string;
   content: string;
   userProfile: UserProfile;
-  imageList: Array<string>;
+  coverList: string[];
   movieUrl: string;
   external: boolean;
   publishTime: Date;
@@ -14,11 +14,11 @@ export interface Info {
   watchCount: number;
   isThumbUp: boolean;
   thumbUps: number;
-  thumbUpList: Array<UserProfile>;
+  thumbUpList: UserProfile[];
   isThumbDown: boolean;
   thumbDowns: number;
-  thumbDownList: Array<UserProfile>;
+  thumbDownList: UserProfile[];
   isFavorite: boolean;
   favorites: number;
-  favoriteList: Array<UserProfile>;
+  favoriteList: UserProfile[];
 }

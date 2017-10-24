@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
 import { APP_CONFIG } from '../../../app.config.constants';
 import { IAppConfig } from '../../../app.config.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { ContentService } from '../../../service/content/content.service';
 import { UploadService } from '../../../service/upload/upload.service';
+import { FileUploader } from '../../../service/upload/file-uploader.class';
+import { UploadToken } from '../../../service/domain/uploadToken';
 
 @Component({
   selector: 'app-publish',
@@ -28,11 +29,7 @@ export class PublishComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uploader = new FileUploader({
-      url: this.config.uploadEndpoint,
-      isHTML5: true,
-    });
-
+    this.uploader = this.uploadService.getFileUploader();
     this.upload = this.fb.group({
       movie: [[], Validators.compose([Validators.required, Validators.max(1)])],
     });
@@ -82,27 +79,29 @@ export class PublishComponent implements OnInit {
     this.uploading = true;
     this.uploader.clearQueue();
     const externalLink = this.firstFormGroup.value['external'];
-    let movieUrl: string;
-    let cover: File[];
-    let movie: File[];
-    if (externalLink) {
-      movieUrl = this.link.value['movieUrl'];
-      cover = this.link.value['cover'];
-      this.uploader.addToQueue(cover);
-    } else {
-      movie = this.upload.value['movie'];
-      this.uploader.addToQueue(movie);
-    }
     const title = this.secondFormGroup.value['title'];
     const content = this.secondFormGroup.value['content'];
     const canReview = this.secondFormGroup.value['canReview'];
-
-    this.contentService.publishInfo(title, content,
-      [], movieUrl,
-      externalLink, canReview).subscribe(data => {
+    if (externalLink) {
+      this.uploader.addToQueue(this.link.value['cover']);
+      this.uploader.uploadAll().subscribe((tokens: UploadToken[]) => {
+        const movie = this.link.value['movieUrl'];
+        this.contentService.publishInfo(title, content,
+          tokens.map((token) => token.token), movie,
+          externalLink, canReview).subscribe(data => {
+        }, error => {
+          console.log(error);
+        });
+      });
+    } else {
+      this.uploader.addToQueue(this.upload.value['movie']);
       this.uploader.uploadAll();
-    }, error => {
-      console.log(error);
-    });
+      // this.contentService.publishInfo(title, content,
+      //   [], movie,
+      //   externalLink, canReview).subscribe(data => {
+      // }, error => {
+      //   console.log(error);
+      // });
+    }
   }
 }

@@ -7,6 +7,10 @@ import { CustomValidators } from 'ng2-validation';
 import { UploadService } from '../../../service/upload/upload.service';
 import { UserService } from '../../../service/user/user.service';
 import { UserProfile } from '../../../service/domain/userprofile';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { FileUploader } from '../../../service/upload/file-uploader.class';
+import { UploadToken } from '../../../service/domain/uploadToken';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +27,9 @@ export class ProfileComponent implements OnInit {
   thumbDownList: Array<InfoWithTime> = [];
 
   form: FormGroup;
+
+  busy: Subscription;
+  uploader: FileUploader;
 
   constructor(private contentService: ContentService,
               private uploadService: UploadService,
@@ -74,6 +81,8 @@ export class ProfileComponent implements OnInit {
       this.form.controls['gender'].setValue(userProfile.gender);
       this.form.controls['findMeByEmail'].setValue(false);
     });
+
+    this.uploader = this.uploadService.getFileUploader();
   }
 
   ngOnInit() {
@@ -91,19 +100,21 @@ export class ProfileComponent implements OnInit {
     const gender = this.form.value['gender'];
     const avatar = this.form.value['avatar'];
     const findMeByEmail = this.form.value['findMeByEmail'];
-
-    this.uploadService.uploadFileAll(avatar[0], 2).subscribe((token: string) => {
-      const data = {
-        firstname: firstname,
-        lastname: lastname,
-        birthday: birthday,
-        gender: gender,
-        bio: bio,
-        avatarToken: token,
-      };
-      this.userService.updateUserProfile(data).subscribe(
-
-      );
-    });
+    this.uploader.addToQueue(avatar);
+    this.busy = Observable.create((sub) => {
+      this.uploader.uploadAll().subscribe((tokens: UploadToken[]) => {
+        const data = {
+          firstname: firstname,
+          lastname: lastname,
+          birthday: birthday,
+          gender: gender,
+          bio: bio,
+          avatarToken: tokens[0].token,
+        };
+        this.userService.updateUserProfile(data).subscribe(() => {
+          sub.complete();
+        });
+      });
+    }).subscribe();
   }
 }

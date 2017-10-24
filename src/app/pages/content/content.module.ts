@@ -19,7 +19,6 @@ import { MainComponent } from './main/main.component';
 import { CateComponent } from './cate/cate.component';
 import { PublishComponent } from './publish/publish.component';
 import { QuillModule } from 'ngx-quill/src/quill.module';
-import { FileUploadModule } from 'ng2-file-upload';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeModule } from 'angular-tree-component';
 import { PlayListComponent } from './playlist/playlist.component';
@@ -48,7 +47,6 @@ import { FileDropDirective } from 'angular2-file-drop/build/file-drop';
     VgBufferingModule,
     QuillModule,
     HttpClientModule,
-    FileUploadModule,
     TreeModule,
     WidgetsModule
   ],

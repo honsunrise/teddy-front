@@ -35,7 +35,7 @@ export class ContentService {
       {
         title: title,
         content: content,
-        images: images,
+        imageList: images,
         movie: movie,
         external: external,
         canReview: canReview,

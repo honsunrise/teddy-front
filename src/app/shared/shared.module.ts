@@ -8,8 +8,12 @@ import { SafePipe } from './pipes/safe.pipe';
 import { KeysPipe } from './pipes/keys.pipe';
 import { HtmlToPlaintextPipe } from './pipes/htmlToPlaintext.pipe';
 import { GetByIdPipe } from './pipes/getById.pipe';
+import { BusyModule } from 'angular2-busy';
 
 @NgModule({
+  imports: [
+    BusyModule,
+  ],
   declarations: [
     ToggleFullscreenDirective,
     StopPropagationDirective,
@@ -28,7 +32,8 @@ import { GetByIdPipe } from './pipes/getById.pipe';
     SafePipe,
     KeysPipe,
     HtmlToPlaintextPipe,
-    GetByIdPipe
+    GetByIdPipe,
+    BusyModule,
   ]
 })
 export class SharedModule {

@@ -2,20 +2,19 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { APP_CONFIG } from '../../app.config.constants';
 import { IAppConfig } from '../../app.config.interface';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpParams } from '@angular/common/http';
 import { UploadToken } from '../domain/uploadToken';
-import { Subscriber } from 'rxjs/Subscriber';
 import { NextChunk } from '../domain/nextChunk';
+import { FileUploader } from './file-uploader.class';
+import { Observer } from 'rxjs/Observer';
 
 @Injectable()
 export class UploadService {
 
-  constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: HttpClient) {
-  }
-
-  public requestUploadToken(name: string, filesize: number): Observable<UploadToken> {
+  private requestUploadToken = (file: File): Observable<any> => {
     return this.http.get<UploadToken>(this.config.uploadEndpoint + '/base/upload', {
-      params: new HttpParams().set('name', name).set('filesize', filesize + ''),
+      params: new HttpParams().set('name', file.name).set('filesize', file.size + ''),
+      withCredentials: true
     })
       .do(data => console.log(data), (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -26,14 +25,49 @@ export class UploadService {
       }, () => console.log('Complete'));
   }
 
-  public uploadFileChunk(token: string, name: string, data: Blob): Observable<NextChunk> {
+  private uploadFile = (token: UploadToken, file: File): Observable<HttpEvent<any>> => {
+    return Observable.create((observer: Observer<HttpEvent<any>>) => {
+      const uploadNextChunk = (start: number, end: number, left: number) => {
+        if (left === 0) {
+          observer.complete();
+          return;
+        }
+        const currentBlob = file.slice(start, end);
+        this.uploadFileChunk(token.token, file.name, currentBlob)
+          .subscribe((event: HttpEvent<NextChunk>) => {
+            observer.next(event);
+            switch (event.type) {
+              case HttpEventType.Response:
+                const ret = event.body;
+                uploadNextChunk(ret.start, ret.end, ret.left);
+            }
+          }, error => observer.error(error));
+      };
+
+      uploadNextChunk(token.start, token.end, token.left);
+    });
+  }
+
+  constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: HttpClient) {
+  }
+
+  public getFileUploader(): FileUploader {
+    const fileUploader = new FileUploader(this.requestUploadToken, this.uploadFile, {});
+    return fileUploader;
+  }
+
+  private uploadFileChunk(token: string, name: string, data: Blob): Observable<HttpEvent<NextChunk>> {
     const form = new FormData();
     form.append('token', token);
     form.append('file', data, name);
+
     return this.http.post(this.config.uploadEndpoint + '/base/upload', form,
       {
-        withCredentials: true
-      })
+        observe: 'events',
+        responseType: 'json',
+        withCredentials: true,
+        reportProgress: true
+      }).retry(this.config.uploadChunkRetry)
       .do(value => console.log(value), (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           console.log('An error occurred:', err.error.message);
@@ -41,32 +75,5 @@ export class UploadService {
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       }, () => console.log('Complete'));
-  }
-
-  public uploadFileAll(file: File, retry: number): Observable<string> {
-    let leftRetry = retry;
-    return Observable.create((subscriber: Subscriber<string>) => {
-      const uploadNextChunk = (token: string, start: number, end: number, left: number) => {
-        if (left === 0) {
-          subscriber.next(token);
-          subscriber.complete();
-          return;
-        }
-        const currentBlob = file.slice(start, end);
-        this.uploadFileChunk(token, file.name, currentBlob).subscribe((ret) => {
-          leftRetry = retry;
-          uploadNextChunk(token, ret.start, ret.end, ret.left);
-        }, error => {
-          if (!leftRetry) {
-            return;
-          }
-          leftRetry--;
-          uploadNextChunk(token, start, end, left);
-        });
-      };
-      this.requestUploadToken(file.name, file.size).subscribe((uploadToken: UploadToken) => {
-        uploadNextChunk(uploadToken.token, uploadToken.start, uploadToken.end, uploadToken.left);
-      });
-    });
   }
 }

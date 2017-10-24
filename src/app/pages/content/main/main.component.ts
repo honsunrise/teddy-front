@@ -17,7 +17,8 @@ export class MainComponent {
         const media: Media = {
           title: info.title,
           content: info.content,
-          coverUrl: 'assets/images/unsplash/' + 1 + '.jpg',
+          coverUrl: info.coverList != null && info.coverList.length !== 0
+            ? info.coverList [0] : 'assets/images/unsplash/' + Math.ceil(Math.random() * 1000 % 22) + '.jpg',
           favorites: info.favorites,
           watchCount: info.watchCount,
           isFavorite: info.isFavorite,
