@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Media } from '../../../widgets/media-card/media-card.media';
 import { ContentService } from '../../../service/content/content.service';
 import { Router } from '@angular/router';
+import { Tag } from '../../../service/domain/tag';
 
 @Component({
   selector: 'app-cate',
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
 })
 export class CateComponent {
   medias: Media[] = [];
+  tags: Tag[] = [];
 
   constructor(private contentService: ContentService, private router: Router) {
-    contentService.getInfoList(0, 20).subscribe(infoList => {
+    contentService.getInfoList(0, 20)
+      .subscribe(infoList => {
       for (const info of infoList) {
         const media: Media = {
           title: info.title,
@@ -32,6 +35,10 @@ export class CateComponent {
         this.medias.push(media);
       }
     });
+    contentService.getAllTags(0, 100)
+      .subscribe((tagEntryList) => {
+        this.tags = tagEntryList;
+      });
   }
 
   goToWatchPage(id) {

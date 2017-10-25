@@ -6,11 +6,21 @@ import { Info } from '../domain/info';
 import { Observable } from 'rxjs/Observable';
 import { InfoWithTime } from '../domain/InfoWithTime';
 import { UserProfile } from '../domain/userprofile';
+import { Tag } from '../domain/tag';
 
 @Injectable()
 export class ContentService {
 
   constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: HttpClient) {
+  }
+
+  getAllTags(page: number, size: number): Observable<Tag[]> {
+    const params = new HttpParams()
+      .set('page', page.toString(10))
+      .set('size', size.toString(10));
+    return this.http.get<Array<Tag>>(this.config.contentEndpoint + '/info/tags', {
+      params: params,
+    });
   }
 
   getInfoList(page: number, size: number, uid?: string): Observable<Array<Info>> {
@@ -29,8 +39,8 @@ export class ContentService {
     return this.http.get<Info>(this.config.contentEndpoint + '/info/' + infoId);
   }
 
-  publishInfo(title: string, content: string, images: Array<string>, movie: string,
-              external: boolean, canReview: boolean): Observable<boolean> {
+  publishInfo(title: string, content: string, images: string[], movie: string,
+              external: boolean, canReview: boolean, tags: string[]): Observable<boolean> {
     const response: Observable<string> = this.http.post(this.config.contentEndpoint + '/info/publish',
       {
         title: title,
@@ -39,6 +49,7 @@ export class ContentService {
         movie: movie,
         external: external,
         canReview: canReview,
+        tags: tags,
         location: {
           alt: 0,
           lat: 0,

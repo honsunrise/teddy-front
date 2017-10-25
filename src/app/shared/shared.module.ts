@@ -9,10 +9,12 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { HtmlToPlaintextPipe } from './pipes/htmlToPlaintext.pipe';
 import { GetByIdPipe } from './pipes/getById.pipe';
 import { BusyModule } from 'angular2-busy';
+import { RlTagInputModule } from 'angular2-tag-input/dist';
 
 @NgModule({
   imports: [
     BusyModule,
+    RlTagInputModule
   ],
   declarations: [
     ToggleFullscreenDirective,
@@ -22,7 +24,7 @@ import { BusyModule } from 'angular2-busy';
     SafePipe,
     KeysPipe,
     HtmlToPlaintextPipe,
-    GetByIdPipe
+    GetByIdPipe,
   ],
   exports: [
     ToggleFullscreenDirective,
@@ -34,6 +36,7 @@ import { BusyModule } from 'angular2-busy';
     HtmlToPlaintextPipe,
     GetByIdPipe,
     BusyModule,
+    RlTagInputModule
   ]
 })
 export class SharedModule {

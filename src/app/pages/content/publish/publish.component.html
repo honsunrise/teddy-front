@@ -120,6 +120,10 @@
           </mat-form-field>
 
           <div class="field">
+            <rl-tag-input [formControl]="secondFormGroup.controls['tags']"
+                          placeholder="Input your tag space split"></rl-tag-input>
+          </div>
+          <div class="field">
             <mat-checkbox [formControl]="secondFormGroup.controls['canReview']">
               Can review
             </mat-checkbox>

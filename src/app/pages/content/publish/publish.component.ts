@@ -123,6 +123,7 @@ export class PublishComponent implements OnInit {
         Validators.required,
         Validators.maxLength(500)
       ])],
+      tags: [[], Validators.compose([Validators.required])],
       canReview: [true, Validators.compose([Validators.required])],
     });
   }
@@ -142,10 +143,12 @@ export class PublishComponent implements OnInit {
     let title: string;
     let content: string;
     let canReview: boolean;
+    let tags: string[];
     const getInfo = () => {
       title = this.secondFormGroup.value['title'];
       content = this.secondFormGroup.value['content'];
       canReview = this.secondFormGroup.value['canReview'];
+      tags = this.secondFormGroup.value['tags'];
     };
     if (!this.uploading) {
       this.uploading = true;
@@ -159,7 +162,7 @@ export class PublishComponent implements OnInit {
             const movie = this.link.value['movieUrl'];
             this.contentService.publishInfo(title, content,
               tokens.map((token) => token.token), movie,
-              externalLink, canReview)
+              externalLink, canReview, tags)
               .subscribe(data => {
                 this.dialog.open(DialogPublishCompleteComponent, {
                   width: '250px',
@@ -188,13 +191,28 @@ export class PublishComponent implements OnInit {
           .subscribe((tokens: UploadToken[]) => {
             this.contentService.publishInfo(title, content,
               [], tokens.map((token) => token.token)[0],
-              externalLink, canReview).subscribe(data => {
-
-            }, error => {
-              console.log(error);
-            });
+              externalLink, canReview, tags)
+              .subscribe(data => {
+                this.dialog.open(DialogPublishCompleteComponent, {
+                  width: '250px',
+                }).afterClosed().subscribe(() => {
+                  this.router.navigate(['/']);
+                });
+              }, error => {
+                this.dialog.open(DialogPublishErrorComponent, {
+                  width: '250px',
+                }).afterClosed().subscribe(() => {
+                  this.uploading = false;
+                  this.stepper.previous();
+                });
+              });
           }, error => {
-
+            this.dialog.open(DialogPublishErrorComponent, {
+              width: '250px',
+            }).afterClosed().subscribe(() => {
+              this.uploading = false;
+              this.stepper.previous();
+            });
           });
       }
     } else {

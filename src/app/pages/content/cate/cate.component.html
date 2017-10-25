@@ -3,30 +3,9 @@
     <span class="title">热门分类</span>
   </div>
   <mat-chip-list>
-    <mat-chip>One fish</mat-chip>
-    <mat-chip>Two fish</mat-chip>
-    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
-
-    <mat-chip>One fish</mat-chip>
-    <mat-chip>Two fish</mat-chip>
-    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
-
-    <mat-chip>One fish</mat-chip>
-    <mat-chip>Two fish</mat-chip>
-    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
-
-    <mat-chip>One fish</mat-chip>
-    <mat-chip>Two fish</mat-chip>
-    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
-
-    <mat-chip>One fish</mat-chip>
-    <mat-chip>Two fish</mat-chip>
-    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
+    <mat-chip *ngFor="let tag of tags">
+      {{tag.tag}}
+    </mat-chip>
   </mat-chip-list>
 </div>
 
