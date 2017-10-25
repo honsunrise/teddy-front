@@ -15,12 +15,12 @@
           {{ row?.file?.name }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Size" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+      <ngx-datatable-column name="Size" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.file?.size/1024/1024 | number:'.2' }} MB
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Progress" *ngIf="uploader.options.isHTML5" [flexGrow]="1">
+      <ngx-datatable-column name="Progress" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <mat-progress-bar mode="determinate" value="{{row.progress}}"></mat-progress-bar>
         </ng-template>
@@ -32,35 +32,11 @@
           <span *ngIf="row.isError"><mat-icon>error</mat-icon></span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="action" [flexGrow]="2">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <button mat-button color="warn" type="button" (click)="uploader.cancelItem(row)"
-                  [disabled]="!row.isUploading">
-            Cancel
-          </button>
-          <button mat-button color="primary" type="button" (click)="uploader.uploadItem(row)"
-                  [disabled]="row.isUploading">
-            Upload
-          </button>
-        </ng-template>
-      </ngx-datatable-column>
     </ngx-datatable>
 
     <div class="field">
       <p>Queue progress:</p>
       <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
-    </div>
-
-    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="end center">
-      <!--<button mat-raised-button mat-button-sm color="primary" type="button" class="mr-1"-->
-      <!--(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload all-->
-      <!--</button>-->
-      <button mat-raised-button mat-button-sm color="warn" type="button"
-              (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">Cancel all
-      </button>
-      <!--<button mat-raised-button mat-button-sm color="accent" type="button" class="mr-1"-->
-      <!--(click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Remove all-->
-      <!--</button>-->
     </div>
   </mat-card-content>
 </mat-card>
@@ -71,7 +47,7 @@
   </mat-card-header>
 
   <mat-card-content class="pa-0">
-    <mat-horizontal-stepper [linear]="true">
+    <mat-horizontal-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="firstFormGroup" [editable]="false">
         <form [formGroup]="firstFormGroup" class="form">
           <ng-template matStepLabel>Upload or input external link</ng-template>
@@ -155,9 +131,18 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        You are now done.
+        <div class="done">
+          <div class="text">
+            <p>
+              You are now done, please waiting upload complete.
+            </p>
+          </div>
 
-        <button mat-raised-button matStepperPrevious="">Edit</button>
+          <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center" fxLayoutGap="10px">
+            <button mat-raised-button matStepperPrevious="">Edit</button>
+            <button mat-raised-button (click)="cancelPublish()" [disabled]="!uploader.isUploading">Cancel</button>
+          </div>
+        </div>
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>

@@ -4,6 +4,37 @@ import { Observable } from 'rxjs/Observable';
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observer } from 'rxjs/Observer';
 
+export enum UploadEventType {
+  /**
+   * The request was sent out over the wire.
+   */
+  Sent = 0,
+  /**
+   * An upload progress event was received.
+   */
+  UploadProgress = 1,
+  /**
+   * The response status code and headers were received.
+   */
+  ResponseHeader = 2,
+  /**
+   * A download progress event was received.
+   */
+  DownloadProgress = 3,
+  /**
+   * The full response including the body was received.
+   */
+  Response = 4,
+  /**
+   * A custom event from an interceptor or a backend.
+   */
+  User = 5,
+}
+
+export class UploadEvent {
+  type: UploadEventType;
+}
+
 export interface FilterFunction {
   name: string;
   fn: (item?: File, options?: FileUploaderOptions) => boolean;
@@ -107,36 +138,27 @@ export class FileUploader {
         return;
       }
       this.isUploading = true;
-      let total = 0;
-      let loaded = 0;
-      item.subscription = this.request(item.file).subscribe((data) => {
-        item.subscription = this.upload(data, item.file).subscribe((event: HttpEvent<any>) => {
-          switch (event.type) {
-            case HttpEventType.UploadProgress:
-              total += event.total;
-              loaded += event.loaded;
-              const percentDone = Math.round(100 * loaded / total);
-              this._onProgressItem(item, percentDone);
-              break;
-          }
-        }, (err: HttpErrorResponse) => {
-          this._onErrorItem(item, err);
-          this.isUploading = false;
-        }, () => {
-          this._onSuccessItem(item);
-          this.isUploading = false;
-          observer.next(data);
-          observer.complete();
-        }).add(() => {
-          if (!item.isSuccess && !item.isCancel && !item.isError) {
-            this._onCancelItem(item);
-          }
-        });
-      }).add(() => {
-        if (!item.isSuccess && !item.isCancel && !item.isError) {
-          this._onCancelItem(item);
-        }
-      });
+      item.subscription = this.request(item.file)
+        .subscribe((data) => {
+          item.subscription = this.upload(data, item.file)
+            .subscribe((event: HttpEvent<any>) => {
+              switch (event.type) {
+                case HttpEventType.UploadProgress:
+                  const percentDone = Math.round(100 * event.loaded / event.total);
+                  this._onProgressItem(item, percentDone);
+                  break;
+              }
+            }, (err: HttpErrorResponse) => {
+              this._onErrorItem(item, err);
+              this.isUploading = false;
+              observer.error(err);
+            }, () => {
+              this._onSuccessItem(item);
+              this.isUploading = false;
+              observer.next(data);
+              observer.complete();
+            });
+        }, err => observer.error(err));
     });
   }
 
@@ -144,7 +166,9 @@ export class FileUploader {
     const index = this.getIndexOfItem(value);
     const item = this.queue[index];
     if (item && item.isUploading) {
+      item.isCancel = true;
       item.subscription.unsubscribe();
+      this._tryCancelItem(item);
     }
   }
 
@@ -156,18 +180,19 @@ export class FileUploader {
     const retArray = [];
     return new Observable((observe: Observer<any[]>) => {
       const uploadNext = (item) => {
-        this.uploadItem(item).subscribe((data) => {
-          retArray.push(data);
-          const nextItem = this.getNotUploadedItems()[0];
-          if (nextItem) {
-            uploadNext(nextItem);
-            return;
-          }
-          this.onCompleteAll();
-          this.progress = this._getTotalProgress();
-          observe.next(retArray);
-          observe.complete();
-        });
+        this.uploadItem(item)
+          .subscribe((data) => {
+            retArray.push(data);
+            const nextItem = this.getNotUploadedItems()[0];
+            if (nextItem) {
+              uploadNext(nextItem);
+              return;
+            }
+            this.onCompleteAll();
+            this.progress = this._getTotalProgress();
+            observe.next(retArray);
+            observe.complete();
+          }, error => observe.error(error));
       };
       uploadNext(items[0]);
     });
@@ -228,6 +253,13 @@ export class FileUploader {
 
   public onCompleteAll(): any {
     return void 0;
+  }
+
+  private _tryCancelItem(item: FileItem) {
+    if (!item.isSuccess && !item.isError && item.isUploading && item.isCancel) {
+      this.isUploading = false;
+      this._onCancelItem(item);
+    }
   }
 
   private _getTotalProgress(value: number = 0): number {

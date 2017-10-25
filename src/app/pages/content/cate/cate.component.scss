@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  .title-warp {
+    padding-bottom: 10px;
+    .title {
+      font-size: 30px;
+      line-height: 40px;
+    }
+  }
+  .cate-list {
+    max-width: 1000px;
+    margin: 20px;
+  }
+}

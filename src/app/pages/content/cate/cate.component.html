@@ -1,3 +1,37 @@
-<h1>
+<div class="cate-list">
+  <div class="title-warp">
+    <span class="title">热门分类</span>
+  </div>
+  <mat-chip-list>
+    <mat-chip>One fish</mat-chip>
+    <mat-chip>Two fish</mat-chip>
+    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
 
-</h1>
+    <mat-chip>One fish</mat-chip>
+    <mat-chip>Two fish</mat-chip>
+    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
+
+    <mat-chip>One fish</mat-chip>
+    <mat-chip>Two fish</mat-chip>
+    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
+
+    <mat-chip>One fish</mat-chip>
+    <mat-chip>Two fish</mat-chip>
+    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
+
+    <mat-chip>One fish</mat-chip>
+    <mat-chip>Two fish</mat-chip>
+    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+    <mat-chip color="accent" selected="true">Accent fish</mat-chip>
+  </mat-chip-list>
+</div>
+
+<masonry [useImagesLoaded]="true">
+  <masonry-brick *ngFor="let media of medias">
+    <app-media-card [media]="media"></app-media-card>
+  </masonry-brick>
+</masonry>

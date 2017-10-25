@@ -17,7 +17,12 @@ import { VgBufferingModule } from 'videogular2/buffering';
 import { WatchComponent } from './watch/watch.component';
 import { MainComponent } from './main/main.component';
 import { CateComponent } from './cate/cate.component';
-import { PublishComponent } from './publish/publish.component';
+import {
+  DialogCancelConfirmComponent,
+  DialogPublishCompleteComponent,
+  DialogPublishErrorComponent,
+  PublishComponent
+} from './publish/publish.component';
 import { QuillModule } from 'ngx-quill/src/quill.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeModule } from 'angular-tree-component';
@@ -59,8 +64,16 @@ import { FileDropDirective } from 'angular2-file-drop/build/file-drop';
     PlayListComponent,
     ProfileComponent,
     UploadFileComponent,
-    FileDropDirective
+    FileDropDirective,
+    DialogPublishCompleteComponent,
+    DialogCancelConfirmComponent,
+    DialogPublishErrorComponent
   ],
+  entryComponents: [
+    DialogPublishCompleteComponent,
+    DialogCancelConfirmComponent,
+    DialogPublishErrorComponent
+  ]
 })
 
 export class ContentModule {
