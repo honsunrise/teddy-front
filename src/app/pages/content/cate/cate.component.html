@@ -2,8 +2,8 @@
   <div class="title-warp">
     <span class="title">热门分类</span>
   </div>
-  <mat-chip-list>
-    <mat-chip *ngFor="let tag of tags">
+  <mat-chip-list selectable="true">
+    <mat-chip *ngFor="let tag of tags" color="accent" (click)="onTagClick(tag)" [selected]="currentTag === tag">
       {{tag.tag}}
     </mat-chip>
   </mat-chip-list>

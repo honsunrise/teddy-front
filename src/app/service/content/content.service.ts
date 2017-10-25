@@ -23,12 +23,17 @@ export class ContentService {
     });
   }
 
-  getInfoList(page: number, size: number, uid?: string): Observable<Array<Info>> {
-    const params = new HttpParams()
+  getInfoList(page: number, size: number, tags?: string[], uid?: string): Observable<Array<Info>> {
+    let params = new HttpParams()
       .set('page', page.toString(10))
       .set('size', size.toString(10));
     if (uid != null) {
-      params.set('uid', uid);
+      params = params.set('uid', uid);
+    }
+    if (tags != null) {
+      tags.forEach(value => {
+        params = params.append('tags', value);
+      });
     }
     return this.http.get<Array<Info>>(this.config.contentEndpoint + '/info/all', {
       params: params,
@@ -132,12 +137,12 @@ export class ContentService {
   }
 
   getUserFavoriteList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('type', 'favorite')
       .set('page', page.toString(10))
       .set('size', size.toString(10));
     if (uid) {
-      params.set('uid', uid);
+      params = params.set('uid', uid);
     }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
@@ -187,12 +192,12 @@ export class ContentService {
   }
 
   getUserThumbUpList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('type', 'thumbUp')
       .set('page', page.toString(10))
       .set('size', size.toString(10));
     if (uid) {
-      params.set('uid', uid);
+      params = params.set('uid', uid);
     }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
@@ -242,12 +247,12 @@ export class ContentService {
   }
 
   getUserThumbDownList(page = 0, size = 10, uid?: string): Observable<Array<InfoWithTime>> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('type', 'thumbDown')
       .set('page', page.toString(10))
       .set('size', size.toString(10));
     if (uid) {
-      params.set('uid', uid);
+      params = params.set('uid', uid);
     }
     return this.http.get<Array<InfoWithTime>>(this.config.contentEndpoint + '/info/user', {
       params: params,
