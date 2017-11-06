@@ -49,42 +49,18 @@ export class AuthNavigationLoader implements NavigationLoader {
     } else {
       return Observable.of([
         {
-          'id': 'applications',
-          'title': 'Applications',
-          'type': 'group',
-          'children': [
-            {
-              'id': 'sample',
-              'title': 'Sample',
-              'type': 'item',
-              'icon': 'email',
-              'url': '/cate',
-              'badge': {
-                'num': 25,
-                'bg': '#F44336',
-                'fg': '#FFFFFF'
-              }
-            },
-            {
-              'id': 'collapse',
-              'title': 'Collapse',
-              'type': 'collapse',
-              'children': [
-                {
-                  'id': 'test',
-                  'title': 'Test',
-                  'type': 'item',
-                  'icon': 'email',
-                  'url': '/',
-                  'badge': {
-                    'num': 25,
-                    'bg': '#F44336',
-                    'fg': '#FFFFFF'
-                  }
-                }
-              ]
-            }
-          ]
+          'id': 'home',
+          'title': 'Home',
+          'type': 'item',
+          'icon': 'home',
+          'url': '/home'
+        },
+        {
+          'id': 'cate',
+          'title': 'Cate',
+          'type': 'item',
+          'icon': 'code',
+          'url': '/cate'
         }
       ]);
     }
