@@ -9,7 +9,7 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { HtmlToPlaintextPipe } from './pipes/htmlToPlaintext.pipe';
 import { GetByIdPipe } from './pipes/getById.pipe';
 import { BusyModule } from 'angular2-busy';
-import { RlTagInputModule } from 'angular2-tag-input/dist';
+import { RlTagInputModule } from 'angular2-tag-input';
 
 @NgModule({
   imports: [
