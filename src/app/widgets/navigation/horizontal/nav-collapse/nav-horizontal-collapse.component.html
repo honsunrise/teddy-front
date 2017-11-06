@@ -5,14 +5,10 @@
 </a>
 
 <div class="children" [ngClass]="{'open': isOpen}">
-
   <div>
-
-    <ng-container *ngFor="let item of item.children">
+    <ng-container *ngFor="let item of model.children">
       <nav-horizontal-item *ngIf="item.type=='item'" [model]="item"></nav-horizontal-item>
       <nav-horizontal-collapse *ngIf="item.type=='collapse'" [model]="item"></nav-horizontal-collapse>
     </ng-container>
-
   </div>
-
 </div>

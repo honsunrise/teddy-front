@@ -7,6 +7,5 @@
   <ng-container *ngFor="let item of model.children">
     <nav-vertical-item *ngIf="item.type=='item'" [model]="item" [level]="level + 1"></nav-vertical-item>
     <nav-vertical-collapse *ngIf="item.type=='collapse'" [model]="item" [level]="level + 1"></nav-vertical-collapse>
-    <nav-vertical-group *ngIf="item.type=='group'" [model]="item" [level]="level + 1"></nav-vertical-group>
   </ng-container>
 </div>
