@@ -25,7 +25,6 @@ import {
 } from './publish/publish.component';
 import { QuillModule } from 'ngx-quill/src/quill.module';
 import { HttpClientModule } from '@angular/common/http';
-import { TreeModule } from 'angular-tree-component';
 import { PlayListComponent } from './playlist/playlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -52,7 +51,6 @@ import { FileDropDirective } from 'angular2-file-drop/build/file-drop';
     VgBufferingModule,
     QuillModule,
     HttpClientModule,
-    TreeModule,
     WidgetsModule
   ],
   declarations: [
