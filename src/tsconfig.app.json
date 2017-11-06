@@ -9,8 +9,5 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ],
-  "include": [
-    "../node_modules/angular2-tag-input/dist/lib/components/tag-input/tag-input.component.ngfactory.ts"
   ]
 }
