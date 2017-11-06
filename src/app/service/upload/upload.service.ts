@@ -72,7 +72,7 @@ export class UploadService {
     form.append('token', token);
     form.append('file', data, name);
 
-    return this.http.post(this.config.uploadEndpoint + '/base/upload', form,
+    return this.http.post<NextChunk>(this.config.uploadEndpoint + '/base/upload', form,
       {
         observe: 'events',
         responseType: 'json',

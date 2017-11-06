@@ -55,11 +55,11 @@
     "perfect-scrollbar": "^1.0.3",
     "rxjs": "^5.5.0",
     "screenfull": "3.3.1",
-    "videogular2": "^5.6.1",
+    "videogular2": "^5.6.3",
     "zone.js": "0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.0",
+    "@angular/cli": "^1.5.0",
     "@angular/compiler-cli": "4.4.5",
     "@angular/language-service": "4.4.5",
     "@angularclass/hmr": "2.1.3",
