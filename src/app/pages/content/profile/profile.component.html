@@ -25,7 +25,7 @@
     <button mat-raised-button (click)="onSubmit()">Test</button>
     <mat-tab-group class="h-100">
       <mat-tab label="{{'PROFILE_SETTING' | translate}}">
-        <form [formGroup]="form" class="form" (submit)="onSubmit()" [ngBusy]="busy">
+        <form [formGroup]="form" class="form" (submit)="onSubmit()">
           <div class="field">
             <app-upload-file [formControl]="form.controls['avatar']"></app-upload-file>
           </div>

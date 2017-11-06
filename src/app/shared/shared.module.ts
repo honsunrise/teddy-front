@@ -8,12 +8,10 @@ import { SafePipe } from './pipes/safe.pipe';
 import { KeysPipe } from './pipes/keys.pipe';
 import { HtmlToPlaintextPipe } from './pipes/htmlToPlaintext.pipe';
 import { GetByIdPipe } from './pipes/getById.pipe';
-import { BusyModule } from 'angular2-busy';
 import { RlTagInputModule } from 'angular2-tag-input';
 
 @NgModule({
   imports: [
-    BusyModule,
     RlTagInputModule
   ],
   declarations: [
@@ -35,7 +33,6 @@ import { RlTagInputModule } from 'angular2-tag-input';
     KeysPipe,
     HtmlToPlaintextPipe,
     GetByIdPipe,
-    BusyModule,
     RlTagInputModule
   ]
 })

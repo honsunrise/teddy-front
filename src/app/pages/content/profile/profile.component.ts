@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
 
-  busy: Subscription;
   uploader: FileUploader;
 
   constructor(private contentService: ContentService,
@@ -101,7 +100,7 @@ export class ProfileComponent implements OnInit {
     const avatar = this.form.value['avatar'];
     const findMeByEmail = this.form.value['findMeByEmail'];
     this.uploader.addToQueue(avatar);
-    this.busy = Observable.create((sub) => {
+    Observable.create((sub) => {
       this.uploader.uploadAll().subscribe((tokens: UploadToken[]) => {
         const data = {
           firstname: firstname,
