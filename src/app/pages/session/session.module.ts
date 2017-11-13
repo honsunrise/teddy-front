@@ -14,6 +14,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../shared/material.module';
+import { MailConfirmComponent } from './mail-confirm/mail-confirm.component';
+import { ConfirmMailComponent } from './confirm-mail/confirm-mail.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { MaterialModule } from '../../shared/material.module';
     ForgotComponent,
     LockscreenComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    MailConfirmComponent,
+    ConfirmMailComponent
   ]
 })
 
