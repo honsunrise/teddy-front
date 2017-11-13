@@ -1,55 +1,57 @@
-@import "src/app/core/scss/fuse";
+@import "src/assets/styles/app";
 
 :host {
+  height: 100%;
+  width: 100%;
+  display: block;
+  .confirm-mail-form-wrapper {
+    padding: 20px;
 
-    #mail-confirm {
-        width: 100%;
-        overflow: auto;
-        background: url('/assets/images/backgrounds/march.jpg') no-repeat;
-        background-size: cover;
-
-        #mail-confirm-form-wrapper {
-            flex: 1 0 auto;
-            padding: 32px;
-
-            @include media-breakpoint('xs') {
-                padding: 16px;
-            }
-
-            #mail-confirm-form {
-                max-width: 480px;
-                padding: 48px;
-                background: #FFFFFF;
-                text-align: center;
-                @include mat-elevation(7);
-
-                @include media-breakpoint('xs') {
-                    padding: 24px;
-                    width: 100%;
-                }
-
-                .logo {
-                    margin: 0 auto 32px auto;
-                }
-
-                .title {
-                    font-size: 20px;
-                    margin-top: 16px;
-                }
-
-                .subtitle {
-                    margin: 16px auto;
-                    max-width: 300px;
-                    color: rgba(0, 0, 0, 0.54);
-                    font-size: 15px;
-                }
-
-                .message {
-                    font-weight: 500;
-                    text-align: center;
-                    margin-top: 40px;
-                }
-            }
-        }
+    @include media-breakpoint-only('xs') {
+      padding: 10px;
     }
+
+    .confirm-mail-form {
+      max-width: 480px;
+      padding: 48px;
+      background: #FFFFFF;
+      text-align: center;
+      @include mat-elevation(7);
+
+      @include media-breakpoint-only('xs') {
+        padding: 24px;
+        width: 100%;
+      }
+
+      .logo {
+        margin: 0 auto 32px auto;
+        color: #3C4252;
+        .icon {
+          font-size: 96px;
+          height: 96px;
+          width: 96px;
+        }
+      }
+
+      .title {
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 20px;
+        margin-top: 16px;
+      }
+
+      .subtitle {
+        margin: 16px auto;
+        max-width: 300px;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 15px;
+      }
+
+      .message {
+        color: rgba(0, 0, 0, 0.8);
+        font-weight: 500;
+        text-align: center;
+        margin-top: 40px;
+      }
+    }
+  }
 }

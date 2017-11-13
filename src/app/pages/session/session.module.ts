@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../shared/material.module';
 import { MailConfirmComponent } from './mail-confirm/mail-confirm.component';
-import { ConfirmMailComponent } from './confirm-mail/confirm-mail.component';
+import { ConfirmMailComponent, DialogMailConfirmErrorComponent } from './confirm-mail/confirm-mail.component';
 
 @NgModule({
   imports: [
@@ -36,7 +36,11 @@ import { ConfirmMailComponent } from './confirm-mail/confirm-mail.component';
     SigninComponent,
     SignupComponent,
     MailConfirmComponent,
-    ConfirmMailComponent
+    ConfirmMailComponent,
+    DialogMailConfirmErrorComponent
+  ],
+  entryComponents: [
+    DialogMailConfirmErrorComponent
   ]
 })
 

@@ -1,21 +1,29 @@
-<div id="mail-confirm" fxLayout="column" fusePerfectScrollbar>
-    <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
-        <div id="mail-confirm-form" *fuseIfOnDom [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
-            <div class="logo">
-                <mat-icon class="s-96">email</mat-icon>
-            </div>
-            <div class="title">Confirm your email address!</div>
+<div class="session mat-indigo">
+  <div class="session-content">
+    <div class="session-wrapper">
+      <div class="confirm-mail-form-wrapper" fxLayout="column" fxLayoutAlign="center center"
+           [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}" *delayShow>
+        <div class="logo">
+          <mat-icon class="icon">email</mat-icon>
+        </div>
+        <div class="confirm-mail-form">
+          <div class="title">{{loading ? 'Your email confirming...' : 'Your email confirmed!'}}</div>
+          <div class="confirm-mail-form-loader" fxLayout="column" fxLayoutAlign="center center" *ngIf="loading">
+            <mat-spinner></mat-spinner>
+          </div>
+          <ng-container *ngIf="!loading">
             <div class="subtitle">
-                <p>
-                    A confirmation e-mail has been sent to <b>example@mymail.com</b>.
-                </p>
-                <p>
-                    Check your inbox and click on the "Confirm my email" link to confirm your email address.
-                </p>
+              <p>
+                Your email <b>{{email}}</b> confirmed.
+              </p>
             </div>
             <div class="message">
-                <a class="link" [routerLink]="'/pages/auth/login'">Go back to login page</a>
+              <a class="link" [routerLink]="'/session/signin'">Go back to login page</a>
             </div>
+          </ng-container>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+

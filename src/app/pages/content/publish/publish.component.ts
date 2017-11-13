@@ -23,8 +23,6 @@ export class DialogPublishCompleteComponent {
   constructor(public dialogRef: MatDialogRef<DialogPublishCompleteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
-
-
 }
 
 @Component({
