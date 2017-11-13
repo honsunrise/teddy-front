@@ -9,22 +9,24 @@ import { ContentService } from '../../../service/content/content.service';
   styleUrls: ['./playlist.component.scss']
 })
 export class PlayListComponent implements OnInit, OnDestroy {
-  favoriteList: Array<InfoWithTime> = [];
-  watchLaterList: Array<InfoWithTime> = [];
+  infoList: Array<InfoWithTime> = [];
   private sub: any;
   type: string;
 
-  constructor(private contentService: ContentService, private route: ActivatedRoute, private router: Router) {
-    contentService.getUserFavoriteList().subscribe(value => {
-      this.favoriteList = value;
-    });
-  }
+  constructor(private contentService: ContentService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.type = params['type'];
-      if (this.type !== 'thumbUp' && this.type !== 'later') {
+      if (this.type !== 'favorite' && this.type !== 'later') {
         this.router.navigate(['session/404']);
+      } else if (this.type === 'favorite') {
+        this.infoList = [];
+        this.contentService.getUserFavoriteList().subscribe(value => {
+          this.infoList = value;
+        });
+      } else if (this.type === 'later') {
+        this.infoList = [];
       }
     });
   }

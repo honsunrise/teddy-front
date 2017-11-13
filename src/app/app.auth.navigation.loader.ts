@@ -37,11 +37,11 @@ export class AuthNavigationLoader implements NavigationLoader {
               'url': '/playlist/later'
             },
             {
-              'id': 'thumb',
-              'title': 'Thumb Up',
+              'id': 'favorite',
+              'title': 'Favorite',
               'type': 'item',
-              'icon': 'thumb_up',
-              'url': '/playlist/thumbUp'
+              'icon': 'favorite',
+              'url': '/playlist/favorite'
             },
           ]
         }

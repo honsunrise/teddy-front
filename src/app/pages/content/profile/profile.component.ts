@@ -7,7 +7,6 @@ import { CustomValidators } from 'ng2-validation';
 import { UploadService } from '../../../service/upload/upload.service';
 import { UserService } from '../../../service/user/user.service';
 import { UserProfile } from '../../../service/domain/userprofile';
-import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { FileUploader } from '../../../service/upload/file-uploader.class';
 import { UploadToken } from '../../../service/domain/uploadToken';
@@ -25,6 +24,7 @@ export class ProfileComponent implements OnInit {
   favoriteList: Array<InfoWithTime> = [];
   thumbUpList: Array<InfoWithTime> = [];
   thumbDownList: Array<InfoWithTime> = [];
+  userProfile: UserProfile;
 
   form: FormGroup;
 
@@ -70,14 +70,13 @@ export class ProfileComponent implements OnInit {
       findMeByEmail: [true, Validators.compose([Validators.required])],
     });
 
-    let userProfile: UserProfile;
     userService.getUserProfile().subscribe(value => {
-      userProfile = value;
-      this.form.controls['firstname'].setValue(userProfile.firstname);
-      this.form.controls['lastname'].setValue(userProfile.lastname);
-      this.form.controls['birthday'].setValue(new Date(userProfile.birthday));
-      this.form.controls['bio'].setValue(userProfile.bio);
-      this.form.controls['gender'].setValue(userProfile.gender);
+      this.userProfile = value;
+      this.form.controls['firstname'].setValue(this.userProfile.firstname);
+      this.form.controls['lastname'].setValue(this.userProfile.lastname);
+      this.form.controls['birthday'].setValue(new Date(this.userProfile.birthday));
+      this.form.controls['bio'].setValue(this.userProfile.bio);
+      this.form.controls['gender'].setValue(this.userProfile.gender);
       this.form.controls['findMeByEmail'].setValue(false);
     });
 

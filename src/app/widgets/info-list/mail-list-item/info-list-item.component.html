@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
 
   <div class="pic" fxFlex="none" fxLayout="row" fxLayoutAlign="start center">
-    <img src="assets/images/unsplash/2.jpg">
+    <img src="{{model.info.coverList.length > 0 ? model.info.coverList[0] : ''}}">
   </div>
   <div class="info" fxFlex="noshrink" fxLayout="column">
     <div class="row-1" fxLayout="row" fxLayoutAlign="start center">

@@ -1,12 +1,6 @@
 <mat-card class="list-card">
   <mat-card-content class="pa-0">
-    <info-list [infos]="favoriteList" (infoClick)="goToWatchInfo($event.info.id)" *ngIf="type == 'thumbUp'">
-      <button mat-button class="mat-icon-button" aria-label="Toggle star">
-        <mat-icon>star</mat-icon>
-      </button>
-    </info-list>
-
-    <info-list [infos]="watchLaterList" (infoClick)="goToWatchInfo($event.info.id)" *ngIf="type == 'later'">
+    <info-list [infos]="infoList" (infoClick)="goToWatchInfo($event.info.id)">
       <button mat-button class="mat-icon-button" aria-label="Toggle star">
         <mat-icon>star</mat-icon>
       </button>

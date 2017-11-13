@@ -4,9 +4,6 @@ import { CustomValidators } from 'ng2-validation';
 import { AccountService } from '../../../service/account/account.service';
 import { AuthGuard } from '../../../auth/auth.guard.service';
 
-const password = new FormControl('', Validators.required);
-const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,10 +17,14 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    const password = new FormControl('', Validators.required);
+    const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
+
     this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required, CustomValidators.email])],
       password: password,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
+      agree: [false, CustomValidators.equal(true)],
     });
   }
 
