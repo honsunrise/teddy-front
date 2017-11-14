@@ -41,7 +41,7 @@ export class WatchComponent implements OnInit, OnDestroy {
         this.thumbDowns = info.thumbDowns;
         this.external = info.external;
         if (external) {
-          if (info.isRealUrl) {
+          if (info.realUrl) {
             this.url = info.movieUrl;
           } else {
             this.url = this.embedService.embed(info.movieUrl);
