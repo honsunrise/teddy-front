@@ -13,6 +13,7 @@ export class WatchComponent implements OnInit, OnDestroy {
   id: string;
   url: string;
   external: boolean;
+  realUrl: boolean;
   loading = true;
   isFavorite: boolean;
   favorites: number;
@@ -40,8 +41,9 @@ export class WatchComponent implements OnInit, OnDestroy {
         this.isThumbDown = info.isThumbDown;
         this.thumbDowns = info.thumbDowns;
         this.external = info.external;
-        if (external) {
-          if (info.realUrl) {
+        this.realUrl = info.realUrl;
+        if (this.external) {
+          if (this.realUrl) {
             this.url = info.movieUrl;
           } else {
             this.url = this.embedService.embed(info.movieUrl);

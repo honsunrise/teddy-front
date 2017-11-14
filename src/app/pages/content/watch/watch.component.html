@@ -1,6 +1,6 @@
 <div fxLayoutAlign="center" *ngIf="!loading">
   <div class="video-container">
-    <vg-player *ngIf="!external">
+    <vg-player *ngIf="!external || this.realUrl">
       <vg-overlay-play></vg-overlay-play>
       <vg-buffering></vg-buffering>
 
@@ -30,7 +30,7 @@
         <source src="{{url}}" type="video/mp4">
       </video>
     </vg-player>
-    <app-framed-content *ngIf="external" [externalUrl]="url"></app-framed-content>
+    <app-framed-content *ngIf="external && !this.realUrl" [externalUrl]="url"></app-framed-content>
     <div class="video-info-warp">
       <h1 class="video-title">
         {{title}}
