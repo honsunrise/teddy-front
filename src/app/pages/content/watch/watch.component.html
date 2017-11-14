@@ -27,16 +27,16 @@
       </vg-controls>
 
       <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
-        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+        <source src="{{url}}" type="video/mp4">
       </video>
     </vg-player>
-    <app-framed-content *ngIf="external" [externalUrl]="iframe"></app-framed-content>
+    <app-framed-content *ngIf="external" [externalUrl]="url"></app-framed-content>
     <div class="video-info-warp">
       <h1 class="video-title">
         {{title}}
       </h1>
       <div class="video-info" fxLayout="row" fxLayoutAlign="space-around center">
-        <span class="text">{{watchs + '次观看'}}</span>
+        <span class="text">{{watchCount + '次观看'}}</span>
         <div fxFlex></div>
 
         <a class="btn" (click)="onThumbUp()">

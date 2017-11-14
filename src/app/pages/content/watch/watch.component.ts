@@ -11,16 +11,16 @@ import 'rxjs/add/operator/delay';
 })
 export class WatchComponent implements OnInit, OnDestroy {
   id: string;
-  iframe: string;
+  url: string;
   external: boolean;
   loading = true;
-  favorites: number;
   isFavorite: boolean;
+  favorites: number;
   isThumbUp: boolean;
   thumbUps: number;
   isThumbDown: boolean;
   thumbDowns: number;
-  watchs: number;
+  watchCount: number;
   title: string;
   private sub: any;
 
@@ -32,15 +32,23 @@ export class WatchComponent implements OnInit, OnDestroy {
       this.id = params['id'];
       this.contentService.getInfoDetail(this.id).subscribe(info => {
         this.title = info.title;
-        this.watchs = info.watchCount;
-        this.external = info.external;
-        this.favorites = info.favorites;
+        this.watchCount = info.watchCount;
         this.isFavorite = info.isFavorite;
+        this.favorites = info.favorites;
         this.isThumbUp = info.isThumbUp;
         this.thumbUps = info.thumbUps;
         this.isThumbDown = info.isThumbDown;
         this.thumbDowns = info.thumbDowns;
-        this.iframe = this.embedService.embed(info.movieUrl);
+        this.external = info.external;
+        if (external) {
+          if (info.isRealUrl) {
+            this.url = info.movieUrl;
+          } else {
+            this.url = this.embedService.embed(info.movieUrl);
+          }
+        } else {
+          this.url = info.movieUrl;
+        }
         this.loading = false;
       });
       this.contentService.watchInfo(this.id).subscribe();
@@ -51,7 +59,6 @@ export class WatchComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  // TODO: add TO list
   onLike() {
     this.favorites += this.isFavorite ? -1 : 1;
     this.isFavorite = !this.isFavorite;

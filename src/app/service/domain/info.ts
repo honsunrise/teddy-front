@@ -8,6 +8,7 @@ export interface Info {
   coverList: string[];
   movieUrl: string;
   external: boolean;
+  isRealUrl: boolean;
   publishTime: Date;
   lastReviewTime: Date;
   lastModifyTime: Date;
