@@ -10,7 +10,7 @@ import { ErrorComponent } from './error/error.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { LockscreenComponent } from './lockscreen/lockscreen.component';
 import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { DialogSignupErrorComponent, SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../shared/material.module';
@@ -37,10 +37,12 @@ import { ConfirmMailComponent, DialogMailConfirmErrorComponent } from './confirm
     SignupComponent,
     MailConfirmComponent,
     ConfirmMailComponent,
-    DialogMailConfirmErrorComponent
+    DialogMailConfirmErrorComponent,
+    DialogSignupErrorComponent
   ],
   entryComponents: [
-    DialogMailConfirmErrorComponent
+    DialogMailConfirmErrorComponent,
+    DialogSignupErrorComponent
   ]
 })
 

@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'dialog-mail-confirm-error',
   template: '<h1 mat-dialog-title>Email confirm error</h1>\n' +
-  '<div mat-dialog-content>Your comfirm link may not correct.</div>\n' +
+  '<div mat-dialog-content>Your confirm link may not correct.</div>\n' +
   '<div mat-dialog-actions>\n' +
   '  <button mat-button mat-dialog-close>Close</button>\n' +
   '</div>'
