@@ -7,7 +7,7 @@ import { CustomValidators } from 'ng2-validation';
 import { UploadService } from '../../../service/upload/upload.service';
 import { UserService } from '../../../service/user/user.service';
 import { UserProfile } from '../../../service/domain/userprofile';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { FileUploader } from '../../../service/upload/file-uploader.class';
 import { UploadToken } from '../../../service/domain/uploadToken';
 

@@ -2,7 +2,7 @@ import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output }
 import { Ng2FileInputAction } from './upload-file.interface';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { noop } from 'rxjs/util/noop';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { Subscriber } from 'rxjs/Subscriber';
 
 function isSameFile(file1: File, file2: File): boolean {

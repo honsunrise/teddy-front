@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MasonryModule } from 'angular2-masonry';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
@@ -43,7 +43,7 @@ import { UploadFileComponent } from './publish/upload-file/upload-file.component
     TranslateModule.forChild(),
     NgxDatatableModule,
     FlexLayoutModule,
-    MasonryModule,
+    NgMasonryGridModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
