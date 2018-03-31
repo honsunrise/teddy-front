@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { InfoWithTime } from '../../../service/domain/InfoWithTime';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {InfoWithTime} from '../../../service/domain/InfoWithTime';
 
 @Component({
   selector: 'info-list-item',

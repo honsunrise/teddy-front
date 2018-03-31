@@ -1,4 +1,4 @@
-import { Info } from './info';
+import {Info} from './info';
 
 export interface InfoWithTime {
   info: Info;

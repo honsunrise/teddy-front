@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { InfoWithTime } from '../../../service/domain/InfoWithTime';
-import { ContentService } from '../../../service/content/content.service';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
-import { UploadService } from '../../../service/upload/upload.service';
-import { UserService } from '../../../service/user/user.service';
-import { UserProfile } from '../../../service/domain/userprofile';
-import { Observable } from 'rxjs/Rx';
-import { FileUploader } from '../../../service/upload/file-uploader.class';
-import { UploadToken } from '../../../service/domain/uploadToken';
+import {Component, OnInit} from '@angular/core';
+import {InfoWithTime} from '../../../service/domain/InfoWithTime';
+import {ContentService} from '../../../service/content/content.service';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
+import {UploadService} from '../../../service/upload/upload.service';
+import {UserService} from '../../../service/user/user.service';
+import {UserProfile} from '../../../service/domain/userprofile';
+import {Observable} from 'rxjs/Rx';
+import {FileUploader} from '../../../service/upload/file-uploader.class';
+import {UploadToken} from '../../../service/domain/uploadToken';
 
 @Component({
   selector: 'app-profile',

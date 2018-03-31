@@ -43,9 +43,7 @@
          *ngSwitchCase="'palettes'"
          [@slideInLeft]>
 
-      <div fxLayout="row" fxLayoutWrap
-           fxLayoutAlign="start start"
-           class="colors" perfectScrollbar>
+      <div fxLayout="row warp" fxLayoutAlign="start start" class="colors" perfectScrollbar>
         <div class="color"
              [ngClass]="'mat-'+color.key+'-bg'"
              *ngFor="let color of (colors | keys)"
@@ -61,9 +59,7 @@
     <div class="view"
          *ngSwitchCase="'hues'"
          [@slideInRight]>
-      <div fxLayout="row" fxLayoutWrap
-           fxLayoutAlign="start start"
-           class="colors" perfectScrollbar>
+      <div fxLayout="row warp" fxLayoutAlign="start start" class="colors" perfectScrollbar>
         <div class="color"
              *ngFor="let hue of hues"
              [fxHide]="selectedPalette === 'white' && hue !== '500'|| selectedPalette === 'black' && hue !== '500'"

@@ -83,7 +83,7 @@
           </div>
 
 
-          <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center">
+          <div class="ctrl-bar" fxLayout="row warp" fxLayoutAlign="end center">
             <button mat-raised-button matStepperNext>Next</button>
           </div>
         </form>
@@ -120,15 +120,15 @@
           </mat-form-field>
 
           <div class="field">
-            <rl-tag-input [formControl]="secondFormGroup.controls['tags']"
-                          placeholder="Input your tag space split"></rl-tag-input>
+            <tag-input [formControl]="secondFormGroup.controls['tags']"
+                       placeholder="Input your tag space split" [maxItems]="10"></tag-input>
           </div>
           <div class="field">
             <mat-checkbox [formControl]="secondFormGroup.controls['canReview']">
               Can review
             </mat-checkbox>
           </div>
-          <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center" fxLayoutGap="10px">
+          <div class="ctrl-bar" fxLayout="row warp" fxLayoutAlign="end center" fxLayoutGap="10px">
             <button mat-raised-button matStepperNext>Upload</button>
           </div>
         </form>
@@ -142,7 +142,7 @@
             </p>
           </div>
 
-          <div class="ctrl-bar" fxLayout="row" fxLayoutWrap fxLayoutAlign="end center" fxLayoutGap="10px">
+          <div class="ctrl-bar" fxLayout="row warp" fxLayoutAlign="end center" fxLayoutGap="10px">
             <button mat-raised-button matStepperPrevious="">Edit</button>
             <button mat-raised-button (click)="cancelPublish()" [disabled]="!uploader.isUploading">Cancel</button>
           </div>

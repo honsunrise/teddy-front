@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutGap="20px" fxLayoutWrap class="profile">
+<div fxLayout="row warp" fxLayoutGap="20px" class="profile">
   <mat-card fxFlex="none">
-    <mat-card-header fxLayout="column" fxLayoutWrap fxLayoutAlign="start center" class="profile-head">
+    <mat-card-header fxLayout="column warp" fxLayoutAlign="start center" class="profile-head">
       <div class="pic_warp">
         <img class="pic" *ngIf="userProfile?.avatarUrl"
              alt="{{userProfile?.firstname ? userProfile?.firstname.length > 0 ?
@@ -13,7 +13,7 @@
       </div>
       <span class="name">Andersen</span>
     </mat-card-header>
-    <mat-card-content fxLayout="row" fxLayoutGap="20px" fxLayoutWrap fxLayoutAlign="start center">
+    <mat-card-content fxLayout="row warp" fxLayoutGap="20px" fxLayoutAlign="start center">
       <div fxFlex="noshrink" class="profile-num">
         <div class="num">{{favorites}}</div>
         <div class="text-uppercase">Favorite</div>

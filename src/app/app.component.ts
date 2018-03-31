@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { SplashScreenService } from './service/splash/splash-screen.service';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {SplashScreenService} from './service/splash/splash-screen.service';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',

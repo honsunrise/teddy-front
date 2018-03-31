@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InfoWithTime } from '../../../service/domain/InfoWithTime';
-import { ContentService } from '../../../service/content/content.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {InfoWithTime} from '../../../service/domain/InfoWithTime';
+import {ContentService} from '../../../service/content/content.service';
 
 @Component({
   selector: 'app-playlist',
@@ -10,10 +10,11 @@ import { ContentService } from '../../../service/content/content.service';
 })
 export class PlayListComponent implements OnInit, OnDestroy {
   infoList: Array<InfoWithTime> = [];
-  private sub: any;
   type: string;
+  private sub: any;
 
-  constructor(private contentService: ContentService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private contentService: ContentService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

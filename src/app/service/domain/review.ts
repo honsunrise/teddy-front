@@ -1,5 +1,5 @@
-import { UserProfile } from './userprofile';
-import { Info } from './info';
+import {UserProfile} from './userprofile';
+import {Info} from './info';
 
 export interface Review {
   id: string;

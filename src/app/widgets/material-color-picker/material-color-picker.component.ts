@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { MatColors } from './material-colors';
-import { APP_ANIMATIONS } from '../../animations';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {MatColors} from './material-colors';
+import {APP_ANIMATIONS} from '../../animations';
 
 @Component({
   selector: 'app-material-color-picker',

@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { NavigationItem } from '../../navigation.model';
+import {Component, HostBinding, Input} from '@angular/core';
+import {NavigationItem} from '../../navigation.model';
 
 @Component({
   selector: 'nav-horizontal-item',

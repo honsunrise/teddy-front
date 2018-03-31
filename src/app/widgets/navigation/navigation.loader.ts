@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Rx';
-import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Rx';
+import {Injectable} from '@angular/core';
 
 export abstract class NavigationLoader {
   abstract getItems(): Observable<any>;

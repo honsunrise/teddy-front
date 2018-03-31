@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
-import { NavigationEnd, Router } from '@angular/router';
+import {Inject, Injectable} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {animate, AnimationBuilder, AnimationPlayer, style} from '@angular/animations';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Injectable()
 export class SplashScreenService {

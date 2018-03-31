@@ -1,5 +1,5 @@
-import { Component, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
-import { NavigationGroup } from '../../navigation.model';
+import {Component, HostBinding, HostListener, Input, OnDestroy} from '@angular/core';
+import {NavigationGroup} from '../../navigation.model';
 
 @Component({
   selector: 'nav-horizontal-collapse',

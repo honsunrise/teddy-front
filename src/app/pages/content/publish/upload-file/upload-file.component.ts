@@ -1,9 +1,9 @@
-import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Ng2FileInputAction } from './upload-file.interface';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { noop } from 'rxjs/util/noop';
-import { Observable } from 'rxjs/Rx';
-import { Subscriber } from 'rxjs/Subscriber';
+import {Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Ng2FileInputAction} from './upload-file.interface';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {noop} from 'rxjs/util/noop';
+import {Observable} from 'rxjs/Rx';
+import {Subscriber} from 'rxjs/Subscriber';
 
 function isSameFile(file1: File, file2: File): boolean {
   return file1.name === file2.name && file1.size === file2.size && file1.type === file2.type;

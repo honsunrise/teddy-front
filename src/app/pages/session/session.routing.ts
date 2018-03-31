@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ErrorComponent } from './error/error.component';
-import { ForgotComponent } from './forgot/forgot.component';
-import { LockscreenComponent } from './lockscreen/lockscreen.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { AuthGuard } from '../../auth/auth.guard.service';
-import { MailConfirmComponent } from './mail-confirm/mail-confirm.component';
-import { ConfirmMailComponent } from './confirm-mail/confirm-mail.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {ErrorComponent} from './error/error.component';
+import {ForgotComponent} from './forgot/forgot.component';
+import {LockscreenComponent} from './lockscreen/lockscreen.component';
+import {SigninComponent} from './signin/signin.component';
+import {SignupComponent} from './signup/signup.component';
+import {AuthGuard} from '../../auth/auth.guard.service';
+import {MailConfirmComponent} from './mail-confirm/mail-confirm.component';
+import {ConfirmMailComponent} from './confirm-mail/confirm-mail.component';
 
 export const SessionRoutes: Routes = [
   {

@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
-import { AccountService } from '../../../service/account/account.service';
-import { AuthGuard } from '../../../auth/auth.guard.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
-import { DialogMailConfirmErrorComponent } from '../confirm-mail/confirm-mail.component';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
+import {AccountService} from '../../../service/account/account.service';
+import {AuthGuard} from '../../../auth/auth.guard.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {DialogMailConfirmErrorComponent} from '../confirm-mail/confirm-mail.component';
 
 @Component({
   selector: 'dialog-already-registered-error',

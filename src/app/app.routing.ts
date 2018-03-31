@@ -1,7 +1,7 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { MainLayoutComponent } from './layouts/main/main-layout.component';
-import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import {MainLayoutComponent} from './layouts/main/main-layout.component';
+import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
 
 export const AppRoutes: Routes = [{
   path: '',

@@ -1,4 +1,4 @@
-import { AfterContentChecked, Directive, ElementRef, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import {AfterContentChecked, Directive, ElementRef, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 
 @Directive({
   selector: '[delayShow]'

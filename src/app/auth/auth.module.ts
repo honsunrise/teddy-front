@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { AuthGuard } from './auth.guard.service';
-import { AuthService } from './auth.service';
-import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+import {NgModule} from '@angular/core';
+import {AuthGuard} from './auth.guard.service';
+import {AuthService} from './auth.service';
+import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 
 export function jwtOptionsFactory() {
   return {

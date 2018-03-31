@@ -82,7 +82,7 @@ export class FileType {
   }
 
   public static fileTypeDetection(inputFilename: string): string {
-    const types: { [ key: string ]: string } = {
+    const types: { [key: string]: string } = {
       'jpg': 'image',
       'jpeg': 'image',
       'tif': 'image',

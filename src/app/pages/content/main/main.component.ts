@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Media } from '../../../widgets/media-card/media-card.media';
-import { Router } from '@angular/router';
-import { ContentService } from '../../../service/content/content.service';
+import {Component} from '@angular/core';
+import {Media} from '../../../widgets/media-card/media-card.media';
+import {Router} from '@angular/router';
+import {ContentService} from '../../../service/content/content.service';
 
 @Component({
   selector: 'app-main',

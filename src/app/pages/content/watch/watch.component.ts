@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ContentService } from '../../../service/content/content.service';
-import { EmbedVideoService } from '../../../service/embed-video/embed-video.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ContentService} from '../../../service/content/content.service';
+import {EmbedVideoService} from '../../../service/embed-video/embed-video.service';
 import 'rxjs/add/operator/delay';
 
 @Component({

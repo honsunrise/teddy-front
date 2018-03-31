@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Rx';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Rx';
+import {Subscription} from 'rxjs/Subscription';
 
 export class FileSplit {
   public data: Blob;

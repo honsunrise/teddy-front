@@ -1,6 +1,6 @@
-import { NavigationLoader } from './widgets/navigation/navigation.loader';
-import { Observable } from 'rxjs/Rx';
-import { AuthService } from './auth/auth.service';
+import {NavigationLoader} from './widgets/navigation/navigation.loader';
+import {Observable} from 'rxjs/Rx';
+import {AuthService} from './auth/auth.service';
 
 export class AuthNavigationLoader implements NavigationLoader {
 

@@ -1,9 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { APP_CONFIG } from '../../app.config.constants';
-import { IAppConfig } from '../../app.config.interface';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { UserProfile } from '../domain/userprofile';
+import {Inject, Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Rx';
+import {APP_CONFIG} from '../../app.config.constants';
+import {IAppConfig} from '../../app.config.interface';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {UserProfile} from '../domain/userprofile';
 
 @Injectable()
 export class UserService {

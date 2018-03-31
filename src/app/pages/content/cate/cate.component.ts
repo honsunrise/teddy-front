@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Media } from '../../../widgets/media-card/media-card.media';
-import { ContentService } from '../../../service/content/content.service';
-import { Router } from '@angular/router';
-import { Tag } from '../../../service/domain/tag';
+import {Component} from '@angular/core';
+import {Media} from '../../../widgets/media-card/media-card.media';
+import {ContentService} from '../../../service/content/content.service';
+import {Router} from '@angular/router';
+import {Tag} from '../../../service/domain/tag';
 
 @Component({
   selector: 'app-cate',

@@ -1,4 +1,4 @@
-import { UserProfile } from './userprofile';
+import {UserProfile} from './userprofile';
 
 export interface Info {
   id: string;

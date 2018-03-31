@@ -1,18 +1,17 @@
 <div class="upload-file" (blur)="onBlur()">
   <div class="upload-file-invalid text-danger" [hidden]="!invalidFile">{{invalidFileText}}</div>
-  <div fileDrop class="upload-file-drop-container" [ngClass]="{'file-is-over': fileIsOver}"
-       fxLayout="row" fxLayoutWrap fxLayoutAlign="center center"
+  <div ngFileDrop class="upload-file-drop-container" [ngClass]="{'file-is-over': fileIsOver}"
+       fxLayout="row warp" fxLayoutAlign="center center"
        (click)="ng2FileInputSelect.click()"
        (fileOver)="fileOver($event)"
        (onFileDrop)="onFileDrop($event)">
     <span class="text">{{dropText}}</span>
   </div>
   <div class="upload-file-files" *ngIf="showPreviews && currentFiles.length"
-       fxLayout="row" fxLayoutWrap fxLayoutAlign="start start">
+       fxLayout="row warp" fxLayoutAlign="start start">
     <div *ngFor="let file of currentFiles" class="upload-file-file">
       <div class="upload-file-file-name"
-           fxLayout="row"
-           fxLayoutWrap
+           fxLayout="row warp"
            fxLayoutAlign="center center">
         <span class="text">{{file.name}}</span>
       </div>

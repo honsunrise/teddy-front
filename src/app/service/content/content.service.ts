@@ -1,12 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
-import { APP_CONFIG } from '../../app.config.constants';
-import { IAppConfig } from '../../app.config.interface';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Info } from '../domain/info';
-import { Observable } from 'rxjs/Rx';
-import { InfoWithTime } from '../domain/InfoWithTime';
-import { UserProfile } from '../domain/userprofile';
-import { Tag } from '../domain/tag';
+import {Inject, Injectable} from '@angular/core';
+import {APP_CONFIG} from '../../app.config.constants';
+import {IAppConfig} from '../../app.config.interface';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {Info} from '../domain/info';
+import {Observable} from 'rxjs/Rx';
+import {InfoWithTime} from '../domain/InfoWithTime';
+import {UserProfile} from '../domain/userprofile';
+import {Tag} from '../domain/tag';
 
 @Injectable()
 export class ContentService {

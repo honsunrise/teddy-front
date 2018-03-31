@@ -1,8 +1,8 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { APP_ANIMATIONS } from '../../../animations';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../../../service/account/account.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {APP_ANIMATIONS} from '../../../animations';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from '../../../service/account/account.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'dialog-mail-confirm-error',

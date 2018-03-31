@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
+import {Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output, Renderer2} from '@angular/core';
 
 @Directive({
   selector: '[click.stop]'

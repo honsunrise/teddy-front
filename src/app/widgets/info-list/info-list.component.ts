@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { InfoWithTime } from '../../service/domain/InfoWithTime';
-import { APP_ANIMATIONS } from '../../animations';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {InfoWithTime} from '../../service/domain/InfoWithTime';
+import {APP_ANIMATIONS} from '../../animations';
 
 @Component({
   selector: 'info-list',

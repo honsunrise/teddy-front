@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-
-import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../auth/auth.service';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -14,24 +12,21 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   dark: boolean;
   boxed: boolean;
   collapseSidebar: boolean;
-  currentLang = 'en';
   @ViewChild('sidemenu') sidemenu;
   @ViewChild('root') root;
   private _router: Subscription;
 
-  constructor(public authService: AuthService, private router: Router, public translate: TranslateService) {
-    const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|cn/) ? browserLang : 'en');
+  constructor(public authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.url = this.router.url;
     this._router = this.router.events.filter(event => event instanceof NavigationEnd)
       .subscribe((event: NavigationEnd) => {
-      document.querySelector('.app-inner .mat-sidenav-content').scrollTop = 0;
-      this.url = event.url;
-      this.runOnRouteChange();
-    });
+        document.querySelector('.app-inner .mat-sidenav-content').scrollTop = 0;
+        this.url = event.url;
+        this.runOnRouteChange();
+      });
   }
 
   ngAfterViewInit(): void {

@@ -1,8 +1,8 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { NavigationGroup } from '../../navigation.model';
-import { APP_ANIMATIONS } from '../../../../animations';
-import { NavigationService } from '../../navigation.service';
+import {Component, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {NavigationGroup} from '../../navigation.model';
+import {APP_ANIMATIONS} from '../../../../animations';
+import {NavigationService} from '../../navigation.service';
 
 @Component({
   selector: 'nav-vertical-collapse',

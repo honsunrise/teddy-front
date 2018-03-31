@@ -1,8 +1,8 @@
-import { FileIntmOptions, FileItem } from './file-item.class';
-import { FileType } from './file-type.class';
-import { Observable } from 'rxjs/Rx';
-import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Observer } from 'rxjs/Observer';
+import {FileIntmOptions, FileItem} from './file-item.class';
+import {FileType} from './file-type.class';
+import {Observable} from 'rxjs/Rx';
+import {HttpErrorResponse, HttpEvent, HttpEventType} from '@angular/common/http';
+import {Observer} from 'rxjs/Observer';
 
 export enum UploadEventType {
   /**

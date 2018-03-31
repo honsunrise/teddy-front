@@ -1,6 +1,6 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { Platform } from '@angular/cdk/platform';
+import {Platform} from '@angular/cdk/platform';
 
 @Directive({
   selector: '[perfectScrollbar]'

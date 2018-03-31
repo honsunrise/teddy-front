@@ -1,6 +1,6 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { BaseItem } from './navigation.model';
-import { NavigationLoader } from './navigation.loader';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {BaseItem} from './navigation.model';
+import {NavigationLoader} from './navigation.loader';
 
 @Component({
   selector: 'app-navigation',

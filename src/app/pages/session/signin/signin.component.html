@@ -13,7 +13,7 @@
                 <mat-form-field style="width: 100%">
                   <input matInput placeholder="Username" [formControl]="form.controls['username']">
                   <mat-error *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched"
-                         class="mat-text-warn">Username is required.
+                             class="mat-text-warn">Username is required.
                   </mat-error>
                   <mat-error *ngIf="form.controls['username'].hasError('notCorrect')" class="mat-text-warn">Username not
                     correct.
@@ -24,7 +24,7 @@
                 <mat-form-field style="width: 100%">
                   <input matInput type="password" placeholder="Password" [formControl]="form.controls['password']">
                   <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
-                         class="mat-text-warn">Password is required.
+                             class="mat-text-warn">Password is required.
                   </mat-error>
                   <mat-error *ngIf="form.controls['password'].hasError('notCorrect')" class="mat-text-warn">Password not
                     correct.
@@ -36,7 +36,7 @@
               </div>
               <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
             </div>
-            <div class="pt-1 pb-1 text-xs-center"  fxLayout="row" fxLayoutWrap fxLayoutAlign="start center">
+            <div class="pt-1 pb-1 text-xs-center" fxLayout="row warp" fxLayoutAlign="start center">
               <a fxFlex="none" [routerLink]="['/session/forgot']">Forgot password?</a>
               <span fxFlex></span>
               <a fxFlex="none" [routerLink]="['/session/signup']">Sign up.</a>

@@ -13,10 +13,10 @@
                 <mat-form-field style="width: 100%">
                   <input matInput placeholder="Email address" type="email" [formControl]="form.controls['email']">
                   <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
-                         class="mat-text-warn">You must include an email address.
+                             class="mat-text-warn">You must include an email address.
                   </mat-error>
                   <mat-error *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched"
-                         class="mat-text-warn">You must include a valid email address.
+                             class="mat-text-warn">You must include a valid email address.
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -36,19 +36,21 @@
                     *ngIf="form.controls['confirmPassword'].hasError('required') && form.controls['confirmPassword'].touched"
                     class="mat-text-warn">You must include confirm password.
                   </mat-error>
-                  <mat-error *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords do not
+                  <mat-error *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords do
+                    not
                     math.
                   </mat-error>
                 </mat-form-field>
               </div>
               <div class="pb-1">
-                <mat-checkbox [formControl]="form.controls['agree']">I have read and agree to the terms of service.</mat-checkbox>
+                <mat-checkbox [formControl]="form.controls['agree']">I have read and agree to the terms of service.
+                </mat-checkbox>
               </div>
               <button mat-raised-button color="primary" class="btn-block" type="submit" [disabled]="!form.valid">Create
                 your account
               </button>
             </div>
-            <div class="pt-2 pb-1 text-xs-center" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center">
+            <div class="pt-2 pb-1 text-xs-center" fxLayout="row warp" fxLayoutAlign="start center">
               <a fxFlex="none" [routerLink]="['/session/forgot']">Forgot password?</a>
               <span fxFlex></span>
               <a fxFlex="none" [routerLink]="['/session/signin']">Sign in.</a>

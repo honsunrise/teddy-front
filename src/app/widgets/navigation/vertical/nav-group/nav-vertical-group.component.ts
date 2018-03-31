@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NavigationGroup } from '../../navigation.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {NavigationGroup} from '../../navigation.model';
 
 @Component({
   selector: 'nav-vertical-group',

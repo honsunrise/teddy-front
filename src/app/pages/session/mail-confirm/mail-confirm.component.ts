@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { APP_ANIMATIONS } from '../../../animations';
+import {Component} from '@angular/core';
+import {APP_ANIMATIONS} from '../../../animations';
 
 @Component({
   selector: 'app-mail-confirm',
@@ -9,5 +9,6 @@ import { APP_ANIMATIONS } from '../../../animations';
 })
 export class MailConfirmComponent {
 
-  constructor() {}
+  constructor() {
+  }
 }
